@@ -1,0 +1,936 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Análise de Custos de MP — Dashboard Executivo</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Libre+Baskerville:ital,wght@0,400;0,700;1,400&family=DM+Sans:wght@300;400;500;600&display=swap" rel="stylesheet">
+<style>
+:root {
+  --navy:    #0D1B2A;
+  --blue-1:  #1A3A5C;
+  --blue-2:  #1E5F8E;
+  --blue-3:  #2E80C0;
+  --blue-4:  #4BA3D9;
+  --blue-5:  #A8D4EF;
+  --blue-6:  #D6EAF8;
+  --ice:     #EDF4FB;
+  --white:   #FFFFFF;
+  --slate:   #64788F;
+  --slate-l: #9FB3C4;
+  --line:    #D6E4EE;
+  --red:     #C0392B;
+  --red-l:   #F9EBEA;
+  --green:   #1A7D4E;
+  --green-l: #E8F6EE;
+  --amber:   #B7690A;
+  --amber-l: #FEF3E2;
+  --text:    #0D1B2A;
+  --text-2:  #3A556B;
+  --text-3:  #64788F;
+  --radius:  12px;
+  --shadow:  0 2px 12px rgba(13,27,42,0.07), 0 1px 3px rgba(13,27,42,0.05);
+  --shadow-md: 0 6px 24px rgba(13,27,42,0.10), 0 2px 6px rgba(13,27,42,0.06);
+}
+
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+body {
+  font-family: 'DM Sans', sans-serif;
+  font-weight: 400;
+  background: var(--ice);
+  color: var(--text);
+  min-height: 100vh;
+  padding: 0;
+}
+
+/* ── HEADER ── */
+.header {
+  background: var(--navy);
+  padding: 36px 48px 32px;
+  display: flex;
+  align-items: flex-end;
+  justify-content: space-between;
+  gap: 24px;
+}
+.header-left { max-width: 600px; }
+.header-eyebrow {
+  font-family: 'DM Sans', sans-serif;
+  font-size: 11px;
+  font-weight: 500;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--blue-4);
+  margin-bottom: 10px;
+}
+.header-title {
+  font-family: 'Libre Baskerville', serif;
+  font-size: 28px;
+  font-weight: 700;
+  color: var(--white);
+  line-height: 1.2;
+  margin-bottom: 8px;
+}
+.header-sub {
+  font-size: 14px;
+  color: var(--slate-l);
+  font-weight: 300;
+  letter-spacing: 0.01em;
+}
+.header-badge {
+  background: rgba(255,255,255,0.07);
+  border: 1px solid rgba(255,255,255,0.12);
+  border-radius: 8px;
+  padding: 14px 20px;
+  text-align: right;
+  flex-shrink: 0;
+}
+.header-badge .hb-label { font-size: 10px; color: var(--slate-l); letter-spacing: 0.08em; text-transform: uppercase; margin-bottom: 4px; }
+.header-badge .hb-val { font-size: 22px; font-weight: 600; color: var(--white); font-family: 'Libre Baskerville', serif; }
+.header-badge .hb-hint { font-size: 11px; color: var(--blue-4); margin-top: 2px; }
+
+/* ── NAV ── */
+.nav-bar {
+  background: var(--white);
+  border-bottom: 1px solid var(--line);
+  padding: 0 48px;
+  display: flex;
+  gap: 0;
+  position: sticky;
+  top: 0;
+  z-index: 50;
+  box-shadow: 0 1px 8px rgba(13,27,42,0.06);
+}
+.nav-btn {
+  padding: 16px 22px;
+  font-size: 13px;
+  font-weight: 500;
+  font-family: 'DM Sans', sans-serif;
+  color: var(--text-3);
+  background: transparent;
+  border: none;
+  border-bottom: 2.5px solid transparent;
+  cursor: pointer;
+  transition: color .2s, border-color .2s;
+  white-space: nowrap;
+  letter-spacing: 0.01em;
+}
+.nav-btn:hover { color: var(--blue-2); }
+.nav-btn.active { color: var(--blue-2); border-bottom-color: var(--blue-3); font-weight: 600; }
+.nav-num {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 18px; height: 18px;
+  background: var(--blue-6);
+  color: var(--blue-2);
+  border-radius: 50%;
+  font-size: 10px;
+  font-weight: 600;
+  margin-right: 7px;
+}
+.nav-btn.active .nav-num { background: var(--blue-3); color: var(--white); }
+
+/* ── MAIN ── */
+.main { padding: 40px 48px 60px; max-width: 1200px; }
+
+.section { display: none; }
+.section.active { display: block; animation: fadeUp .3s ease; }
+@keyframes fadeUp { from { opacity: 0; transform: translateY(8px); } to { opacity: 1; transform: translateY(0); } }
+
+/* ── SECTION HEADER ── */
+.sec-header { margin-bottom: 28px; }
+.sec-label {
+  font-size: 10px;
+  font-weight: 600;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--blue-3);
+  margin-bottom: 6px;
+}
+.sec-title {
+  font-family: 'Libre Baskerville', serif;
+  font-size: 22px;
+  font-weight: 700;
+  color: var(--navy);
+  margin-bottom: 6px;
+}
+.sec-desc { font-size: 13px; color: var(--text-3); line-height: 1.6; max-width: 680px; }
+
+/* ── CARDS ── */
+.card {
+  background: var(--white);
+  border: 1px solid var(--line);
+  border-radius: var(--radius);
+  box-shadow: var(--shadow);
+  padding: 28px 32px;
+  margin-bottom: 20px;
+}
+.card-sm { padding: 20px 24px; }
+.card-title {
+  font-size: 11px;
+  font-weight: 600;
+  letter-spacing: 0.10em;
+  text-transform: uppercase;
+  color: var(--text-3);
+  margin-bottom: 16px;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+.card-title::before {
+  content: '';
+  display: block;
+  width: 3px; height: 14px;
+  background: var(--blue-3);
+  border-radius: 2px;
+}
+
+/* ── METRIC GRID ── */
+.metric-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(160px, 1fr)); gap: 16px; margin-bottom: 24px; }
+.metric-card {
+  background: var(--white);
+  border: 1px solid var(--line);
+  border-radius: var(--radius);
+  padding: 20px 22px;
+  box-shadow: var(--shadow);
+  position: relative;
+  overflow: hidden;
+}
+.metric-card::after {
+  content: '';
+  position: absolute;
+  top: 0; left: 0; right: 0;
+  height: 3px;
+  background: linear-gradient(90deg, var(--blue-3), var(--blue-4));
+}
+.metric-card .mc-label { font-size: 11px; color: var(--text-3); font-weight: 500; letter-spacing: 0.04em; margin-bottom: 8px; }
+.metric-card .mc-value { font-size: 22px; font-weight: 600; color: var(--navy); font-family: 'Libre Baskerville', serif; line-height: 1; }
+.metric-card .mc-delta { font-size: 11px; margin-top: 6px; font-weight: 500; }
+.mc-delta.pos { color: var(--green); }
+.mc-delta.neg { color: var(--red); }
+.mc-delta.neu { color: var(--text-3); }
+
+/* ── CONTROLS ── */
+.controls { display: flex; gap: 12px; align-items: center; margin-bottom: 24px; flex-wrap: wrap; }
+.ctrl-group { display: flex; align-items: center; gap: 8px; }
+.ctrl-label { font-size: 12px; font-weight: 500; color: var(--text-3); }
+select {
+  padding: 8px 32px 8px 12px;
+  font-size: 13px;
+  font-family: 'DM Sans', sans-serif;
+  font-weight: 500;
+  border: 1px solid var(--line);
+  border-radius: 8px;
+  background: var(--white);
+  color: var(--text);
+  cursor: pointer;
+  appearance: none;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='12' viewBox='0 0 12 12'%3E%3Cpath fill='%2364788F' d='M6 8L1 3h10z'/%3E%3C/svg%3E");
+  background-repeat: no-repeat;
+  background-position: right 10px center;
+  transition: border-color .15s, box-shadow .15s;
+}
+select:focus { outline: none; border-color: var(--blue-3); box-shadow: 0 0 0 3px rgba(46,128,192,0.12); }
+
+/* ── LEGEND ── */
+.legend { display: flex; flex-wrap: wrap; gap: 16px; margin-bottom: 14px; }
+.legend-item { display: flex; align-items: center; gap: 6px; font-size: 12px; color: var(--text-3); font-weight: 400; }
+.legend-dot { width: 10px; height: 10px; border-radius: 2px; flex-shrink: 0; }
+
+/* ── CHART ── */
+.chart-wrap { position: relative; width: 100%; }
+
+/* ── TABLE ── */
+.tbl-wrap { overflow-x: auto; }
+table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 13px;
+}
+thead th {
+  text-align: left;
+  padding: 10px 14px;
+  font-size: 10px;
+  font-weight: 600;
+  letter-spacing: 0.10em;
+  text-transform: uppercase;
+  color: var(--text-3);
+  border-bottom: 1px solid var(--line);
+  white-space: nowrap;
+  background: var(--ice);
+}
+tbody td {
+  padding: 11px 14px;
+  border-bottom: 1px solid var(--line);
+  color: var(--text);
+  vertical-align: middle;
+}
+tbody tr:last-child td { border-bottom: none; }
+tbody tr:hover td { background: var(--blue-6); transition: background .1s; }
+td.num { text-align: right; font-variant-numeric: tabular-nums; font-weight: 500; font-family: 'Libre Baskerville', serif; font-size: 13px; }
+td.mp-name { font-weight: 500; color: var(--navy); }
+
+/* ── BADGES ── */
+.badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  font-size: 11px;
+  font-weight: 600;
+  padding: 3px 9px;
+  border-radius: 20px;
+  letter-spacing: 0.03em;
+}
+.b-red    { background: var(--red-l);   color: var(--red);   }
+.b-green  { background: var(--green-l); color: var(--green); }
+.b-amber  { background: var(--amber-l); color: var(--amber); }
+.b-blue   { background: var(--blue-6);  color: var(--blue-2); }
+
+/* ── DIVIDER ── */
+.divider { height: 1px; background: var(--line); margin: 28px 0; }
+
+/* ── TWO COL ── */
+.two-col { display: grid; grid-template-columns: 1fr 1fr; gap: 20px; }
+@media (max-width: 760px) { .two-col { grid-template-columns: 1fr; } .header { padding: 24px; } .main { padding: 24px; } .nav-bar { padding: 0 16px; } }
+
+/* ── INSIGHT BOX ── */
+.insight {
+  background: var(--blue-6);
+  border-left: 3px solid var(--blue-3);
+  border-radius: 0 8px 8px 0;
+  padding: 14px 18px;
+  margin-bottom: 20px;
+  font-size: 13px;
+  color: var(--blue-1);
+  line-height: 1.6;
+}
+.insight strong { font-weight: 600; }
+
+/* ── RANK TABLE ── */
+.rank-row {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  padding: 12px 0;
+  border-bottom: 1px solid var(--line);
+}
+.rank-row:last-child { border-bottom: none; }
+.rank-num { font-size: 13px; font-weight: 700; color: var(--slate-l); width: 20px; text-align: right; font-family: 'Libre Baskerville', serif; }
+.rank-bar-wrap { flex: 1; height: 6px; background: var(--blue-6); border-radius: 3px; overflow: hidden; }
+.rank-bar { height: 100%; border-radius: 3px; background: linear-gradient(90deg, var(--blue-3), var(--blue-4)); }
+.rank-name { font-size: 13px; font-weight: 500; color: var(--navy); min-width: 160px; }
+.rank-val { font-size: 13px; font-family: 'Libre Baskerville', serif; color: var(--text-2); font-weight: 700; min-width: 56px; text-align: right; }
+</style>
+</head>
+<body>
+
+<!-- HEADER -->
+<div class="header">
+  <div class="header-left">
+    <div class="header-eyebrow">Relatório de Custeio · Grupo 2</div>
+    <div class="header-title">Análise de Custos<br>de Matéria-Prima</div>
+    <div class="header-sub">6 produtos · 18 matérias-primas · 2 períodos</div>
+  </div>
+  <div style="display:flex;gap:12px">
+    <div class="header-badge">
+      <div class="hb-label">Produtos</div>
+      <div class="hb-val">6</div>
+      <div class="hb-hint">biscoitos analisados</div>
+    </div>
+    <div class="header-badge">
+      <div class="hb-label">Gasto total MP</div>
+      <div class="hb-val">R$ 57k</div>
+      <div class="hb-hint">nos dois meses</div>
+    </div>
+  </div>
+</div>
+
+<!-- NAV -->
+<div class="nav-bar">
+  <button class="nav-btn active" onclick="showTab('var',this)"><span class="nav-num">1</span>Variação P×Q</button>
+  <button class="nav-btn" onclick="showTab('custo',this)"><span class="nav-num">2</span>Custo Unitário</button>
+  <button class="nav-btn" onclick="showTab('efic',this)"><span class="nav-num">3</span>Eficiência por MP</button>
+  <button class="nav-btn" onclick="showTab('tend',this)"><span class="nav-num">4</span>Tendência M1→M2</button>
+  <button class="nav-btn" onclick="showTab('comp',this)"><span class="nav-num">5</span>Comparação</button>
+</div>
+
+<!-- MAIN -->
+<div class="main">
+
+<!-- ── TAB 1 ── -->
+<div id="s-var" class="section active">
+  <div class="sec-header">
+    <div class="sec-label">Análise 1 de 5</div>
+    <div class="sec-title">Variação de Matéria-Prima — Preço × Quantidade</div>
+    <div class="sec-desc">Decomposição clássica do custo padrão. Variação de quantidade = (QP − QR) × PP. Valores negativos indicam consumo acima do padrão esperado (desperdício). O preço real é igual ao preço padrão para todos os itens.</div>
+  </div>
+
+  <div class="controls">
+    <div class="ctrl-group">
+      <span class="ctrl-label">Produto</span>
+      <select id="var-prod" onchange="renderVar()">
+        <option>Maria</option><option>Água e Sal</option><option>Integral</option>
+        <option>Cookie</option><option>Recheada</option><option>Wafer</option>
+      </select>
+    </div>
+    <div class="ctrl-group">
+      <span class="ctrl-label">Período</span>
+      <select id="var-mes" onchange="renderVar()">
+        <option value="M1">Mês 1</option><option value="M2">Mês 2</option>
+      </select>
+    </div>
+  </div>
+
+  <div class="insight" id="var-insight">—</div>
+
+  <div class="card">
+    <div class="card-title">Impacto financeiro por matéria-prima (R$)</div>
+    <div class="legend">
+      <div class="legend-item"><span class="legend-dot" style="background:#C0392B"></span>Acima do padrão (desperdício)</div>
+      <div class="legend-item"><span class="legend-dot" style="background:#1A7D4E"></span>Dentro ou abaixo do padrão</div>
+    </div>
+    <div class="chart-wrap" style="height:260px"><canvas id="cVar" role="img" aria-label="Variação de quantidade por matéria-prima em R$"></canvas></div>
+  </div>
+
+  <div class="card card-sm">
+    <div class="card-title">Detalhamento por matéria-prima</div>
+    <div class="tbl-wrap">
+      <table id="tVar">
+        <thead><tr><th>Matéria-prima</th><th>QP padrão</th><th>QR real</th><th>Desvio</th><th>Impacto R$</th><th>Status</th></tr></thead>
+        <tbody></tbody>
+      </table>
+    </div>
+  </div>
+</div>
+
+<!-- ── TAB 2 ── -->
+<div id="s-custo" class="section">
+  <div class="sec-header">
+    <div class="sec-label">Análise 2 de 5</div>
+    <div class="sec-title">Custo Unitário por Produto — Comparativo entre Princípios</div>
+    <div class="sec-desc">Custeio Integral incorpora perdas reais do período (varia mês a mês). Parcial exclui perdas (base fixa). Ideal representa o custo sem nenhuma perda — referência teórica de excelência operacional.</div>
+  </div>
+
+  <div class="card">
+    <div class="card-title">Custo por unidade (R$) — todos os produtos</div>
+    <div class="legend" id="leg-custo"></div>
+    <div class="chart-wrap" style="height:300px"><canvas id="cCusto" role="img" aria-label="Custo unitário comparativo por produto">Custo unitário por biscoito.</canvas></div>
+  </div>
+
+  <div class="card card-sm">
+    <div class="card-title">Tabela comparativa</div>
+    <div class="tbl-wrap">
+      <table id="tCusto">
+        <thead><tr><th>Produto</th><th>Integral M1</th><th>Integral M2</th><th>Parcial (fixo)</th><th>Ideal (fixo)</th><th>Δ M1→M2</th><th>Gap Integral/Ideal</th></tr></thead>
+        <tbody></tbody>
+      </table>
+    </div>
+  </div>
+</div>
+
+<!-- ── TAB 3 ── -->
+<div id="s-efic" class="section">
+  <div class="sec-header">
+    <div class="sec-label">Análise 3 de 5</div>
+    <div class="sec-title">Indicadores de Eficiência por Matéria-Prima</div>
+    <div class="sec-desc">Compara o consumo real de cada MP com o padrão calculado (ficha técnica × lotes produzidos). Valores positivos significam consumo acima do esperado. A faixa azul clara indica a perda normal tolerada pela ficha técnica.</div>
+  </div>
+
+  <div class="controls">
+    <div class="ctrl-group">
+      <span class="ctrl-label">Produto</span>
+      <select id="efic-prod" onchange="renderEfic()">
+        <option>Maria</option><option>Água e Sal</option><option>Integral</option>
+        <option>Cookie</option><option>Recheada</option><option>Wafer</option>
+      </select>
+    </div>
+    <div class="ctrl-group">
+      <span class="ctrl-label">Período</span>
+      <select id="efic-mes" onchange="renderEfic()">
+        <option value="m1">Mês 1</option><option value="m2">Mês 2</option>
+      </select>
+    </div>
+  </div>
+
+  <div class="insight" id="efic-insight">—</div>
+
+  <div class="card">
+    <div class="card-title">Desvio real vs. perda normal permitida (%)</div>
+    <div class="legend">
+      <div class="legend-item"><span class="legend-dot" style="background:#C0392B"></span>Acima do limite normal</div>
+      <div class="legend-item"><span class="legend-dot" style="background:#B7690A"></span>Dentro do limite</div>
+      <div class="legend-item"><span class="legend-dot" style="background:#1A7D4E"></span>Abaixo do padrão (eficiente)</div>
+      <div class="legend-item"><span class="legend-dot" style="background:rgba(75,163,217,0.25);border:1px solid #4BA3D9"></span>Perda normal permitida</div>
+    </div>
+    <div class="chart-wrap" style="height:260px"><canvas id="cEfic" role="img" aria-label="Desvio percentual do consumo real vs padrão por MP"></canvas></div>
+  </div>
+
+  <div class="card card-sm">
+    <div class="card-title">Detalhamento</div>
+    <div class="tbl-wrap">
+      <table id="tEfic">
+        <thead><tr><th>Matéria-prima</th><th>Qtd padrão</th><th>Qtd real</th><th>Desvio %</th><th>Perda normal</th><th>Status</th></tr></thead>
+        <tbody></tbody>
+      </table>
+    </div>
+  </div>
+</div>
+
+<!-- ── TAB 4 ── -->
+<div id="s-tend" class="section">
+  <div class="sec-header">
+    <div class="sec-label">Análise 4 de 5</div>
+    <div class="sec-title">Tendência Mês 1 → Mês 2</div>
+    <div class="sec-desc">Evolução dos principais indicadores entre os dois períodos. Permite distinguir se a variação do custo integral decorreu de ganho de escala (mais lotes diluindo custo fixo por lote) ou de melhoria real no consumo de MP.</div>
+  </div>
+
+  <div class="controls">
+    <div class="ctrl-group">
+      <span class="ctrl-label">Produto</span>
+      <select id="tend-prod" onchange="renderTend()">
+        <option>Maria</option><option>Água e Sal</option><option>Integral</option>
+        <option>Cookie</option><option>Recheada</option><option>Wafer</option>
+      </select>
+    </div>
+  </div>
+
+  <div class="metric-grid" id="tend-metrics"></div>
+
+  <div class="two-col">
+    <div class="card">
+      <div class="card-title">Custo unitário integral (R$/un)</div>
+      <div class="chart-wrap" style="height:200px"><canvas id="cTend1" role="img" aria-label="Evolução custo unitário"></canvas></div>
+    </div>
+    <div class="card">
+      <div class="card-title">Perdas: normal vs. anormal (R$)</div>
+      <div class="chart-wrap" style="height:200px"><canvas id="cTend2" role="img" aria-label="Evolução das perdas"></canvas></div>
+    </div>
+  </div>
+
+  <div class="card card-sm">
+    <div class="card-title">Tabela de variações</div>
+    <div class="tbl-wrap">
+      <table id="tTend">
+        <thead><tr><th>Indicador</th><th>Mês 1</th><th>Mês 2</th><th>Variação %</th><th>Avaliação</th></tr></thead>
+        <tbody></tbody>
+      </table>
+    </div>
+  </div>
+</div>
+
+<!-- ── TAB 5 ── -->
+<div id="s-comp" class="section">
+  <div class="sec-header">
+    <div class="sec-label">Análise 5 de 5</div>
+    <div class="sec-title">Comparação entre Produtos e MPs</div>
+    <div class="sec-desc">Ranking de perdas anormais por produto e identificação das matérias-primas mais críticas em termos de desvio do padrão esperado.</div>
+  </div>
+
+  <div class="two-col">
+    <div class="card">
+      <div class="card-title">Perda anormal por produto (R$)</div>
+      <div class="legend">
+        <div class="legend-item"><span class="legend-dot" style="background:#C0392B"></span>Mês 1</div>
+        <div class="legend-item"><span class="legend-dot" style="background:#4BA3D9"></span>Mês 2</div>
+      </div>
+      <div class="chart-wrap" style="height:240px"><canvas id="cComp1" role="img" aria-label="Perda anormal por produto">Perda anormal em R$ por produto.</canvas></div>
+    </div>
+    <div class="card">
+      <div class="card-title">% perda anormal / perda total</div>
+      <div class="legend">
+        <div class="legend-item"><span class="legend-dot" style="background:#C0392B"></span>Mês 1</div>
+        <div class="legend-item"><span class="legend-dot" style="background:#4BA3D9"></span>Mês 2</div>
+      </div>
+      <div class="chart-wrap" style="height:240px"><canvas id="cComp2" role="img" aria-label="% perda anormal por produto">Percentual de perda anormal.</canvas></div>
+    </div>
+  </div>
+
+  <div class="two-col">
+    <div class="card">
+      <div class="card-title">Ranking — MPs mais críticas (desvio médio)</div>
+      <div id="rank-mp"></div>
+    </div>
+    <div class="card">
+      <div class="card-title">Ranking — produtos por perda anormal total (M1+M2)</div>
+      <div id="rank-prod"></div>
+    </div>
+  </div>
+</div>
+
+</div><!-- /main -->
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/4.4.1/chart.umd.js"></script>
+<script>
+const PRODS = ['Maria','Água e Sal','Integral','Cookie','Recheada','Wafer'];
+
+const PRECOS = {
+  'Farinha de Trigo':{p:2.8,pn:0.05},'Açúcar':{p:2.5,pn:0.05},'Óleo':{p:9.0,pn:0.10},
+  'Fermento em pó':{p:35.0,pn:0.05},'Cacau em pó':{p:50.0,pn:0.12},'Margarina':{p:9.5,pn:0.00},
+  'Ovos':{p:11.5,pn:0.00},'Extrato de Baunilha':{p:195.0,pn:0.085},'Bicarbonato de Sódio':{p:30.0,pn:0.10},
+  'Sal':{p:4.0,pn:0.03},'Farinha de Trigo Integral':{p:3.8,pn:0.10},'Aveia em Flocos':{p:14.0,pn:0.00},
+  'Açúcar Mascavo':{p:8.5,pn:0.00},'Mel':{p:25.0,pn:0.15},'Óleo de Coco':{p:50.0,pn:0.10},
+  'Água':{p:1.2,pn:0.05},'Amido de Milho':{p:10.0,pn:0.08},'Leite em Pó':{p:40.0,pn:0.10},
+};
+
+const FICHA = {
+  'Farinha de Trigo':         {Maria:180,'Água e Sal':180,Integral:null,Cookie:240,Recheada:300,Wafer:120},
+  'Açúcar':                   {Maria:100,'Água e Sal':null,Integral:null,Cookie:160,Recheada:100,Wafer:80},
+  'Óleo':                     {Maria:40,'Água e Sal':90,Integral:null,Cookie:null,Recheada:90,Wafer:30},
+  'Fermento em pó':           {Maria:40,'Água e Sal':20,Integral:20,Cookie:null,Recheada:40,Wafer:30},
+  'Cacau em pó':              {Maria:null,'Água e Sal':null,Integral:null,Cookie:null,Recheada:90,Wafer:null},
+  'Margarina':                {Maria:null,'Água e Sal':null,Integral:null,Cookie:120,Recheada:null,Wafer:null},
+  'Ovos':                     {Maria:null,'Água e Sal':null,Integral:null,Cookie:10,Recheada:null,Wafer:null},
+  'Extrato de Baunilha':      {Maria:null,'Água e Sal':null,Integral:null,Cookie:30,Recheada:null,Wafer:10},
+  'Bicarbonato de Sódio':     {Maria:null,'Água e Sal':null,Integral:null,Cookie:20,Recheada:null,Wafer:null},
+  'Sal':                      {Maria:null,'Água e Sal':80,Integral:10,Cookie:10,Recheada:null,Wafer:20},
+  'Farinha de Trigo Integral':{Maria:null,'Água e Sal':null,Integral:200,Cookie:null,Recheada:null,Wafer:null},
+  'Aveia em Flocos':          {Maria:null,'Água e Sal':null,Integral:100,Cookie:null,Recheada:null,Wafer:null},
+  'Açúcar Mascavo':           {Maria:null,'Água e Sal':null,Integral:70,Cookie:null,Recheada:null,Wafer:null},
+  'Mel':                      {Maria:null,'Água e Sal':null,Integral:50,Cookie:null,Recheada:null,Wafer:null},
+  'Óleo de Coco':             {Maria:null,'Água e Sal':null,Integral:30,Cookie:null,Recheada:null,Wafer:null},
+  'Água':                     {Maria:null,'Água e Sal':80,Integral:null,Cookie:null,Recheada:null,Wafer:null},
+  'Amido de Milho':           {Maria:null,'Água e Sal':null,Integral:null,Cookie:null,Recheada:null,Wafer:80},
+  'Leite em Pó':              {Maria:null,'Água e Sal':null,Integral:null,Cookie:null,Recheada:null,Wafer:10},
+};
+
+const REAL = {
+  'Farinha de Trigo':         {Maria:{m1:196.88,m2:220},'Água e Sal':{m1:85,m2:183},Integral:{m1:null,m2:null},Cookie:{m1:250,m2:370},Recheada:{m1:280,m2:120},Wafer:{m1:132,m2:181}},
+  'Açúcar':                   {Maria:{m1:105,m2:125},'Água e Sal':{m1:null,m2:null},Integral:{m1:null,m2:null},Cookie:{m1:165,m2:245},Recheada:{m1:92,m2:42},Wafer:{m1:81,m2:121}},
+  'Óleo':                     {Maria:{m1:45,m2:50},'Água e Sal':{m1:42,m2:94},Integral:{m1:null,m2:null},Cookie:{m1:null,m2:null},Recheada:{m1:85,m2:38},Wafer:{m1:32,m2:46}},
+  'Fermento em pó':           {Maria:{m1:42.5,m2:51},'Água e Sal':{m1:10,m2:20.5},Integral:{m1:7.5,m2:15},Cookie:{m1:null,m2:null},Recheada:{m1:36,m2:16.5},Wafer:{m1:31.5,m2:45.5}},
+  'Cacau em pó':              {Maria:{m1:null,m2:null},'Água e Sal':{m1:null,m2:null},Integral:{m1:null,m2:null},Cookie:{m1:null,m2:null},Recheada:{m1:86,m2:43},Wafer:{m1:null,m2:null}},
+  'Margarina':                {Maria:{m1:null,m2:null},'Água e Sal':{m1:null,m2:null},Integral:{m1:null,m2:null},Cookie:{m1:125,m2:181},Recheada:{m1:null,m2:null},Wafer:{m1:null,m2:null}},
+  'Ovos':                     {Maria:{m1:null,m2:null},'Água e Sal':{m1:null,m2:null},Integral:{m1:null,m2:null},Cookie:{m1:850,m2:1260},Recheada:{m1:null,m2:null},Wafer:{m1:null,m2:null}},
+  'Extrato de Baunilha':      {Maria:{m1:null,m2:null},'Água e Sal':{m1:null,m2:null},Integral:{m1:null,m2:null},Cookie:{m1:32.25,m2:48},Recheada:{m1:null,m2:null},Wafer:{m1:10.75,m2:16}},
+  'Bicarbonato de Sódio':     {Maria:{m1:null,m2:null},'Água e Sal':{m1:null,m2:null},Integral:{m1:null,m2:null},Cookie:{m1:22,m2:30},Recheada:{m1:null,m2:null},Wafer:{m1:null,m2:null}},
+  'Sal':                      {Maria:{m1:null,m2:null},'Água e Sal':{m1:28,m2:81},Integral:{m1:4,m2:8},Cookie:{m1:11.5,m2:16},Recheada:{m1:null,m2:null},Wafer:{m1:23,m2:31}},
+  'Farinha de Trigo Integral':{Maria:{m1:null,m2:null},'Água e Sal':{m1:null,m2:null},Integral:{m1:78,m2:150},Cookie:{m1:null,m2:null},Recheada:{m1:null,m2:null},Wafer:{m1:null,m2:null}},
+  'Aveia em Flocos':          {Maria:{m1:null,m2:null},'Água e Sal':{m1:null,m2:null},Integral:{m1:40,m2:75},Cookie:{m1:null,m2:null},Recheada:{m1:null,m2:null},Wafer:{m1:null,m2:null}},
+  'Açúcar Mascavo':           {Maria:{m1:null,m2:null},'Água e Sal':{m1:null,m2:null},Integral:{m1:29.53,m2:51.1},Cookie:{m1:null,m2:null},Recheada:{m1:null,m2:null},Wafer:{m1:null,m2:null}},
+  'Mel':                      {Maria:{m1:null,m2:null},'Água e Sal':{m1:null,m2:null},Integral:{m1:20,m2:41},Cookie:{m1:null,m2:null},Recheada:{m1:null,m2:null},Wafer:{m1:null,m2:null}},
+  'Óleo de Coco':             {Maria:{m1:null,m2:null},'Água e Sal':{m1:null,m2:null},Integral:{m1:12,m2:22},Cookie:{m1:null,m2:null},Recheada:{m1:null,m2:null},Wafer:{m1:null,m2:null}},
+  'Água':                     {Maria:{m1:null,m2:null},'Água e Sal':{m1:40,m2:85},Integral:{m1:null,m2:null},Cookie:{m1:null,m2:null},Recheada:{m1:null,m2:null},Wafer:{m1:null,m2:null}},
+  'Amido de Milho':           {Maria:{m1:null,m2:null},'Água e Sal':{m1:null,m2:null},Integral:{m1:null,m2:null},Cookie:{m1:null,m2:null},Recheada:{m1:null,m2:null},Wafer:{m1:83,m2:122}},
+  'Leite em Pó':              {Maria:{m1:null,m2:null},'Água e Sal':{m1:null,m2:null},Integral:{m1:null,m2:null},Cookie:{m1:null,m2:null},Recheada:{m1:null,m2:null},Wafer:{m1:9,m2:17}},
+};
+
+const LOTES = {Maria:{m1:1000,m2:1250},'Água e Sal':{m1:300,m2:1000},Integral:{m1:375,m2:730},Cookie:{m1:1000,m2:1500},Recheada:{m1:700,m2:311.111},Wafer:{m1:550,m2:937.5}};
+const UNIDS = {Maria:{m1:40000,m2:50000},'Água e Sal':{m1:13500,m2:45000},Integral:{m1:15000,m2:29200},Cookie:{m1:20000,m2:30000},Recheada:{m1:31500,m2:14000},Wafer:{m1:22000,m2:37500}};
+
+const CUSTO = {
+  Maria:       {im1:0.067657,im2:0.06327,parc:0.06285,ideal:0.059257},
+  'Água e Sal':{im1:0.079852,im2:0.053331,parc:0.051867,ideal:0.048516},
+  Integral:    {im1:0.165727,im2:0.162204,parc:0.156125,ideal:0.144882},
+  Cookie:      {im1:0.953488,im2:0.9394,parc:0.914267,ideal:0.911527},
+  Recheada:    {im1:0.096476,im2:0.097179,parc:0.073333,ideal:0.068767},
+  Wafer:       {im1:0.049065,im2:0.056316,parc:0.0464,ideal:0.043742},
+};
+
+const PERDAS = {
+  Maria:       {ptm1:335.964,ptm2:200.625,pnm1:143.7,pnm2:179.625,pam1:192.264,pam2:21},
+  'Água e Sal':{ptm1:423.04,ptm2:216.7,pnm1:45.24,pnm2:150.8,pam1:377.8,pam2:65.9},
+  Integral:    {ptm1:312.6725,ptm2:505.781,pnm1:168.6375,pnm2:328.281,pam1:144.035,pam2:177.5},
+  Cookie:      {ptm1:839.217,ptm2:836.2,pnm1:54.8,pnm2:82.2,pam1:784.417,pam2:754},
+  Recheada:    {ptm1:872.85,ptm2:397.767,pnm1:143.85,pnm2:63.933,pam1:729,pam2:333.833},
+  Wafer:       {ptm1:212.9,ptm2:628.675,pnm1:106.3,pnm2:132.875,pam1:106.6,pam2:495.8},
+};
+
+const GASTO = {Maria:{m1:2706.264,m2:3163.5},'Água e Sal':{m1:1126,m2:2501.9},Integral:{m1:2485.91,m2:4736.35},Cookie:{m1:19069.75,m2:28182},Recheada:{m1:7339,m2:3510.5},Wafer:{m1:1962.6,m2:2815.8}};
+
+const C = {navy:'#0D1B2A',b2:'#1E5F8E',b3:'#2E80C0',b4:'#4BA3D9',b5:'#A8D4EF',b6:'#D6EAF8',red:'#C0392B',redL:'rgba(192,57,43,0.15)',green:'#1A7D4E',greenL:'rgba(26,125,78,0.15)',amber:'#B7690A',amberL:'rgba(183,105,10,0.15)',line:'#D6E4EE',slate:'#64788F'};
+let charts = {};
+function dc(id){if(charts[id]){charts[id].destroy();delete charts[id];}}
+
+function showTab(t, btn){
+  document.querySelectorAll('.section').forEach(s=>s.classList.remove('active'));
+  document.querySelectorAll('.nav-btn').forEach(b=>b.classList.remove('active'));
+  document.getElementById('s-'+t).classList.add('active');
+  btn.classList.add('active');
+  const renders={var:renderVar,custo:renderCusto,efic:renderEfic,tend:renderTend,comp:renderComp};
+  renders[t]();
+}
+
+function fmt(v,d=2){return v.toLocaleString('pt-BR',{minimumFractionDigits:d,maximumFractionDigits:d});}
+function fmtR(v,d=2){return 'R$ '+fmt(v,d);}
+
+function getVarRows(prod,mes){
+  const mk=mes==='M1'?'m1':'m2';
+  const rows=[];
+  Object.entries(FICHA).forEach(([mp,p])=>{
+    const qg=p[prod]; if(qg==null) return;
+    const qr=(REAL[mp]||{})[prod]?.[mk]; if(qr==null) return;
+    const lote=LOTES[prod][mk];
+    const qp=qg/1000*lote;
+    const pp=PRECOS[mp].p, pn=PRECOS[mp].pn;
+    const varQ=(qp-qr)*pp, dev=(qr-qp)/qp*100;
+    rows.push({mp,qp,qr,pp,pn:pn*100,varQ,dev});
+  });
+  return rows;
+}
+
+function renderVar(){
+  const prod=document.getElementById('var-prod').value;
+  const mes=document.getElementById('var-mes').value;
+  const rows=getVarRows(prod,mes);
+  dc('var');
+
+  const totalLoss=rows.filter(r=>r.varQ<0).reduce((s,r)=>s+r.varQ,0);
+  const totalGain=rows.filter(r=>r.varQ>0).reduce((s,r)=>s+r.varQ,0);
+  const pct=rows.filter(r=>r.dev>0).length;
+  document.getElementById('var-insight').innerHTML=
+    `<strong>${prod} — ${mes}:</strong> ${pct} de ${rows.length} MPs consumidas acima do padrão. 
+     Impacto de desperdício: <strong>${fmtR(Math.abs(totalLoss))}</strong>. 
+     ${totalGain>0?'Economias de <strong>'+fmtR(totalGain)+'</strong> em MPs abaixo do padrão.':'Nenhuma MP abaixo do padrão neste período.'}`;
+
+  const h=Math.max(200,rows.length*44+60);
+  document.querySelector('#s-var .chart-wrap').style.height=h+'px';
+
+  charts.var=new Chart(document.getElementById('cVar'),{
+    type:'bar',
+    data:{
+      labels:rows.map(r=>r.mp.length>18?r.mp.slice(0,16)+'…':r.mp),
+      datasets:[{
+        data:rows.map(r=>+r.varQ.toFixed(2)),
+        backgroundColor:rows.map(r=>r.varQ<0?C.red:C.green),
+        borderRadius:4, borderSkipped:false,
+      }]
+    },
+    options:{indexAxis:'y',responsive:true,maintainAspectRatio:false,
+      plugins:{legend:{display:false},tooltip:{callbacks:{label:c=>(c.raw>=0?'Economia: ':' Desperdício: ')+fmtR(Math.abs(c.raw))}}},
+      scales:{
+        x:{grid:{color:C.line},border:{dash:[3,3]},ticks:{callback:v=>'R$ '+v,color:C.slate,font:{size:11}}},
+        y:{grid:{display:false},ticks:{color:C.navy,font:{size:12,weight:'500'}}}
+      }
+    }
+  });
+
+  const tb=document.querySelector('#tVar tbody'); tb.innerHTML='';
+  rows.sort((a,b)=>a.varQ-b.varQ).forEach(r=>{
+    const ok=r.varQ>=0;
+    const status=ok?'Dentro/Abaixo':(r.dev>r.pn?'Acima do limite':'Acima normal');
+    const bc=ok?'b-green':(r.dev>r.pn?'b-red':'b-amber');
+    tb.innerHTML+=`<tr>
+      <td class="mp-name">${r.mp}</td>
+      <td class="num">${fmt(r.qp,3)}</td><td class="num">${fmt(r.qr,3)}</td>
+      <td class="num" style="color:${ok?'var(--green)':'var(--red)'}">${r.dev>0?'+':''}${fmt(r.dev,1)}%</td>
+      <td class="num" style="color:${ok?'var(--green)':'var(--red)'}">${ok?'+':''}${fmtR(r.varQ)}</td>
+      <td><span class="badge ${bc}">${status}</span></td>
+    </tr>`;
+  });
+}
+
+function renderCusto(){
+  dc('custo');
+  const sets=[
+    {label:'Integral M1',data:PRODS.map(p=>+CUSTO[p].im1.toFixed(6)),bg:C.navy,br:4},
+    {label:'Integral M2',data:PRODS.map(p=>+CUSTO[p].im2.toFixed(6)),bg:C.b2,br:4},
+    {label:'Parcial',    data:PRODS.map(p=>+CUSTO[p].parc.toFixed(6)),bg:C.b4,br:4},
+    {label:'Ideal',      data:PRODS.map(p=>+CUSTO[p].ideal.toFixed(6)),bg:C.b5,br:4},
+  ];
+  const colors=[C.navy,C.b2,C.b4,C.b5];
+  document.getElementById('leg-custo').innerHTML=sets.map((s,i)=>
+    `<div class="legend-item"><span class="legend-dot" style="background:${colors[i]}"></span>${s.label}</div>`
+  ).join('');
+  charts.custo=new Chart(document.getElementById('cCusto'),{
+    type:'bar',
+    data:{labels:PRODS,datasets:sets.map((s,i)=>({label:s.label,data:s.data,backgroundColor:colors[i],borderRadius:s.br}))},
+    options:{responsive:true,maintainAspectRatio:false,
+      plugins:{legend:{display:false},tooltip:{callbacks:{label:c=>c.dataset.label+': R$ '+c.raw.toFixed(4)}}},
+      scales:{y:{title:{display:true,text:'R$ por unidade',font:{size:11},color:C.slate},grid:{color:C.line},border:{dash:[3,3]},ticks:{callback:v=>'R$ '+v.toFixed(4),color:C.slate}},
+              x:{grid:{display:false},ticks:{color:C.navy,font:{weight:'500'}}}}}
+  });
+  const tb=document.querySelector('#tCusto tbody'); tb.innerHTML='';
+  PRODS.forEach(p=>{
+    const c=CUSTO[p];
+    const d=((c.im2-c.im1)/c.im1*100);
+    const gap=((c.im1-c.ideal)/c.ideal*100);
+    tb.innerHTML+=`<tr>
+      <td class="mp-name">${p}</td>
+      <td class="num">${fmtR(c.im1,4)}</td><td class="num">${fmtR(c.im2,4)}</td>
+      <td class="num">${fmtR(c.parc,4)}</td><td class="num">${fmtR(c.ideal,4)}</td>
+      <td class="num" style="color:${d<=0?'var(--green)':'var(--red)'}">${d<=0?'▼':'▲'} ${Math.abs(d).toFixed(1)}%</td>
+      <td class="num" style="color:var(--amber)">+${gap.toFixed(1)}%</td>
+    </tr>`;
+  });
+}
+
+function renderEfic(){
+  const prod=document.getElementById('efic-prod').value;
+  const mes=document.getElementById('efic-mes').value;
+  const rows=[];
+  const lote=LOTES[prod][mes];
+  Object.entries(FICHA).forEach(([mp,p])=>{
+    const qg=p[prod]; if(qg==null) return;
+    const qr=(REAL[mp]||{})[prod]?.[mes]; if(qr==null) return;
+    const qp=qg/1000*lote, dev=(qr-qp)/qp*100, pn=(PRECOS[mp].pn)*100;
+    rows.push({mp,qp,qr,dev,pn});
+  });
+  dc('efic');
+
+  const above=rows.filter(r=>r.dev>r.pn);
+  document.getElementById('efic-insight').innerHTML=
+    `<strong>${prod} — Mês ${mes==='m1'?'1':'2'}:</strong> `+
+    (above.length===0
+      ? 'Todas as MPs estão dentro ou abaixo do padrão de perda normal. Excelente eficiência operacional.'
+      : `<strong>${above.length} MP${above.length>1?'s':''}</strong> acima do limite de perda normal: `+
+        above.map(r=>`<strong>${r.mp}</strong> (+${fmt(r.dev,1)}% vs. ${fmt(r.pn,1)}% permitido)`).join(', ')+'.');
+
+  const h=Math.max(180,rows.length*44+60);
+  document.querySelector('#s-efic .chart-wrap').style.height=h+'px';
+  charts.efic=new Chart(document.getElementById('cEfic'),{
+    type:'bar',
+    data:{
+      labels:rows.map(r=>r.mp.length>18?r.mp.slice(0,16)+'…':r.mp),
+      datasets:[
+        {label:'Desvio real',data:rows.map(r=>+r.dev.toFixed(2)),backgroundColor:rows.map(r=>r.dev>r.pn?C.red:r.dev>0?C.amber:C.green),borderRadius:4},
+        {label:'Perda normal',data:rows.map(r=>+r.pn.toFixed(2)),backgroundColor:'rgba(75,163,217,0.2)',borderRadius:4,borderWidth:1,borderColor:C.b4},
+      ]
+    },
+    options:{indexAxis:'y',responsive:true,maintainAspectRatio:false,
+      plugins:{legend:{display:false},tooltip:{callbacks:{label:c=>c.dataset.label+': '+c.raw.toFixed(1)+'%'}}},
+      scales:{x:{grid:{color:C.line},border:{dash:[3,3]},ticks:{callback:v=>v+'%',color:C.slate}},
+              y:{grid:{display:false},ticks:{color:C.navy,font:{size:12,weight:'500'}}}}}
+  });
+  const tb=document.querySelector('#tEfic tbody'); tb.innerHTML='';
+  rows.sort((a,b)=>b.dev-a.dev).forEach(r=>{
+    const st=r.dev>r.pn?['b-red','Acima do limite']:r.dev<=0?['b-green','Abaixo']:['b-amber','Dentro'];
+    tb.innerHTML+=`<tr>
+      <td class="mp-name">${r.mp}</td><td class="num">${fmt(r.qp,3)}</td><td class="num">${fmt(r.qr,3)}</td>
+      <td class="num" style="color:${r.dev>r.pn?'var(--red)':r.dev<=0?'var(--green)':'var(--amber)'}">${r.dev>0?'+':''}${fmt(r.dev,1)}%</td>
+      <td class="num">${fmt(r.pn,1)}%</td>
+      <td><span class="badge ${st[0]}">${st[1]}</span></td>
+    </tr>`;
+  });
+}
+
+function renderTend(){
+  const prod=document.getElementById('tend-prod').value;
+  const c=CUSTO[prod],p=PERDAS[prod],g=GASTO[prod],u=UNIDS[prod];
+  const mets=[
+    {l:'Unid. M1',v:u.m1.toLocaleString('pt-BR'),d:null},
+    {l:'Unid. M2',v:u.m2.toLocaleString('pt-BR'),d:((u.m2-u.m1)/u.m1*100)},
+    {l:'Custo int. M1',v:'R$ '+c.im1.toFixed(4),d:null},
+    {l:'Custo int. M2',v:'R$ '+c.im2.toFixed(4),d:((c.im2-c.im1)/c.im1*100),inv:true},
+    {l:'Gasto MP M1',v:fmtR(g.m1),d:null},
+    {l:'Gasto MP M2',v:fmtR(g.m2),d:((g.m2-g.m1)/g.m1*100)},
+  ];
+  document.getElementById('tend-metrics').innerHTML=mets.map(m=>`
+    <div class="metric-card">
+      <div class="mc-label">${m.l}</div>
+      <div class="mc-value">${m.v}</div>
+      ${m.d!=null?`<div class="mc-delta ${(m.inv?m.d<=0:m.d>=0)?'pos':'neg'}">${m.d>=0?'▲':'▼'} ${Math.abs(m.d).toFixed(1)}%</div>`:''}
+    </div>`).join('');
+
+  dc('tend1'); dc('tend2');
+  charts.tend1=new Chart(document.getElementById('cTend1'),{
+    type:'bar',
+    data:{labels:['Mês 1','Mês 2'],datasets:[
+      {label:'Custo integral',data:[+c.im1.toFixed(6),+c.im2.toFixed(6)],backgroundColor:[C.navy,C.b3],borderRadius:6},
+      {label:'Ideal',data:[+c.ideal.toFixed(6),+c.ideal.toFixed(6)],type:'line',borderColor:C.b5,borderDash:[4,3],pointRadius:4,backgroundColor:'transparent'},
+    ]},
+    options:{responsive:true,maintainAspectRatio:false,
+      plugins:{legend:{display:false},tooltip:{callbacks:{label:c=>c.dataset.label+': R$ '+c.raw.toFixed(4)}}},
+      scales:{y:{ticks:{callback:v=>'R$ '+v.toFixed(4),color:C.slate},grid:{color:C.line},border:{dash:[3,3]}},x:{grid:{display:false}}}}
+  });
+  charts.tend2=new Chart(document.getElementById('cTend2'),{
+    type:'bar',
+    data:{labels:['Mês 1','Mês 2'],datasets:[
+      {label:'Perda normal',data:[p.pnm1,p.pnm2],backgroundColor:C.b5,borderRadius:4,stack:'a'},
+      {label:'Perda anormal',data:[p.pam1,p.pam2],backgroundColor:C.red,borderRadius:4,stack:'a'},
+    ]},
+    options:{responsive:true,maintainAspectRatio:false,
+      plugins:{legend:{display:false},tooltip:{callbacks:{label:c=>c.dataset.label+': R$ '+c.raw.toFixed(2)}}},
+      scales:{y:{stacked:true,ticks:{callback:v=>'R$ '+v,color:C.slate},grid:{color:C.line},border:{dash:[3,3]}},x:{stacked:true,grid:{display:false}}}}
+  });
+
+  const rows=[
+    ['Unidades produzidas',u.m1.toLocaleString('pt-BR'),u.m2.toLocaleString('pt-BR'),((u.m2-u.m1)/u.m1*100),false],
+    ['Lotes produzidos',LOTES[prod].m1,LOTES[prod].m2,((LOTES[prod].m2-LOTES[prod].m1)/LOTES[prod].m1*100),false],
+    ['Gasto total MP',fmtR(g.m1),fmtR(g.m2),((g.m2-g.m1)/g.m1*100),false],
+    ['Custo unit. integral','R$ '+c.im1.toFixed(4),'R$ '+c.im2.toFixed(4),((c.im2-c.im1)/c.im1*100),true],
+    ['Custo unit. parcial','R$ '+c.parc.toFixed(4),'R$ '+c.parc.toFixed(4),null,true],
+    ['Custo unit. ideal','R$ '+c.ideal.toFixed(4),'R$ '+c.ideal.toFixed(4),null,true],
+    ['Perda total',fmtR(p.ptm1),fmtR(p.ptm2),((p.ptm2-p.ptm1)/p.ptm1*100),true],
+    ['Perda normal',fmtR(p.pnm1),fmtR(p.pnm2),((p.pnm2-p.pnm1)/p.pnm1*100),false],
+    ['Perda anormal',fmtR(p.pam1),fmtR(p.pam2),((p.pam2-p.pam1)/p.pam1*100),true],
+    ['% Perda / Gasto',fmt(p.ptm1/g.m1*100,1)+'%',fmt(p.ptm2/g.m2*100,1)+'%',null,true],
+  ];
+  const tb=document.querySelector('#tTend tbody'); tb.innerHTML='';
+  rows.forEach(r=>{
+    const hasDelta=r[3]!=null;
+    const good=hasDelta&&(r[4]?r[3]<0:r[3]>0);
+    const dCell=hasDelta
+      ?`<span style="color:${good?'var(--green)':'var(--red)'}">` +(r[3]>=0?'▲':'▼')+' '+Math.abs(r[3]).toFixed(1)+'%</span>'
+      :'<span style="color:var(--text-3)">—</span>';
+    const avail=hasDelta?(good?'<span class="badge b-green">Melhoria</span>':'<span class="badge b-red">Atenção</span>'):'<span class="badge b-blue">Constante</span>';
+    tb.innerHTML+=`<tr><td class="mp-name">${r[0]}</td><td class="num">${r[1]}</td><td class="num">${r[2]}</td><td class="num">${dCell}</td><td>${avail}</td></tr>`;
+  });
+}
+
+function renderComp(){
+  dc('comp1'); dc('comp2');
+  charts.comp1=new Chart(document.getElementById('cComp1'),{
+    type:'bar',
+    data:{labels:PRODS,datasets:[
+      {label:'M1',data:PRODS.map(p=>PERDAS[p].pam1),backgroundColor:C.red,borderRadius:4},
+      {label:'M2',data:PRODS.map(p=>PERDAS[p].pam2),backgroundColor:C.b4,borderRadius:4},
+    ]},
+    options:{responsive:true,maintainAspectRatio:false,plugins:{legend:{display:false}},
+      scales:{y:{title:{display:true,text:'R$',color:C.slate,font:{size:11}},ticks:{callback:v=>'R$'+v,color:C.slate},grid:{color:C.line},border:{dash:[3,3]}},
+              x:{grid:{display:false},ticks:{color:C.navy,font:{weight:'500'}}}}}
+  });
+  charts.comp2=new Chart(document.getElementById('cComp2'),{
+    type:'bar',
+    data:{labels:PRODS,datasets:[
+      {label:'M1',data:PRODS.map(p=>+(PERDAS[p].pam1/PERDAS[p].ptm1*100).toFixed(1)),backgroundColor:C.red,borderRadius:4},
+      {label:'M2',data:PRODS.map(p=>+(PERDAS[p].pam2/PERDAS[p].ptm2*100).toFixed(1)),backgroundColor:C.b4,borderRadius:4},
+    ]},
+    options:{responsive:true,maintainAspectRatio:false,plugins:{legend:{display:false}},
+      scales:{y:{title:{display:true,text:'%',color:C.slate,font:{size:11}},ticks:{callback:v=>v+'%',color:C.slate},grid:{color:C.line},border:{dash:[3,3]}},
+              x:{grid:{display:false},ticks:{color:C.navy,font:{weight:'500'}}}}}
+  });
+
+  // Rank MPs
+  const mpD={};
+  Object.entries(FICHA).forEach(([mp,prods])=>{
+    let tot=0,n=0;
+    PRODS.forEach(prod=>{
+      const qg=prods[prod]; if(!qg) return;
+      ['m1','m2'].forEach(mes=>{
+        const qr=(REAL[mp]||{})[prod]?.[mes]; if(!qr) return;
+        const qp=qg/1000*LOTES[prod][mes];
+        tot+=Math.abs((qr-qp)/qp*100); n++;
+      });
+    });
+    if(n>0) mpD[mp]={avg:tot/n,n};
+  });
+  const sortedMP=Object.entries(mpD).sort((a,b)=>b[1].avg-a[1].avg);
+  const maxMP=sortedMP[0][1].avg;
+  document.getElementById('rank-mp').innerHTML=sortedMP.map(([mp,d],i)=>`
+    <div class="rank-row">
+      <div class="rank-num">${i+1}</div>
+      <div class="rank-name">${mp}</div>
+      <div class="rank-bar-wrap"><div class="rank-bar" style="width:${(d.avg/maxMP*100).toFixed(1)}%"></div></div>
+      <div class="rank-val">${d.avg.toFixed(1)}%</div>
+      <span class="badge ${d.avg>30?'b-red':d.avg>10?'b-amber':'b-green'}" style="flex-shrink:0">${d.avg>30?'Alta':d.avg>10?'Média':'Baixa'}</span>
+    </div>`).join('');
+
+  // Rank Produtos
+  const sortedProd=PRODS.map(p=>({p,tot:PERDAS[p].pam1+PERDAS[p].pam2})).sort((a,b)=>b.tot-a.tot);
+  const maxP=sortedProd[0].tot;
+  document.getElementById('rank-prod').innerHTML=sortedProd.map((r,i)=>`
+    <div class="rank-row">
+      <div class="rank-num">${i+1}</div>
+      <div class="rank-name">${r.p}</div>
+      <div class="rank-bar-wrap"><div class="rank-bar" style="width:${(r.tot/maxP*100).toFixed(1)}%"></div></div>
+      <div class="rank-val">${fmtR(r.tot,0)}</div>
+    </div>`).join('');
+}
+
+renderVar();
+</script>
+</body>
+</html>
