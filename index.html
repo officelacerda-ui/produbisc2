@@ -487,8 +487,8 @@ const REAL={
   'Leite em Pó':              {Maria:{m1:null,m2:null},'Água e Sal':{m1:null,m2:null},Integral:{m1:null,m2:null},Cookie:{m1:null,m2:null},Recheada:{m1:null,m2:null},Wafer:{m1:9,m2:17}},
 };
 
-const LOTES={Maria:{m1:1000,m2:1250},'Água e Sal':{m1:300,m2:1000},Integral:{m1:375,m2:730},Cookie:{m1:1000,m2:1500},Recheada:{m1:700,m2:311.111},Wafer:{m1:550,m2:937.5}};
-const UNIDS={Maria:{m1:40000,m2:50000},'Água e Sal':{m1:13500,m2:45000},Integral:{m1:15000,m2:29200},Cookie:{m1:20000,m2:30000},Recheada:{m1:31500,m2:14000},Wafer:{m1:22000,m2:37500}};
+const LOTES={Maria:{m1:1000,m2:1250},'Água e Sal':{m1:300,m2:1000},Integral:{m1:375,m2:730},Cookie:{m1:1000,m2:1500},Recheada:{m1:700,m2:311.111},Wafer:{m1:375,m2:730}};
+const UNIDS={Maria:{m1:40000,m2:50000},'Água e Sal':{m1:13500,m2:45000},Integral:{m1:15000,m2:29200},Cookie:{m1:20000,m2:30000},Recheada:{m1:31500,m2:14000},Wafer:{m1:15000,m2:29200}};
 
 /* CUSTO com Int.M1×Ideal e Int.M2×Ideal da planilha */
 const CUSTO={
@@ -497,7 +497,7 @@ const CUSTO={
   Integral:    {im1:.165727, im2:.162204, parc:.156125, ideal:.144882, im1xI:.1438740589, im2xI:.1195538945},
   Cookie:      {im1:.953488, im2:.9394,   parc:.914267, ideal:.911527, im1xI:.04603357737,im2xI:.03057873604},
   Recheada:    {im1:.096476, im2:.097179, parc:.073333, ideal:.068767, im1xI:.4029499342, im2xI:.4131639083},
-  Wafer:       {im1:.049065, im2:.056316, parc:.0464,   ideal:.043742, im1xI:.1216780019, im2xI:.2874435618},
+  Wafer:       {im1:.2836233333, im2:.2725958904, parc:.12715, ideal:.12034875, im1xI:1.35667868, im2xI:1.26504962},
 };
 
 const PERDAS={
@@ -506,10 +506,10 @@ const PERDAS={
   Integral:    {ptm1:312.6725, ptm2:505.781, pnm1:168.6375, pnm2:328.281, pam1:144.035, pam2:177.5},
   Cookie:      {ptm1:839.217,  ptm2:836.2,   pnm1:54.8,     pnm2:82.2,    pam1:784.417, pam2:754},
   Recheada:    {ptm1:872.85,   ptm2:397.767, pnm1:143.85,   pnm2:63.933,  pam1:729,     pam2:333.833},
-  Wafer:       {ptm1:212.9,    ptm2:628.675, pnm1:106.3,    pnm2:132.875, pam1:106.6,   pam2:495.8},
+  Wafer:       {ptm1:2449.11875, ptm2:4445.6165, pnm1:102.01875, pnm2:198.5965, pam1:2347.1, pam2:4247.02},
 };
 
-const GASTO={Maria:{m1:2706.264,m2:3163.5},'Água e Sal':{m1:1126,m2:2501.9},Integral:{m1:2485.91,m2:4736.35},Cookie:{m1:19069.75,m2:28182},Recheada:{m1:7339,m2:3510.5},Wafer:{m1:1962.6,m2:2815.8}};
+const GASTO={Maria:{m1:2706.264,m2:3163.5},'Água e Sal':{m1:1126,m2:2501.9},Integral:{m1:2485.91,m2:4736.35},Cookie:{m1:19069.75,m2:28182},Recheada:{m1:7339,m2:3510.5},Wafer:{m1:4254.35,m2:7959.8}};
 
 const CL={o1:'#7A2E00',o2:'#C24B00',o3:'#E06020',o4:'#F07830',o5:'#F8A060',o6:'#FDC898',o7:'rgba(240,120,48,.15)',line:'#EDD8C8',sl:'#8C6A52',red:'#B83232',green:'#1F6B3A',amber:'#9B6200'};
 let CH={};
