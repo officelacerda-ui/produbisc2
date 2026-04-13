@@ -1,4 +1,4 @@
-<!-- UPDATED -->
+<!DOCTYPE html>
 <html lang="pt-BR">
 <head>
 <meta charset="UTF-8">
@@ -22,7 +22,6 @@ body{font-family:'Plus Jakarta Sans',sans-serif;background:var(--gray6);color:va
 .topbar{background:var(--white);border-bottom:1px solid var(--line);padding:0 48px;display:flex;align-items:center;justify-content:space-between;height:64px;position:sticky;top:0;z-index:100;box-shadow:0 1px 12px rgba(100,40,0,.07)}
 .logo{display:flex;align-items:center;gap:14px}
 .logo-circle{width:42px;height:42px;border-radius:50%;border:2.5px solid var(--o4);background:var(--o8);display:flex;align-items:center;justify-content:center;flex-shrink:0;overflow:hidden;position:relative}
-.logo-cookie{font-size:22px;line-height:1}
 .logo-wordmark{display:flex;flex-direction:column;gap:0}
 .logo-name{font-family:'Lora',serif;font-size:18px;font-weight:700;color:var(--o2);letter-spacing:-0.01em;line-height:1.1}
 .logo-tagline{font-size:10px;font-weight:600;letter-spacing:0.12em;text-transform:uppercase;color:var(--o4)}
@@ -35,7 +34,6 @@ body{font-family:'Plus Jakarta Sans',sans-serif;background:var(--gray6);color:va
 .hero::before{content:'';position:absolute;top:-60px;right:-60px;width:320px;height:320px;border-radius:50%;border:60px solid rgba(255,255,255,.06);pointer-events:none}
 .hero::after{content:'';position:absolute;bottom:-80px;right:160px;width:200px;height:200px;border-radius:50%;border:40px solid rgba(255,255,255,.04);pointer-events:none}
 .hero-inner{display:flex;align-items:center;justify-content:space-between;gap:32px;position:relative;z-index:1}
-.hero-left{}
 .hero-eyebrow{font-size:11px;font-weight:700;letter-spacing:0.16em;text-transform:uppercase;color:rgba(255,255,255,.65);margin-bottom:10px}
 .hero-title{font-family:'Lora',serif;font-size:30px;font-weight:700;color:var(--white);line-height:1.2;margin-bottom:8px}
 .hero-sub{font-size:14px;color:rgba(255,255,255,.75);font-weight:400;letter-spacing:.01em}
@@ -53,7 +51,7 @@ body{font-family:'Plus Jakarta Sans',sans-serif;background:var(--gray6);color:va
 .nav-pill{display:inline-flex;align-items:center;justify-content:center;width:20px;height:20px;border-radius:50%;background:var(--o7);color:var(--o2);font-size:10px;font-weight:800;transition:background .2s,color .2s}
 .nav-btn.active .nav-pill{background:var(--o3);color:var(--white)}
 
-/* MAIN */
+/* MAIN — exatamente como no código original do usuário */
 .main{padding:36px 48px 64px;max-width:1240px}
 .section{display:none}.section.active{display:block;animation:fu .3s ease}
 @keyframes fu{from{opacity:0;transform:translateY(6px)}to{opacity:1;transform:none}}
@@ -142,28 +140,25 @@ td.mp{font-weight:600;color:var(--o1)}
     <div class="logo-circle">
       <svg width="28" height="28" viewBox="0 0 28 28" fill="none" xmlns="http://www.w3.org/2000/svg">
         <circle cx="14" cy="14" r="13" fill="#FEE8D4" stroke="#E06020" stroke-width="1.5"/>
-        <!-- Cookie grande -->
-        <ellipse cx="11" cy="16" rx="7" ry="6.5" fill="#C87030" />
-        <ellipse cx="11" cy="15.5" rx="6.5" ry="6" fill="#D4853A" />
+        <ellipse cx="11" cy="16" rx="7" ry="6.5" fill="#C87030"/>
+        <ellipse cx="11" cy="15.5" rx="6.5" ry="6" fill="#D4853A"/>
         <circle cx="9" cy="14" r="1" fill="#7A3800"/>
         <circle cx="13" cy="15" r="0.8" fill="#7A3800"/>
         <circle cx="10" cy="17" r="0.7" fill="#7A3800"/>
         <circle cx="13" cy="12.5" r="0.6" fill="#7A3800"/>
-        <!-- Bolacha maria -->
         <rect x="14" y="10" width="10" height="7" rx="2" fill="#E8C080" transform="rotate(-8 14 10)"/>
         <rect x="14.5" y="10.5" width="9" height="6" rx="1.5" fill="#F0CC88" transform="rotate(-8 14.5 10.5)"/>
-        <!-- Chapéu -->
         <ellipse cx="11" cy="9.5" rx="4" ry="1.5" fill="white"/>
         <rect x="9.5" y="5" width="3" height="5" rx="1.5" fill="white"/>
       </svg>
     </div>
     <div class="logo-wordmark">
       <div class="logo-name">Produbisc</div>
-      <div class="logo-tagline">Gestão de Custos · UFRGS</div>
+      <div class="logo-tagline">Análise Gerencial de Custos II · UFRGS</div>
     </div>
   </div>
   <div class="topbar-meta">
-    <div class="meta-chip">Grupo 2 · 2 períodos</div>
+    <div class="meta-chip">Grupo 2</div>
     <div style="display:flex;align-items:center;gap:6px;font-size:12px;font-weight:600;color:var(--text3)">
       <div class="meta-dot"></div>Análise ativa
     </div>
@@ -174,7 +169,7 @@ td.mp{font-weight:600;color:var(--o1)}
 <div class="hero">
   <div class="hero-inner">
     <div class="hero-left">
-      <div class="hero-eyebrow">Dashboard Executivo · Análise de Matéria-Prima</div>
+      <div class="hero-eyebrow">Dashboard · Análise de Matéria-Prima</div>
       <div class="hero-title">Controle de Custos<br>de Produção</div>
       <div class="hero-sub">6 produtos · 18 matérias-primas · Mês 1 e Mês 2</div>
     </div>
@@ -205,10 +200,9 @@ td.mp{font-weight:600;color:var(--o1)}
   <div class="sec-hd">
     <div class="sec-eyebrow">Base de Dados · Referência do Modelo</div>
     <div class="sec-title">Fichas Técnicas, Preços e Custos</div>
-    <div class="sec-desc">Tabelas de referência completas utilizadas nas análises: preços padrão de matérias-primas, composição por produto (ficha técnica), custos unitários calculados pelos três princípios e produção dos dois períodos.</div>
+    <div class="sec-desc">Tabelas de referência completas utilizadas nas análises: preços padrão de matérias-primas, composição por produto (ficha técnica) e produção dos dois períodos.</div>
   </div>
 
-  <!-- PREÇOS -->
   <div class="card card-sm">
     <div class="card-hd">Preços de matérias-primas</div>
     <div class="tbl-wrap">
@@ -219,9 +213,8 @@ td.mp{font-weight:600;color:var(--o1)}
     </div>
   </div>
 
-  <!-- FICHA TÉCNICA -->
   <div class="card card-sm">
-    <div class="card-hd">Ficha técnica — quantidade por lote (g ou ml)</div>
+    <div class="card-hd">Ficha técnica — quantidade ajustada por lote (kg, l ou dúzia)</div>
     <div class="tbl-wrap">
       <table>
         <thead><tr><th>Matéria-prima</th><th>Maria</th><th>Água e Sal</th><th>Integral</th><th>Cookie</th><th>Recheada</th><th>Wafer</th></tr></thead>
@@ -229,9 +222,7 @@ td.mp{font-weight:600;color:var(--o1)}
       </table>
     </div>
   </div>
-  
 
-  <!-- PRODUÇÃO -->
   <div class="two-col">
     <div class="card card-sm">
       <div class="card-hd">Unidades produzidas por período</div>
@@ -253,9 +244,6 @@ td.mp{font-weight:600;color:var(--o1)}
     </div>
   </div>
 </div>
-</div>
-
-
 
 <!-- TAB 1 -->
 <div id="s-var" class="section">
@@ -321,7 +309,7 @@ td.mp{font-weight:600;color:var(--o1)}
   <div class="sec-hd">
     <div class="sec-eyebrow">Análise 3 de 5 · Eficiência Operacional</div>
     <div class="sec-title">Indicadores de Eficiência por MP</div>
-    <div class="sec-desc">Consumo real versus padrão calculado (ficha técnica × lotes). Valores positivos = consumo acima do esperado. A faixa laranja clara representa a perda normal tolerada.</div>
+    <div class="sec-desc">Compara o consumo real com o padrão esperado (ficha técnica × lotes). Valores positivos = consumo acima do padrão. A faixa laranja clara representa a perda normal tolerada.</div>
   </div>
   <div class="controls">
     <div class="ctrl-grp"><span class="ctrl-lbl">Produto</span>
@@ -350,7 +338,7 @@ td.mp{font-weight:600;color:var(--o1)}
   <div class="card card-sm">
     <div class="card-hd">Detalhamento</div>
     <div class="tbl-wrap"><table id="tEfic">
-      <thead><tr><th>Matéria-prima</th><th>Qtd padrão</th><th>Qtd real</th><th>Desvio %</th><th>Perda normal</th><th>Status</th></tr></thead>
+      <thead><tr><th>Matéria-prima</th><th>Qtd Padrão</th><th>Qtd Real</th><th>Desvio %</th><th>Perda normal</th><th>Status</th></tr></thead>
       <tbody></tbody>
     </table></div>
   </div>
@@ -361,7 +349,7 @@ td.mp{font-weight:600;color:var(--o1)}
   <div class="sec-hd">
     <div class="sec-eyebrow">Análise 4 de 5 · Evolução Temporal</div>
     <div class="sec-title">Tendência Mês 1 → Mês 2</div>
-    <div class="sec-desc">Evolução dos indicadores entre períodos. Permite distinguir se variações do custo integral decorrem de ganho de escala ou de melhoria real no consumo de matéria-prima.</div>
+    <div class="sec-desc">Evolução dos indicadores entre períodos. Distingue se a variação do custo integral decorre de ganho de escala ou de melhoria real no consumo de matéria-prima.</div>
   </div>
   <div class="controls">
     <div class="ctrl-grp"><span class="ctrl-lbl">Produto</span>
@@ -396,7 +384,7 @@ td.mp{font-weight:600;color:var(--o1)}
   <div class="sec-hd">
     <div class="sec-eyebrow">Análise 5 de 5 · Visão Consolidada</div>
     <div class="sec-title">Comparação entre Produtos e MPs</div>
-    <div class="sec-desc">Ranking de perdas anormais por produto e identificação das matérias-primas mais críticas em termos de desvio do padrão esperado — base para priorização de melhorias operacionais.</div>
+    <div class="sec-desc">Ranking de perdas anormais por produto e identificação das matérias-primas mais críticas em termos de desvio do padrão — base para priorização de melhorias operacionais.</div>
   </div>
   <div class="two-col">
     <div class="card">
@@ -432,46 +420,95 @@ td.mp{font-weight:600;color:var(--o1)}
 
 <!-- FOOTER -->
 <div class="footer">
-  <div class="footer-txt">Produbisc · UFRGS · Engenharia de Produção · Análise de Custos de MP — Grupo 2</div>
+  <div class="footer-txt">Produbisc · UFRGS · Engenharia de Produção · Análise Gerencial de Custos II — Grupo 2</div>
   <div class="footer-brand">Produbisc</div>
 </div>
 
 <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/4.4.1/chart.umd.js"></script>
 <script>
 const PRODS=['Maria','Água e Sal','Integral','Cookie','Recheada','Wafer'];
-const PRECOS={'Farinha de Trigo':{p:2.8,pn:.05},'Açúcar':{p:2.5,pn:.05},'Óleo':{p:9,pn:.1},'Fermento em pó':{p:35,pn:.05},'Cacau em pó':{p:50,pn:.12},'Margarina':{p:9.5,pn:0},'Ovos':{p:11.5,pn:0},'Extrato de Baunilha':{p:195,pn:.085},'Bicarbonato de Sódio':{p:30,pn:.1},'Sal':{p:4,pn:.03},'Farinha de Trigo Integral':{p:3.8,pn:.1},'Aveia em Flocos':{p:14,pn:0},'Açúcar Mascavo':{p:8.5,pn:0},'Mel':{p:25,pn:.15},'Óleo de Coco':{p:50,pn:.1},'Água':{p:1.2,pn:.05},'Amido de Milho':{p:10,pn:.08},'Leite em Pó':{p:40,pn:.1}};
-const FICHA={
-  'Farinha de Trigo':          {Maria:0.18,   'Água e Sal':0.18,  Integral:null,   Cookie:0.24,        Recheada:0.3,       Wafer:0.12},
-  'Açúcar':                    {Maria:0.1,    'Água e Sal':null,  Integral:null,   Cookie:0.16,        Recheada:0.1,       Wafer:0.08},
-  'Óleo':                      {Maria:0.04,   'Água e Sal':0.09,  Integral:null,   Cookie:null,        Recheada:0.09,      Wafer:0.03},
-  'Fermento em pó':            {Maria:0.04,   'Água e Sal':0.02,  Integral:0.02,   Cookie:null,        Recheada:0.04,      Wafer:0.03},
-  'Cacau em pó':               {Maria:null,   'Água e Sal':null,  Integral:null,   Cookie:null,        Recheada:0.09,      Wafer:null},
-  'Margarina':                 {Maria:null,   'Água e Sal':null,  Integral:null,   Cookie:0.12,        Recheada:null,      Wafer:null},
-  'Ovos':                      {Maria:null,   'Água e Sal':null,  Integral:null,   Cookie:0.8333333333,Recheada:null,      Wafer:null},
-  'Extrato de Baunilha':       {Maria:null,   'Água e Sal':null,  Integral:null,   Cookie:0.03,        Recheada:null,      Wafer:0.01},
-  'Bicarbonato de Sódio':      {Maria:null,   'Água e Sal':null,  Integral:null,   Cookie:0.02,        Recheada:null,      Wafer:null},
-  'Sal':                       {Maria:null,   'Água e Sal':0.08,  Integral:0.01,   Cookie:0.01,        Recheada:null,      Wafer:0.02},
-  'Farinha de Trigo Integral': {Maria:null,   'Água e Sal':null,  Integral:0.2,    Cookie:null,        Recheada:null,      Wafer:null},
-  'Aveia em Flocos':           {Maria:null,   'Água e Sal':null,  Integral:0.1,    Cookie:null,        Recheada:null,      Wafer:null},
-  'Açúcar Mascavo':            {Maria:null,   'Água e Sal':null,  Integral:0.07,   Cookie:null,        Recheada:null,      Wafer:null},
-  'Mel':                       {Maria:null,   'Água e Sal':null,  Integral:0.05,   Cookie:null,        Recheada:null,      Wafer:null},
-  'Óleo de Coco':              {Maria:null,   'Água e Sal':null,  Integral:0.03,   Cookie:null,        Recheada:null,      Wafer:null},
-  'Água':                      {Maria:null,   'Água e Sal':0.08,  Integral:null,   Cookie:null,        Recheada:null,      Wafer:null},
-  'Amido de Milho':            {Maria:null,   'Água e Sal':null,  Integral:null,   Cookie:null,        Recheada:null,      Wafer:0.08},
-  'Leite em Pó':               {Maria:null,   'Água e Sal':null,  Integral:null,   Cookie:null,        Recheada:null,      Wafer:0.01},
+
+const PRECOS={
+  'Farinha de Trigo':{p:2.8,pn:.05},'Açúcar':{p:2.5,pn:.05},'Óleo':{p:9,pn:.1},
+  'Fermento em pó':{p:35,pn:.05},'Cacau em pó':{p:50,pn:.12},'Margarina':{p:9.5,pn:0},
+  'Ovos':{p:11.5,pn:0},'Extrato de Baunilha':{p:195,pn:.085},'Bicarbonato de Sódio':{p:30,pn:.1},
+  'Sal':{p:4,pn:.03},'Farinha de Trigo Integral':{p:3.8,pn:.1},'Aveia em Flocos':{p:14,pn:0},
+  'Açúcar Mascavo':{p:8.5,pn:0},'Mel':{p:25,pn:.15},'Óleo de Coco':{p:50,pn:.1},
+  'Água':{p:1.2,pn:.05},'Amido de Milho':{p:10,pn:.08},'Leite em Pó':{p:40,pn:.1}
 };
-const REAL={'Farinha de Trigo':{Maria:{m1:196.88,m2:220},'Água e Sal':{m1:85,m2:183},Integral:{m1:null,m2:null},Cookie:{m1:250,m2:370},Recheada:{m1:280,m2:120},Wafer:{m1:132,m2:181}},'Açúcar':{Maria:{m1:105,m2:125},'Água e Sal':{m1:null,m2:null},Integral:{m1:null,m2:null},Cookie:{m1:165,m2:245},Recheada:{m1:92,m2:42},Wafer:{m1:81,m2:121}},'Óleo':{Maria:{m1:45,m2:50},'Água e Sal':{m1:42,m2:94},Integral:{m1:null,m2:null},Cookie:{m1:null,m2:null},Recheada:{m1:85,m2:38},Wafer:{m1:32,m2:46}},'Fermento em pó':{Maria:{m1:42.5,m2:51},'Água e Sal':{m1:10,m2:20.5},Integral:{m1:7.5,m2:15},Cookie:{m1:null,m2:null},Recheada:{m1:36,m2:16.5},Wafer:{m1:31.5,m2:45.5}},'Cacau em pó':{Maria:{m1:null,m2:null},'Água e Sal':{m1:null,m2:null},Integral:{m1:null,m2:null},Cookie:{m1:null,m2:null},Recheada:{m1:86,m2:43},Wafer:{m1:null,m2:null}},'Margarina':{Maria:{m1:null,m2:null},'Água e Sal':{m1:null,m2:null},Integral:{m1:null,m2:null},Cookie:{m1:125,m2:181},Recheada:{m1:null,m2:null},Wafer:{m1:null,m2:null}},'Ovos':{Maria:{m1:null,m2:null},'Água e Sal':{m1:null,m2:null},Integral:{m1:null,m2:null},Cookie:{m1:850,m2:1260},Recheada:{m1:null,m2:null},Wafer:{m1:null,m2:null}},'Extrato de Baunilha':{Maria:{m1:null,m2:null},'Água e Sal':{m1:null,m2:null},Integral:{m1:null,m2:null},Cookie:{m1:32.25,m2:48},Recheada:{m1:null,m2:null},Wafer:{m1:10.75,m2:16}},'Bicarbonato de Sódio':{Maria:{m1:null,m2:null},'Água e Sal':{m1:null,m2:null},Integral:{m1:null,m2:null},Cookie:{m1:22,m2:30},Recheada:{m1:null,m2:null},Wafer:{m1:null,m2:null}},'Sal':{Maria:{m1:null,m2:null},'Água e Sal':{m1:28,m2:81},Integral:{m1:4,m2:8},Cookie:{m1:11.5,m2:16},Recheada:{m1:null,m2:null},Wafer:{m1:23,m2:31}},'Farinha de Trigo Integral':{Maria:{m1:null,m2:null},'Água e Sal':{m1:null,m2:null},Integral:{m1:78,m2:150},Cookie:{m1:null,m2:null},Recheada:{m1:null,m2:null},Wafer:{m1:null,m2:null}},'Aveia em Flocos':{Maria:{m1:null,m2:null},'Água e Sal':{m1:null,m2:null},Integral:{m1:40,m2:75},Cookie:{m1:null,m2:null},Recheada:{m1:null,m2:null},Wafer:{m1:null,m2:null}},'Açúcar Mascavo':{Maria:{m1:null,m2:null},'Água e Sal':{m1:null,m2:null},Integral:{m1:29.53,m2:51.1},Cookie:{m1:null,m2:null},Recheada:{m1:null,m2:null},Wafer:{m1:null,m2:null}},'Mel':{Maria:{m1:null,m2:null},'Água e Sal':{m1:null,m2:null},Integral:{m1:20,m2:41},Cookie:{m1:null,m2:null},Recheada:{m1:null,m2:null},Wafer:{m1:null,m2:null}},'Óleo de Coco':{Maria:{m1:null,m2:null},'Água e Sal':{m1:null,m2:null},Integral:{m1:12,m2:22},Cookie:{m1:null,m2:null},Recheada:{m1:null,m2:null},Wafer:{m1:null,m2:null}},'Água':{Maria:{m1:null,m2:null},'Água e Sal':{m1:40,m2:85},Integral:{m1:null,m2:null},Cookie:{m1:null,m2:null},Recheada:{m1:null,m2:null},Wafer:{m1:null,m2:null}},'Amido de Milho':{Maria:{m1:null,m2:null},'Água e Sal':{m1:null,m2:null},Integral:{m1:null,m2:null},Cookie:{m1:null,m2:null},Recheada:{m1:null,m2:null},Wafer:{m1:83,m2:122}},'Leite em Pó':{Maria:{m1:null,m2:null},'Água e Sal':{m1:null,m2:null},Integral:{m1:null,m2:null},Cookie:{m1:null,m2:null},Recheada:{m1:null,m2:null},Wafer:{m1:9,m2:17}}};
+
+const UNID_MP={
+  'Farinha de Trigo':'kg','Açúcar':'kg','Óleo':'l','Fermento em pó':'kg','Cacau em pó':'kg',
+  'Margarina':'kg','Ovos':'dúzia','Extrato de Baunilha':'l','Bicarbonato de Sódio':'kg',
+  'Sal':'kg','Farinha de Trigo Integral':'kg','Aveia em Flocos':'kg','Açúcar Mascavo':'kg',
+  'Mel':'kg','Óleo de Coco':'l','Água':'l','Amido de Milho':'kg','Leite em Pó':'kg'
+};
+
+/* FICHA: quantidades AJUSTADAS por lote (kg, l ou dúzia) — conforme planilha */
+const FICHA={
+  'Farinha de Trigo':         {Maria:0.18,  'Água e Sal':0.18, Integral:null,  Cookie:0.24,         Recheada:0.3,   Wafer:0.12},
+  'Açúcar':                   {Maria:0.1,   'Água e Sal':null, Integral:null,  Cookie:0.16,         Recheada:0.1,   Wafer:0.08},
+  'Óleo':                     {Maria:0.04,  'Água e Sal':0.09, Integral:null,  Cookie:null,         Recheada:0.09,  Wafer:0.03},
+  'Fermento em pó':           {Maria:0.04,  'Água e Sal':0.02, Integral:0.02,  Cookie:null,         Recheada:0.04,  Wafer:0.03},
+  'Cacau em pó':              {Maria:null,  'Água e Sal':null, Integral:null,  Cookie:null,         Recheada:0.09,  Wafer:null},
+  'Margarina':                {Maria:null,  'Água e Sal':null, Integral:null,  Cookie:0.12,         Recheada:null,  Wafer:null},
+  'Ovos':                     {Maria:null,  'Água e Sal':null, Integral:null,  Cookie:0.8333333333, Recheada:null,  Wafer:null},
+  'Extrato de Baunilha':      {Maria:null,  'Água e Sal':null, Integral:null,  Cookie:0.03,         Recheada:null,  Wafer:0.01},
+  'Bicarbonato de Sódio':     {Maria:null,  'Água e Sal':null, Integral:null,  Cookie:0.02,         Recheada:null,  Wafer:null},
+  'Sal':                      {Maria:null,  'Água e Sal':0.08, Integral:0.01,  Cookie:0.01,         Recheada:null,  Wafer:0.02},
+  'Farinha de Trigo Integral':{Maria:null,  'Água e Sal':null, Integral:0.2,   Cookie:null,         Recheada:null,  Wafer:null},
+  'Aveia em Flocos':          {Maria:null,  'Água e Sal':null, Integral:0.1,   Cookie:null,         Recheada:null,  Wafer:null},
+  'Açúcar Mascavo':           {Maria:null,  'Água e Sal':null, Integral:0.07,  Cookie:null,         Recheada:null,  Wafer:null},
+  'Mel':                      {Maria:null,  'Água e Sal':null, Integral:0.05,  Cookie:null,         Recheada:null,  Wafer:null},
+  'Óleo de Coco':             {Maria:null,  'Água e Sal':null, Integral:0.03,  Cookie:null,         Recheada:null,  Wafer:null},
+  'Água':                     {Maria:null,  'Água e Sal':0.08, Integral:null,  Cookie:null,         Recheada:null,  Wafer:null},
+  'Amido de Milho':           {Maria:null,  'Água e Sal':null, Integral:null,  Cookie:null,         Recheada:null,  Wafer:0.08},
+  'Leite em Pó':              {Maria:null,  'Água e Sal':null, Integral:null,  Cookie:null,         Recheada:null,  Wafer:0.01},
+};
+
+const REAL={
+  'Farinha de Trigo':         {Maria:{m1:196.88,m2:220},'Água e Sal':{m1:85,m2:183},Integral:{m1:null,m2:null},Cookie:{m1:250,m2:370},Recheada:{m1:280,m2:120},Wafer:{m1:132,m2:181}},
+  'Açúcar':                   {Maria:{m1:105,m2:125},'Água e Sal':{m1:null,m2:null},Integral:{m1:null,m2:null},Cookie:{m1:165,m2:245},Recheada:{m1:92,m2:42},Wafer:{m1:81,m2:121}},
+  'Óleo':                     {Maria:{m1:45,m2:50},'Água e Sal':{m1:42,m2:94},Integral:{m1:null,m2:null},Cookie:{m1:null,m2:null},Recheada:{m1:85,m2:38},Wafer:{m1:32,m2:46}},
+  'Fermento em pó':           {Maria:{m1:42.5,m2:51},'Água e Sal':{m1:10,m2:20.5},Integral:{m1:7.5,m2:15},Cookie:{m1:null,m2:null},Recheada:{m1:36,m2:16.5},Wafer:{m1:31.5,m2:45.5}},
+  'Cacau em pó':              {Maria:{m1:null,m2:null},'Água e Sal':{m1:null,m2:null},Integral:{m1:null,m2:null},Cookie:{m1:null,m2:null},Recheada:{m1:86,m2:43},Wafer:{m1:null,m2:null}},
+  'Margarina':                {Maria:{m1:null,m2:null},'Água e Sal':{m1:null,m2:null},Integral:{m1:null,m2:null},Cookie:{m1:125,m2:181},Recheada:{m1:null,m2:null},Wafer:{m1:null,m2:null}},
+  'Ovos':                     {Maria:{m1:null,m2:null},'Água e Sal':{m1:null,m2:null},Integral:{m1:null,m2:null},Cookie:{m1:850,m2:1260},Recheada:{m1:null,m2:null},Wafer:{m1:null,m2:null}},
+  'Extrato de Baunilha':      {Maria:{m1:null,m2:null},'Água e Sal':{m1:null,m2:null},Integral:{m1:null,m2:null},Cookie:{m1:32.25,m2:48},Recheada:{m1:null,m2:null},Wafer:{m1:10.75,m2:16}},
+  'Bicarbonato de Sódio':     {Maria:{m1:null,m2:null},'Água e Sal':{m1:null,m2:null},Integral:{m1:null,m2:null},Cookie:{m1:22,m2:30},Recheada:{m1:null,m2:null},Wafer:{m1:null,m2:null}},
+  'Sal':                      {Maria:{m1:null,m2:null},'Água e Sal':{m1:28,m2:81},Integral:{m1:4,m2:8},Cookie:{m1:11.5,m2:16},Recheada:{m1:null,m2:null},Wafer:{m1:23,m2:31}},
+  'Farinha de Trigo Integral':{Maria:{m1:null,m2:null},'Água e Sal':{m1:null,m2:null},Integral:{m1:78,m2:150},Cookie:{m1:null,m2:null},Recheada:{m1:null,m2:null},Wafer:{m1:null,m2:null}},
+  'Aveia em Flocos':          {Maria:{m1:null,m2:null},'Água e Sal':{m1:null,m2:null},Integral:{m1:40,m2:75},Cookie:{m1:null,m2:null},Recheada:{m1:null,m2:null},Wafer:{m1:null,m2:null}},
+  'Açúcar Mascavo':           {Maria:{m1:null,m2:null},'Água e Sal':{m1:null,m2:null},Integral:{m1:29.53,m2:51.1},Cookie:{m1:null,m2:null},Recheada:{m1:null,m2:null},Wafer:{m1:null,m2:null}},
+  'Mel':                      {Maria:{m1:null,m2:null},'Água e Sal':{m1:null,m2:null},Integral:{m1:20,m2:41},Cookie:{m1:null,m2:null},Recheada:{m1:null,m2:null},Wafer:{m1:null,m2:null}},
+  'Óleo de Coco':             {Maria:{m1:null,m2:null},'Água e Sal':{m1:null,m2:null},Integral:{m1:12,m2:22},Cookie:{m1:null,m2:null},Recheada:{m1:null,m2:null},Wafer:{m1:null,m2:null}},
+  'Água':                     {Maria:{m1:null,m2:null},'Água e Sal':{m1:40,m2:85},Integral:{m1:null,m2:null},Cookie:{m1:null,m2:null},Recheada:{m1:null,m2:null},Wafer:{m1:null,m2:null}},
+  'Amido de Milho':           {Maria:{m1:null,m2:null},'Água e Sal':{m1:null,m2:null},Integral:{m1:null,m2:null},Cookie:{m1:null,m2:null},Recheada:{m1:null,m2:null},Wafer:{m1:83,m2:122}},
+  'Leite em Pó':              {Maria:{m1:null,m2:null},'Água e Sal':{m1:null,m2:null},Integral:{m1:null,m2:null},Cookie:{m1:null,m2:null},Recheada:{m1:null,m2:null},Wafer:{m1:9,m2:17}},
+};
+
 const LOTES={Maria:{m1:1000,m2:1250},'Água e Sal':{m1:300,m2:1000},Integral:{m1:375,m2:730},Cookie:{m1:1000,m2:1500},Recheada:{m1:700,m2:311.111},Wafer:{m1:550,m2:937.5}};
 const UNIDS={Maria:{m1:40000,m2:50000},'Água e Sal':{m1:13500,m2:45000},Integral:{m1:15000,m2:29200},Cookie:{m1:20000,m2:30000},Recheada:{m1:31500,m2:14000},Wafer:{m1:22000,m2:37500}};
+
+/* CUSTO com Int.M1×Ideal e Int.M2×Ideal da planilha */
 const CUSTO={
-  Maria:       {im1:.067657, im2:.06327,   parc:.06285,    ideal:.059257,  im1xIdeal:.1417390204, im2xIdeal:.06771294773},
-  'Água e Sal':{im1:.079852, im2:.053331,  parc:.051867,   ideal:.048516,  im1xIdeal:.6459020398, im2xIdeal:.09925796995},
-  Integral:    {im1:.165727, im2:.162204,  parc:.156125,   ideal:.144882,  im1xIdeal:.1438740589, im2xIdeal:.1195538945},
-  Cookie:      {im1:.953488, im2:.9394,    parc:.914267,   ideal:.911527,  im1xIdeal:.04603357737,im2xIdeal:.03057873604},
-  Recheada:    {im1:.096476, im2:.097179,  parc:.073333,   ideal:.068767,  im1xIdeal:.4029499342, im2xIdeal:.4131639083},
-  Wafer:       {im1:.049065, im2:.056316,  parc:.0464,     ideal:.043742,  im1xIdeal:.1216780019, im2xIdeal:.2874435618},
+  Maria:       {im1:.067657, im2:.06327,  parc:.06285,  ideal:.059257, im1xI:.1417390204, im2xI:.06771294773},
+  'Água e Sal':{im1:.079852, im2:.053331, parc:.051867, ideal:.048516, im1xI:.6459020398, im2xI:.09925796995},
+  Integral:    {im1:.165727, im2:.162204, parc:.156125, ideal:.144882, im1xI:.1438740589, im2xI:.1195538945},
+  Cookie:      {im1:.953488, im2:.9394,   parc:.914267, ideal:.911527, im1xI:.04603357737,im2xI:.03057873604},
+  Recheada:    {im1:.096476, im2:.097179, parc:.073333, ideal:.068767, im1xI:.4029499342, im2xI:.4131639083},
+  Wafer:       {im1:.049065, im2:.056316, parc:.0464,   ideal:.043742, im1xI:.1216780019, im2xI:.2874435618},
 };
-const PERDAS={Maria:{ptm1:335.964,ptm2:200.625,pnm1:143.7,pnm2:179.625,pam1:192.264,pam2:21},'Água e Sal':{ptm1:423.04,ptm2:216.7,pnm1:45.24,pnm2:150.8,pam1:377.8,pam2:65.9},Integral:{ptm1:312.6725,ptm2:505.781,pnm1:168.6375,pnm2:328.281,pam1:144.035,pam2:177.5},Cookie:{ptm1:839.217,ptm2:836.2,pnm1:54.8,pnm2:82.2,pam1:784.417,pam2:754},Recheada:{ptm1:872.85,ptm2:397.767,pnm1:143.85,pnm2:63.933,pam1:729,pam2:333.833},Wafer:{ptm1:212.9,ptm2:628.675,pnm1:106.3,pnm2:132.875,pam1:106.6,pam2:495.8}};
+
+const PERDAS={
+  Maria:       {ptm1:335.964,  ptm2:200.625, pnm1:143.7,    pnm2:179.625, pam1:192.264, pam2:21},
+  'Água e Sal':{ptm1:423.04,   ptm2:216.7,   pnm1:45.24,    pnm2:150.8,   pam1:377.8,   pam2:65.9},
+  Integral:    {ptm1:312.6725, ptm2:505.781, pnm1:168.6375, pnm2:328.281, pam1:144.035, pam2:177.5},
+  Cookie:      {ptm1:839.217,  ptm2:836.2,   pnm1:54.8,     pnm2:82.2,    pam1:784.417, pam2:754},
+  Recheada:    {ptm1:872.85,   ptm2:397.767, pnm1:143.85,   pnm2:63.933,  pam1:729,     pam2:333.833},
+  Wafer:       {ptm1:212.9,    ptm2:628.675, pnm1:106.3,    pnm2:132.875, pam1:106.6,   pam2:495.8},
+};
+
 const GASTO={Maria:{m1:2706.264,m2:3163.5},'Água e Sal':{m1:1126,m2:2501.9},Integral:{m1:2485.91,m2:4736.35},Cookie:{m1:19069.75,m2:28182},Recheada:{m1:7339,m2:3510.5},Wafer:{m1:1962.6,m2:2815.8}};
 
 const CL={o1:'#7A2E00',o2:'#C24B00',o3:'#E06020',o4:'#F07830',o5:'#F8A060',o6:'#FDC898',o7:'rgba(240,120,48,.15)',line:'#EDD8C8',sl:'#8C6A52',red:'#B83232',green:'#1F6B3A',amber:'#9B6200'};
@@ -488,48 +525,38 @@ function showTab(t,btn){
   ({dados:renderDados,var:renderVar,custo:renderCusto,efic:renderEfic,tend:renderTend,comp:renderComp})[t]();
 }
 
-
-const PORCOES={Maria:40,'Água e Sal':45,Integral:40,Cookie:20,Recheada:45,Wafer:40};
-const UNID_MP={'Farinha de Trigo':'kg','Açúcar':'kg','Óleo':'l','Fermento em pó':'kg','Cacau em pó':'kg','Margarina':'kg','Ovos':'dúzia','Extrato de Baunilha':'l','Bicarbonato de Sódio':'kg','Sal':'kg','Farinha de Trigo Integral':'kg','Aveia em Flocos':'kg','Açúcar Mascavo':'kg','Mel':'kg','Óleo de Coco':'l','Água':'l','Amido de Milho':'kg','Leite em Pó':'kg'};
-
+/* ── DADOS BASE ── */
 function renderDados(){
-  // Preços
   const tbP=document.getElementById('tb-precos'); tbP.innerHTML='';
   Object.entries(PRECOS).forEach(([mp,v])=>{
+    const unAj=UNID_MP[mp]==='l'?'ml':'dúzia'===UNID_MP[mp]?'un':'g';
     const vaj=(v.p/1000).toFixed(5);
-    const unAj=UNID_MP[mp]==='l'?'ml':'g';
     tbP.innerHTML+=`<tr>
       <td class="mp">${mp}</td>
       <td class="num">${fR(v.p,2)}</td>
       <td style="color:var(--text3)">${UNID_MP[mp]}</td>
       <td class="num" style="color:${v.pn>0?'var(--amber)':'var(--text3)'}">${v.pn>0?(v.pn*100).toFixed(0)+'%':'—'}</td>
-      <td class="num" style="color:var(--text2)">R$ ${vaj} / ${unAj}</td>
+      <td class="num">R$ ${vaj} / ${unAj}</td>
     </tr>`;
   });
-
-  // Ficha técnica
   const tbF=document.getElementById('tb-ficha'); tbF.innerHTML='';
   Object.entries(FICHA).forEach(([mp,p])=>{
     const cells=PRODS.map(prod=>p[prod]!=null
-      ?`<td class="num">${typeof p[prod]==='number'&&p[prod]<1?(p[prod]*1000).toFixed(0)+' g/ml':p[prod]}</td>`
+      ?`<td class="num">${p[prod]}</td>`
       :`<td style="color:var(--gray4);text-align:right">—</td>`).join('');
     tbF.innerHTML+=`<tr><td class="mp">${mp}</td>${cells}</tr>`;
   });
-
-  // Produção
   const tbPr=document.getElementById('tb-prod'); tbPr.innerHTML='';
   PRODS.forEach(p=>{
-    const u=UNIDS[p],d=((u.m2-u.m1)/u.m1*100),tot=u.m1+u.m2;
+    const u=UNIDS[p],d=((u.m2-u.m1)/u.m1*100);
     tbPr.innerHTML+=`<tr>
       <td class="mp">${p}</td>
       <td class="num">${u.m1.toLocaleString('pt-BR')}</td>
       <td class="num">${u.m2.toLocaleString('pt-BR')}</td>
-      <td class="num">${tot.toLocaleString('pt-BR')}</td>
+      <td class="num">${(u.m1+u.m2).toLocaleString('pt-BR')}</td>
       <td class="num" style="color:${d>=0?'var(--green)':'var(--red)'}">${d>=0?'▲':'▼'} ${Math.abs(d).toFixed(1)}%</td>
     </tr>`;
   });
-
-  // Lotes
   const tbL=document.getElementById('tb-lotes'); tbL.innerHTML='';
   PRODS.forEach(p=>{
     const l=LOTES[p],d=((l.m2-l.m1)/l.m1*100);
@@ -542,12 +569,13 @@ function renderDados(){
   });
 }
 
+/* ── VARIAÇÃO P×Q — QP usa qtd ajustada × lotes (correto) ── */
 function getVR(prod,mes){
   const mk=mes==='M1'?'m1':'m2',rows=[];
   Object.entries(FICHA).forEach(([mp,p])=>{
     const qg=p[prod];if(qg==null)return;
     const qr=(REAL[mp]||{})[prod]?.[mk];if(qr==null)return;
-    const qp=qg*LOTES[prod][mk],pp=PRECOS[mp].p,pn=PRECOS[mp].pn*100;
+    const qp=qg*LOTES[prod][mk], pp=PRECOS[mp].p, pn=PRECOS[mp].pn*100;
     rows.push({mp,qp,qr,pp,pn,varQ:(qp-qr)*pp,dev:(qr-qp)/qp*100});
   });
   return rows;
@@ -555,8 +583,7 @@ function getVR(prod,mes){
 
 function renderVar(){
   const prod=document.getElementById('var-prod').value,mes=document.getElementById('var-mes').value;
-  const rows=getVR(prod,mes);
-  dc('var');
+  const rows=getVR(prod,mes); dc('var');
   const loss=rows.filter(r=>r.varQ<0).reduce((s,r)=>s+r.varQ,0);
   const gain=rows.filter(r=>r.varQ>0).reduce((s,r)=>s+r.varQ,0);
   document.getElementById('var-insight').innerHTML=`<strong>${prod} — ${mes}:</strong> `+
@@ -582,6 +609,7 @@ function renderVar(){
   });
 }
 
+/* ── CUSTO UNITÁRIO com Int.M1×Ideal e Int.M2×Ideal ── */
 function renderCusto(){
   dc('custo');
   const cols=[CL.o1,CL.o2,CL.o5,CL.o6];
@@ -601,14 +629,16 @@ function renderCusto(){
   const tb=document.querySelector('#tCusto tbody');tb.innerHTML='';
   PRODS.forEach(p=>{
     const c=CUSTO[p],d=((c.im2-c.im1)/c.im1*100);
-    tb.innerHTML+=`<tr><td class="mp">${p}</td><td class="num">${fR(c.im1,4)}</td><td class="num">${fR(c.im2,4)}</td>
+    tb.innerHTML+=`<tr><td class="mp">${p}</td>
+      <td class="num">${fR(c.im1,4)}</td><td class="num">${fR(c.im2,4)}</td>
       <td class="num">${fR(c.parc,4)}</td><td class="num">${fR(c.ideal,4)}</td>
       <td class="num" style="color:${d<=0?'var(--green)':'var(--red)'}">${d<=0?'▼':'▲'} ${Math.abs(d).toFixed(1)}%</td>
-      <td class="num" style="color:var(--amber)">${(c.im1xIdeal*100).toFixed(2)}%</td>
-      <td class="num" style="color:var(--amber)">${(c.im2xIdeal*100).toFixed(2)}%</td></tr>`;
+      <td class="num" style="color:var(--amber)">${(c.im1xI*100).toFixed(2)}%</td>
+      <td class="num" style="color:var(--amber)">${(c.im2xI*100).toFixed(2)}%</td></tr>`;
   });
 }
 
+/* ── EFICIÊNCIA — QP usa qtd ajustada × lotes (correto) ── */
 function renderEfic(){
   const prod=document.getElementById('efic-prod').value,mes=document.getElementById('efic-mes').value;
   const rows=[],lote=LOTES[prod][mes];
@@ -645,6 +675,7 @@ function renderEfic(){
   });
 }
 
+/* ── TENDÊNCIA ── */
 function renderTend(){
   const prod=document.getElementById('tend-prod').value;
   const c=CUSTO[prod],p=PERDAS[prod],g=GASTO[prod],u=UNIDS[prod];
@@ -697,6 +728,7 @@ function renderTend(){
   });
 }
 
+/* ── COMPARAÇÃO ── */
 function renderComp(){
   dc('comp1');dc('comp2');
   CH.comp1=new Chart(document.getElementById('cComp1'),{type:'bar',
@@ -716,7 +748,14 @@ function renderComp(){
   const mpD={};
   Object.entries(FICHA).forEach(([mp,ps])=>{
     let tot=0,n=0;
-    PRODS.forEach(prod=>{const qg=ps[prod];if(!qg)return;['m1','m2'].forEach(mes=>{const qr=(REAL[mp]||{})[prod]?.[mes];if(!qr)return;const qp=qg/1000*LOTES[prod][mes];tot+=Math.abs((qr-qp)/qp*100);n++;});});
+    PRODS.forEach(prod=>{
+      const qg=ps[prod];if(!qg)return;
+      ['m1','m2'].forEach(mes=>{
+        const qr=(REAL[mp]||{})[prod]?.[mes];if(!qr)return;
+        const qp=qg*LOTES[prod][mes];
+        tot+=Math.abs((qr-qp)/qp*100);n++;
+      });
+    });
     if(n>0)mpD[mp]={avg:tot/n,n};
   });
   const sMP=Object.entries(mpD).sort((a,b)=>b[1].avg-a[1].avg),maxMP=sMP[0][1].avg;
