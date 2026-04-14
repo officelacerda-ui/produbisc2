@@ -328,9 +328,9 @@ td.mp{font-weight:600;color:var(--o1)}
   <div class="card">
     <div class="card-hd">Desvio real vs. perda normal (%)</div>
     <div class="legend">
-      <div class="leg-item"><span class="leg-sq" style="background:#B83232"></span>Acima do limite</div>
-      <div class="leg-item"><span class="leg-sq" style="background:#9B6200"></span>Dentro do limite</div>
-      <div class="leg-item"><span class="leg-sq" style="background:#1F6B3A"></span>Abaixo (eficiente)</div>
+      <div class="leg-item"><span class="leg-sq" style="background:#B83232"></span>Acima</div>
+      <div class="leg-item"><span class="leg-sq" style="background:#9B6200"></span>Dentro</div>
+      <div class="leg-item"><span class="leg-sq" style="background:#1F6B3A"></span>Abaixo</div>
       <div class="leg-item"><span class="leg-sq" style="background:rgba(240,120,48,.2);border:1px solid #F07830"></span>Perda normal permitida</div>
     </div>
     <div class="chart-wrap" style="height:260px"><canvas id="cEfic" role="img" aria-label="Desvio % por MP"></canvas></div>
@@ -603,7 +603,7 @@ function renderVar(){
               y:{grid:{display:false},ticks:{color:CL.o1,font:{size:12,weight:'600'}}}}}});
   const tb=document.querySelector('#tVar tbody');tb.innerHTML='';
   rows.sort((a,b)=>a.varQ-b.varQ).forEach(r=>{
-    const ok=r.varQ>=0,bc=ok?'b-green':(r.dev>r.pn?'b-red':'b-amber'),st=ok?'Dentro/Abaixo':(r.dev>r.pn?'Acima do limite':'Acima normal');
+    const ok=r.varQ>=0,bc=ok?'b-green':(r.dev>r.pn?'b-red':'b-amber'),st=ok?'Dentro/Abaixo':(r.dev>r.pn?'Acima':'Acima');
     tb.innerHTML+=`<tr><td class="mp">${r.mp}</td><td class="num">${fmt(r.qp,3)}</td><td class="num">${fmt(r.qr,3)}</td>
       <td class="num" style="color:${ok?'var(--green)':'var(--red)'}">${r.dev>0?'+':''}${fmt(r.dev,1)}%</td>
       <td class="num" style="color:${ok?'var(--green)':'var(--red)'}">${ok?'+':''}${fR(r.varQ)}</td>
@@ -654,7 +654,7 @@ function renderEfic(){
   const above=rows.filter(r=>r.dev>r.pn);
   document.getElementById('efic-insight').innerHTML=`<strong>${prod} — Mês ${mes==='m1'?'1':'2'}:</strong> `+
     (above.length===0?'Todas as MPs estão dentro ou abaixo do padrão. Excelente eficiência operacional.':
-     `<strong>${above.length} MP${above.length>1?'s':''}</strong> acima do limite normal: `+
+     `<strong>${above.length} MP${above.length>1?'s':''}</strong> acima: `+
      above.map(r=>`<strong>${r.mp}</strong> (+${fmt(r.dev,1)}% vs. ${fmt(r.pn,1)}% permitido)`).join(', ')+'.');
   const h=Math.max(180,rows.length*46+60);
   document.querySelector('#s-efic .chart-wrap').style.height=h+'px';
@@ -670,7 +670,7 @@ function renderEfic(){
               y:{grid:{display:false},ticks:{color:CL.o1,font:{size:12,weight:'600'}}}}}});
   const tb=document.querySelector('#tEfic tbody');tb.innerHTML='';
   rows.sort((a,b)=>b.dev-a.dev).forEach(r=>{
-    const s=r.dev>r.pn?['b-red','Acima do limite']:r.dev<=0?['b-green','Abaixo']:['b-amber','Dentro'];
+    const s=r.dev>r.pn?['b-red','Acima']:r.dev<=0?['b-green','Abaixo']:['b-amber','Dentro'];
     tb.innerHTML+=`<tr><td class="mp">${r.mp}</td><td class="num">${fmt(r.qp,3)}</td><td class="num">${fmt(r.qr,3)}</td>
       <td class="num" style="color:${r.dev>r.pn?'var(--red)':r.dev<=0?'var(--green)':'var(--amber)'}">${r.dev>0?'+':''}${fmt(r.dev,1)}%</td>
       <td class="num">${fmt(r.pn,1)}%</td><td><span class="badge ${s[0]}">${s[1]}</span></td></tr>`;
