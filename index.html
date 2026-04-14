@@ -190,6 +190,7 @@ td.mp{font-weight:600;color:var(--o1)}
   <button class="nav-btn" onclick="showTab('efic',this)"><span class="nav-pill">3</span>Eficiência por MP</button>
   <button class="nav-btn" onclick="showTab('tend',this)"><span class="nav-pill">4</span>Tendência M1→M2</button>
   <button class="nav-btn" onclick="showTab('comp',this)"><span class="nav-pill">5</span>Comparação</button>
+  <button class="nav-btn" onclick="showTab('resumo',this)"><span class="nav-pill">6</span>Resumo Geral</button>
 </div>
 
 <!-- MAIN -->
@@ -416,6 +417,40 @@ td.mp{font-weight:600;color:var(--o1)}
   </div>
 </div>
 
+
+<!-- TAB 6 -->
+<div id="s-resumo" class="section">
+  <div class="sec-hd">
+    <div class="sec-eyebrow">Análise 6 de 6 · Visão por Matéria-Prima</div>
+    <div class="sec-title">Resumo Geral por MP</div>
+    <div class="sec-desc">Consolidação dos gastos, perdas financeiras e perdas percentuais por matéria-prima em todos os produtos e períodos.</div>
+  </div>
+
+  <div class="card card-sm">
+    <div class="card-hd">Gasto total por MP (R$)</div>
+    <div class="tbl-wrap"><table id="tGasto">
+      <thead><tr><th>Matéria-prima</th><th>Água e Sal M1</th><th>Água e Sal M2</th><th>Cookie M1</th><th>Cookie M2</th><th>Integral M1</th><th>Integral M2</th><th>Maria M1</th><th>Maria M2</th><th>Recheada M1</th><th>Recheada M2</th><th>Wafer M1</th><th>Wafer M2</th><th>Total Geral</th></tr></thead>
+      <tbody id="tb-gasto"></tbody>
+    </table></div>
+  </div>
+
+  <div class="card card-sm">
+    <div class="card-hd">Perda total por MP (R$)</div>
+    <div class="tbl-wrap"><table id="tPerda">
+      <thead><tr><th>Matéria-prima</th><th>Água e Sal M1</th><th>Água e Sal M2</th><th>Cookie M1</th><th>Cookie M2</th><th>Integral M1</th><th>Integral M2</th><th>Maria M1</th><th>Maria M2</th><th>Recheada M1</th><th>Recheada M2</th><th>Wafer M1</th><th>Wafer M2</th><th>Total Geral</th></tr></thead>
+      <tbody id="tb-perda"></tbody>
+    </table></div>
+  </div>
+
+  <div class="card card-sm">
+    <div class="card-hd">Perda em quantidade (%) por MP</div>
+    <div class="tbl-wrap"><table id="tPct">
+      <thead><tr><th>Matéria-prima</th><th>Água e Sal M1</th><th>Água e Sal M2</th><th>Cookie M1</th><th>Cookie M2</th><th>Integral M1</th><th>Integral M2</th><th>Maria M1</th><th>Maria M2</th><th>Recheada M1</th><th>Recheada M2</th><th>Wafer M1</th><th>Wafer M2</th><th>Total</th></tr></thead>
+      <tbody id="tb-pct"></tbody>
+    </table></div>
+  </div>
+</div>
+
 </div><!-- /main -->
 
 <!-- FOOTER -->
@@ -522,7 +557,7 @@ function showTab(t,btn){
   document.querySelectorAll('.nav-btn').forEach(b=>b.classList.remove('active'));
   document.getElementById('s-'+t).classList.add('active');
   btn.classList.add('active');
-  ({dados:renderDados,var:renderVar,custo:renderCusto,efic:renderEfic,tend:renderTend,comp:renderComp})[t]();
+  ({dados:renderDados,var:renderVar,custo:renderCusto,efic:renderEfic,tend:renderTend,comp:renderComp,resumo:renderResumo})[t]();
 }
 
 /* ── DADOS BASE ── */
@@ -777,6 +812,90 @@ function renderComp(){
       <div class="rank-bw"><div class="rank-bar" style="width:${(r.tot/maxP*100).toFixed(1)}%"></div></div>
       <div class="rank-val">${fR(r.tot,0)}</div>
     </div>`).join('');
+}
+
+
+/* ── RESUMO GERAL ── */
+const RESUMO_GASTO={
+  'Açúcar':{'Cookie':{m1:412.5,m2:612.5},'Maria':{m1:262.5,m2:312.5},'Recheada':{m1:230,m2:105},'Wafer':{m1:202.5,m2:302.5},_total:2440,_tm1:1107.5,_tm2:1332.5},
+  'Açúcar Mascavo':{'Integral':{m1:251.01,m2:434.35},_total:685.36,_tm1:251.01,_tm2:434.35},
+  'Água':{'Água e Sal':{m1:48,m2:102},_total:150,_tm1:48,_tm2:102},
+  'Amido de Milho':{'Wafer':{m1:830,m2:1220},_total:2050,_tm1:830,_tm2:1220},
+  'Aveia em Flocos':{'Integral':{m1:560,m2:1050},_total:1610,_tm1:560,_tm2:1050},
+  'Bicarbonato de Sódio':{'Cookie':{m1:660,m2:900},_total:1560,_tm1:660,_tm2:900},
+  'Cacau em pó':{'Recheada':{m1:4300,m2:2150},_total:6450,_tm1:4300,_tm2:2150},
+  'Extrato de Baunilha':{'Cookie':{m1:6288.75,m2:9360},'Wafer':{m1:2096.25,m2:3120},_total:20865,_tm1:8385,_tm2:12480},
+  'Farinha de Trigo':{'Água e Sal':{m1:238,m2:512.4},'Cookie':{m1:700,m2:1036},'Maria':{m1:551.264,m2:616},'Recheada':{m1:784,m2:336},'Wafer':{m1:369.6,m2:506.8},_total:5650.064,_tm1:2642.864,_tm2:3007.2},
+  'Farinha de Trigo Integral':{'Integral':{m1:296.4,m2:570},_total:866.4,_tm1:296.4,_tm2:570},
+  'Fermento em pó':{'Água e Sal':{m1:350,m2:717.5},'Integral':{m1:262.5,m2:525},'Maria':{m1:1487.5,m2:1785},'Recheada':{m1:1260,m2:577.5},'Wafer':{m1:1102.5,m2:1592.5},_total:9660,_tm1:4462.5,_tm2:5197.5},
+  'Leite em Pó':{'Wafer':{m1:360,m2:680},_total:1040,_tm1:360,_tm2:680},
+  'Margarina':{'Cookie':{m1:1187.5,m2:1719.5},_total:2907,_tm1:1187.5,_tm2:1719.5},
+  'Mel':{'Integral':{m1:500,m2:1025},_total:1525,_tm1:500,_tm2:1025},
+  'Óleo':{'Água e Sal':{m1:378,m2:846},'Maria':{m1:405,m2:450},'Recheada':{m1:765,m2:342},'Wafer':{m1:288,m2:414},_total:3888,_tm1:1836,_tm2:2052},
+  'Óleo de Coco':{'Integral':{m1:600,m2:1100},_total:1700,_tm1:600,_tm2:1100},
+  'Ovos':{'Cookie':{m1:9775,m2:14490},_total:24265,_tm1:9775,_tm2:14490},
+  'Sal':{'Água e Sal':{m1:112,m2:324},'Cookie':{m1:46,m2:64},'Integral':{m1:16,m2:32},'Wafer':{m1:92,m2:124},_total:810,_tm1:266,_tm2:544},
+};
+const RESUMO_PERDA={
+  'Açúcar':{'Cookie':{m1:32.5,m2:42.5},'Maria':{m1:25,m2:15.625},'Recheada':{m1:16.25,m2:10},'Wafer':{m1:35.3,m2:17.5},_total:194.675,_tm1:109.05,_tm2:85.625},
+  'Açúcar Mascavo':{'Integral':{m1:27.885,m2:0},_total:27.885,_tm1:27.885,_tm2:0},
+  'Água':{'Água e Sal':{m1:20.64,m2:10.8},_total:31.44,_tm1:20.64,_tm2:10.8},
+  'Amido de Milho':{'Wafer':{m1:126,m2:20},_total:146,_tm1:126,_tm2:20},
+  'Aveia em Flocos':{'Integral':{m1:35,m2:28},_total:63,_tm1:35,_tm2:28},
+  'Bicarbonato de Sódio':{'Cookie':{m1:60,m2:0},_total:60,_tm1:60,_tm2:0},
+  'Cacau em pó':{'Recheada':{m1:736,m2:566},_total:1302,_tm1:736,_tm2:566},
+  'Extrato de Baunilha':{'Cookie':{m1:438.75,m2:585},'Wafer':{m1:526.11,m2:443.625},_total:1993.485,_tm1:964.86,_tm2:1028.625},
+  'Farinha de Trigo':{'Água e Sal':{m1:94.36,m2:33.6},'Cookie':{m1:61.6,m2:78.4},'Maria':{m1:72.464,m2:17.5},'Recheada':{m1:65.8,m2:16.8},'Wafer':{m1:88.704,m2:28},_total:557.228,_tm1:382.928,_tm2:174.3},
+  'Farinha de Trigo Integral':{'Integral':{m1:39.9,m2:70.68},_total:110.58,_tm1:39.9,_tm2:70.68},
+  'Fermento em pó':{'Água e Sal':{m1:150.5,m2:52.5},'Integral':{m1:13.125,m2:39.55},'Maria':{m1:157.5,m2:122.5},'Recheada':{m1:63,m2:45.5},'Wafer':{m1:224.7,m2:96.25},_total:965.125,_tm1:608.825,_tm2:356.3},
+  'Leite em Pó':{'Wafer':{m1:8,m2:80},_total:88,_tm1:8,_tm2:80},
+  'Margarina':{'Cookie':{m1:47.5,m2:9.5},_total:57,_tm1:47.5,_tm2:9.5},
+  'Mel':{'Integral':{m1:101.5625,m2:249.375},_total:350.9375,_tm1:101.5625,_tm2:249.375},
+  'Óleo':{'Água e Sal':{m1:159.3,m2:117},'Maria':{m1:81,m2:45},'Recheada':{m1:108.9,m2:50.4},'Wafer':{m1:74.16,m2:49.5},_total:685.26,_tm1:423.36,_tm2:261.9},
+  'Óleo de Coco':{'Integral':{m1:93.75,m2:114.5},_total:208.25,_tm1:93.75,_tm2:114.5},
+  'Ovos':{'Cookie':{m1:191.6666667,m2:115},_total:306.6666667,_tm1:191.6666667,_tm2:115},
+  'Sal':{'Água e Sal':{m1:18.88,m2:13.6},'Cookie':{m1:7.2,m2:5.8},'Integral':{m1:1.45,m2:3.676},'Wafer':{m1:21.6,m2:4},_total:76.206,_tm1:49.13,_tm2:27.076},
+};
+const RESUMO_PCT={
+  'Açúcar':{'Cookie':{m1:0.03125,m2:0.02083333333},'Maria':{m1:0.05,m2:0},'Recheada':{m1:0.02222222222,m2:0.05},'Wafer':{m1:0.1505681818,m2:0.008333333333},_total:0.3332070707,_tm1:0.254040404,_tm2:0.07916666667},
+  'Açúcar Mascavo':{'Integral':{m1:0.124952381,m2:0},_total:0.124952381,_tm1:0.124952381,_tm2:0},
+  'Água':{'Água e Sal':{m1:0.6666666667,m2:0.0625},_total:0.7291666667,_tm1:0.6666666667,_tm2:0.0625},
+  'Amido de Milho':{'Wafer':{m1:0.1789772727,m2:0.01666666667},_total:0.1956439394,_tm1:0.1789772727,_tm2:0.01666666667},
+  'Aveia em Flocos':{'Integral':{m1:0.06666666667,m2:0.02739726027},_total:0.09406392694,_tm1:0.06666666667,_tm2:0.02739726027},
+  'Bicarbonato de Sódio':{'Cookie':{m1:0.1,m2:0},_total:0.1,_tm1:0.1,_tm2:0},
+  'Cacau em pó':{'Recheada':{m1:0.06172839506,m2:0.1944444444},_total:0.2561728395,_tm1:0.06172839506,_tm2:0.1944444444},
+  'Extrato de Baunilha':{'Cookie':{m1:0.075,m2:0.06666666667},'Wafer':{m1:0.2215909091,m2:0.06666666667},_total:0.4299242424,_tm1:0.2965909091,_tm2:0.1333333333},
+  'Farinha de Trigo':{'Água e Sal':{m1:0.5740740741,m2:0.01666666667},'Cookie':{m1:0.04166666667,m2:0.02777777778},'Maria':{m1:0.09377777778,m2:-0.02222222222},'Recheada':{m1:0.03703703704,m2:0},'Wafer':{m1:0.25,m2:0.005555555556},_total:1.024333333,_tm1:0.9965555556,_tm2:0.02777777778},
+  'Farinha de Trigo Integral':{'Integral':{m1:0.04,m2:0.02739726027},_total:0.06739726027,_tm1:0.04,_tm2:0.02739726027},
+  'Fermento em pó':{'Água e Sal':{m1:0.6666666667,m2:0.025},'Integral':{m1:0,m2:0.02739726027},'Maria':{m1:0.0625,m2:0.02},'Recheada':{m1:0,m2:0.03125},'Wafer':{m1:0.1931818182,m2:0.01111111111},_total:1.037106856,_tm1:0.9223484848,_tm2:0.1147583714},
+  'Leite em Pó':{'Wafer':{m1:0.02272727273,m2:0.1333333333},_total:0.1560606061,_tm1:0.02272727273,_tm2:0.1333333333},
+  'Margarina':{'Cookie':{m1:0.04166666667,m2:0.005555555556},_total:0.04722222222,_tm1:0.04166666667,_tm2:0.005555555556},
+  'Mel':{'Integral':{m1:0.06666666667,m2:0.1232876712},_total:0.1899543379,_tm1:0.06666666667,_tm2:0.1232876712},
+  'Óleo':{'Água e Sal':{m1:0.5555555556,m2:0.04444444444},'Maria':{m1:0.125,m2:0},'Recheada':{m1:0.04938271605,m2:0.05555555556},'Wafer':{m1:0.2121212121,m2:0.02222222222},_total:1.064281706,_tm1:0.9420594837,_tm2:0.1222222222},
+  'Óleo de Coco':{'Integral':{m1:0.06666666667,m2:0.004566210046},_total:0.07123287671,_tm1:0.06666666667,_tm2:0.004566210046},
+  'Ovos':{'Cookie':{m1:0.02,m2:0.008},_total:0.028,_tm1:0.02,_tm2:0.008},
+  'Sal':{'Água e Sal':{m1:0.1666666667,m2:0.0125},'Cookie':{m1:0.15,m2:0.06666666667},'Integral':{m1:0.06666666667,m2:0.09589041096},'Wafer':{m1:0.3068181818,m2:0.03333333333},_total:0.8985419261,_tm1:0.6901515152,_tm2:0.208390411},
+};
+
+const RESUMO_PRODS=['Água e Sal','Cookie','Integral','Maria','Recheada','Wafer'];
+
+function buildResumoTable(tbodyId, data, fmtFn){
+  const tb=document.getElementById(tbodyId); tb.innerHTML='';
+  Object.entries(data).forEach(([mp,d])=>{
+    const cells=RESUMO_PRODS.map(p=>{
+      const v1=d[p]?.m1, v2=d[p]?.m2;
+      return `<td class="num" style="color:${v1!=null&&v1>0?'var(--text)':'var(--gray4)'}">${v1!=null&&v1!==0?fmtFn(v1):'—'}</td>`+
+             `<td class="num" style="color:${v2!=null&&v2>0?'var(--text)':'var(--gray4)'}">${v2!=null&&v2!==0?fmtFn(v2):'—'}</td>`;
+    }).join('');
+    const tot=d._total!=null?`<td class="num" style="font-weight:800;color:var(--o2)">${fmtFn(d._total)}</td>`:'<td class="num" style="color:var(--gray4)">—</td>';
+    tb.innerHTML+=`<tr><td class="mp">${mp}</td>${cells}${tot}</tr>`;
+  });
+}
+
+function renderResumo(){
+  buildResumoTable('tb-gasto', RESUMO_GASTO, v=>'R$ '+fmt(v,2));
+  buildResumoTable('tb-perda', RESUMO_PERDA, v=>'R$ '+fmt(v,2));
+  buildResumoTable('tb-pct',   RESUMO_PCT,   v=>(v*100).toFixed(2)+'%');
 }
 
 renderDados();
