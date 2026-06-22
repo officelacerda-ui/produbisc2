@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Produbisc — Dashboard de Custos</title>
+<title>Produbisc — Dashboard Gerencial</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&family=Lora:ital,wght@0,600;0,700;1,500&display=swap" rel="stylesheet">
@@ -13,6 +13,7 @@
   --gray:#2C1A0E;--gray2:#5C3D26;--gray3:#8C6A52;--gray4:#BEA090;--gray5:#E8D8CE;--gray6:#F7F0EC;
   --white:#FFFFFF;--line:#EDD8C8;--text:#1E0A00;--text2:#5C3D26;--text3:#8C6A52;
   --red:#B83232;--redl:#FDECEA;--green:#1F6B3A;--greenl:#E8F5EE;--amber:#9B6200;--amberl:#FEF6E4;
+  --blue:#1A4A7A;--bluel:#E8F0FA;
   --radius:14px;--sh:0 2px 16px rgba(100,40,0,.08),0 1px 4px rgba(100,40,0,.05);--shm:0 8px 32px rgba(100,40,0,.12),0 2px 8px rgba(100,40,0,.07);
 }
 *,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
@@ -21,7 +22,7 @@ body{font-family:'Plus Jakarta Sans',sans-serif;background:var(--gray6);color:va
 /* TOPBAR */
 .topbar{background:var(--white);border-bottom:1px solid var(--line);padding:0 48px;display:flex;align-items:center;justify-content:space-between;height:64px;position:sticky;top:0;z-index:100;box-shadow:0 1px 12px rgba(100,40,0,.07)}
 .logo{display:flex;align-items:center;gap:14px}
-.logo-circle{width:42px;height:42px;border-radius:50%;border:2.5px solid var(--o4);background:var(--o8);display:flex;align-items:center;justify-content:center;flex-shrink:0;overflow:hidden;position:relative}
+.logo-circle{width:42px;height:42px;border-radius:50%;border:2.5px solid var(--o4);background:var(--o8);display:flex;align-items:center;justify-content:center;flex-shrink:0;overflow:hidden}
 .logo-wordmark{display:flex;flex-direction:column;gap:0}
 .logo-name{font-family:'Lora',serif;font-size:18px;font-weight:700;color:var(--o2);letter-spacing:-0.01em;line-height:1.1}
 .logo-tagline{font-size:10px;font-weight:600;letter-spacing:0.12em;text-transform:uppercase;color:var(--o4)}
@@ -30,106 +31,169 @@ body{font-family:'Plus Jakarta Sans',sans-serif;background:var(--gray6);color:va
 .meta-dot{width:8px;height:8px;border-radius:50%;background:var(--green)}
 
 /* HERO */
-.hero{background:linear-gradient(135deg,var(--o2) 0%,var(--o3) 55%,var(--o4) 100%);padding:40px 48px;position:relative;overflow:hidden}
+.hero{background:linear-gradient(135deg,var(--o2) 0%,var(--o3) 55%,var(--o4) 100%);padding:36px 48px;position:relative;overflow:hidden}
 .hero::before{content:'';position:absolute;top:-60px;right:-60px;width:320px;height:320px;border-radius:50%;border:60px solid rgba(255,255,255,.06);pointer-events:none}
 .hero::after{content:'';position:absolute;bottom:-80px;right:160px;width:200px;height:200px;border-radius:50%;border:40px solid rgba(255,255,255,.04);pointer-events:none}
 .hero-inner{display:flex;align-items:center;justify-content:space-between;gap:32px;position:relative;z-index:1}
-.hero-eyebrow{font-size:11px;font-weight:700;letter-spacing:0.16em;text-transform:uppercase;color:rgba(255,255,255,.65);margin-bottom:10px}
-.hero-title{font-family:'Lora',serif;font-size:30px;font-weight:700;color:var(--white);line-height:1.2;margin-bottom:8px}
-.hero-sub{font-size:14px;color:rgba(255,255,255,.75);font-weight:400;letter-spacing:.01em}
-.hero-kpis{display:flex;gap:12px;flex-shrink:0}
-.kpi{background:rgba(255,255,255,.12);border:1px solid rgba(255,255,255,.18);border-radius:12px;padding:16px 22px;text-align:center;backdrop-filter:blur(4px);min-width:110px}
-.kpi-val{font-family:'Lora',serif;font-size:24px;font-weight:700;color:var(--white);line-height:1}
+.hero-eyebrow{font-size:11px;font-weight:700;letter-spacing:0.16em;text-transform:uppercase;color:rgba(255,255,255,.65);margin-bottom:8px}
+.hero-title{font-family:'Lora',serif;font-size:28px;font-weight:700;color:var(--white);line-height:1.2;margin-bottom:6px}
+.hero-sub{font-size:13px;color:rgba(255,255,255,.7);font-weight:400}
+.hero-kpis{display:flex;gap:10px;flex-shrink:0}
+.kpi{background:rgba(255,255,255,.12);border:1px solid rgba(255,255,255,.18);border-radius:12px;padding:14px 18px;text-align:center;backdrop-filter:blur(4px);min-width:100px}
+.kpi-val{font-family:'Lora',serif;font-size:22px;font-weight:700;color:var(--white);line-height:1}
 .kpi-lbl{font-size:10px;font-weight:600;letter-spacing:.08em;text-transform:uppercase;color:rgba(255,255,255,.6);margin-top:4px}
-.kpi-sub{font-size:11px;color:rgba(255,255,255,.5);margin-top:2px}
+.kpi-sub{font-size:10px;color:rgba(255,255,255,.45);margin-top:2px}
 
 /* NAV */
-.nav-bar{background:var(--white);border-bottom:1px solid var(--line);padding:0 48px;display:flex;position:sticky;top:64px;z-index:90;box-shadow:0 2px 8px rgba(100,40,0,.04)}
-.nav-btn{padding:15px 20px;font-size:13px;font-weight:600;font-family:'Plus Jakarta Sans',sans-serif;color:var(--text3);background:transparent;border:none;border-bottom:2.5px solid transparent;cursor:pointer;display:flex;align-items:center;gap:8px;transition:color .2s,border-color .2s;white-space:nowrap}
+.nav-bar{background:var(--white);border-bottom:1px solid var(--line);padding:0 48px;display:flex;position:sticky;top:64px;z-index:90;box-shadow:0 2px 8px rgba(100,40,0,.04);overflow-x:auto}
+.nav-btn{padding:14px 18px;font-size:12.5px;font-weight:600;font-family:'Plus Jakarta Sans',sans-serif;color:var(--text3);background:transparent;border:none;border-bottom:2.5px solid transparent;cursor:pointer;display:flex;align-items:center;gap:7px;transition:color .2s,border-color .2s;white-space:nowrap}
 .nav-btn:hover{color:var(--o3)}
 .nav-btn.active{color:var(--o2);border-bottom-color:var(--o3)}
-.nav-pill{display:inline-flex;align-items:center;justify-content:center;width:20px;height:20px;border-radius:50%;background:var(--o7);color:var(--o2);font-size:10px;font-weight:800;transition:background .2s,color .2s}
+.nav-pill{display:inline-flex;align-items:center;justify-content:center;width:18px;height:18px;border-radius:50%;background:var(--o7);color:var(--o2);font-size:9px;font-weight:800}
 .nav-btn.active .nav-pill{background:var(--o3);color:var(--white)}
 
 /* MAIN */
-.main{padding:36px 48px 64px;max-width:1240px}
+.main{padding:32px 48px 64px;max-width:1280px}
 .section{display:none}.section.active{display:block;animation:fu .3s ease}
 @keyframes fu{from{opacity:0;transform:translateY(6px)}to{opacity:1;transform:none}}
 
 /* SEC HEADER */
-.sec-hd{margin-bottom:28px}
-.sec-eyebrow{font-size:10px;font-weight:700;letter-spacing:.16em;text-transform:uppercase;color:var(--o4);margin-bottom:6px}
-.sec-title{font-family:'Lora',serif;font-size:24px;font-weight:700;color:var(--o1);margin-bottom:6px}
+.sec-hd{margin-bottom:24px}
+.sec-eyebrow{font-size:10px;font-weight:700;letter-spacing:.16em;text-transform:uppercase;color:var(--o4);margin-bottom:5px}
+.sec-title{font-family:'Lora',serif;font-size:22px;font-weight:700;color:var(--o1);margin-bottom:5px}
 .sec-desc{font-size:13px;color:var(--text3);line-height:1.65;max-width:700px}
 
 /* CARDS */
-.card{background:var(--white);border:1px solid var(--line);border-radius:var(--radius);box-shadow:var(--sh);padding:28px 32px;margin-bottom:20px}
-.card-sm{padding:20px 24px}
-.card-hd{font-size:10px;font-weight:700;letter-spacing:.12em;text-transform:uppercase;color:var(--text3);margin-bottom:18px;display:flex;align-items:center;gap:8px}
-.card-hd::before{content:'';display:block;width:3px;height:14px;background:var(--o4);border-radius:2px}
+.card{background:var(--white);border:1px solid var(--line);border-radius:var(--radius);box-shadow:var(--sh);padding:24px 28px;margin-bottom:18px}
+.card-sm{padding:18px 22px}
+.card-hd{font-size:10px;font-weight:700;letter-spacing:.12em;text-transform:uppercase;color:var(--text3);margin-bottom:16px;display:flex;align-items:center;gap:8px}
+.card-hd::before{content:'';display:block;width:3px;height:12px;background:var(--o4);border-radius:2px}
 
 /* METRICS */
-.metric-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(155px,1fr));gap:14px;margin-bottom:24px}
-.mc{background:var(--white);border:1px solid var(--line);border-radius:var(--radius);padding:20px 22px;box-shadow:var(--sh);position:relative;overflow:hidden}
+.metric-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(150px,1fr));gap:12px;margin-bottom:20px}
+.mc{background:var(--white);border:1px solid var(--line);border-radius:var(--radius);padding:18px 20px;box-shadow:var(--sh);position:relative;overflow:hidden}
 .mc::after{content:'';position:absolute;top:0;left:0;right:0;height:3px;background:linear-gradient(90deg,var(--o3),var(--o5))}
-.mc-lbl{font-size:11px;color:var(--text3);font-weight:600;letter-spacing:.04em;margin-bottom:8px}
-.mc-val{font-size:22px;font-weight:700;color:var(--o1);font-family:'Lora',serif;line-height:1}
-.mc-delta{font-size:11px;margin-top:6px;font-weight:600}
+.mc.mc-red::after{background:linear-gradient(90deg,var(--red),#E07070)}
+.mc.mc-green::after{background:linear-gradient(90deg,var(--green),#50A870)}
+.mc.mc-blue::after{background:linear-gradient(90deg,var(--blue),#4A7ABF)}
+.mc-lbl{font-size:11px;color:var(--text3);font-weight:600;letter-spacing:.03em;margin-bottom:7px}
+.mc-val{font-size:21px;font-weight:700;color:var(--o1);font-family:'Lora',serif;line-height:1}
+.mc-delta{font-size:11px;margin-top:5px;font-weight:600}
 .mc-delta.pos{color:var(--green)}.mc-delta.neg{color:var(--red)}.mc-delta.neu{color:var(--text3)}
+.mc-sub{font-size:10px;color:var(--text3);margin-top:3px}
+
+/* EXECUTIVE PANEL */
+.exec-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:16px;margin-bottom:20px}
+.exec-card{background:var(--white);border:1px solid var(--line);border-radius:16px;box-shadow:var(--sh);padding:22px 24px;position:relative;overflow:hidden}
+.exec-card::before{content:'';position:absolute;top:0;left:0;right:0;height:4px}
+.exec-card.ec-total::before{background:linear-gradient(90deg,var(--o2),var(--o4))}
+.exec-card.ec-perda::before{background:linear-gradient(90deg,var(--red),#D06060)}
+.exec-card.ec-uep::before{background:linear-gradient(90deg,var(--blue),#5090D0)}
+.exec-title{font-size:10px;font-weight:700;letter-spacing:.14em;text-transform:uppercase;color:var(--text3);margin-bottom:12px}
+.exec-num{font-family:'Lora',serif;font-size:32px;font-weight:700;color:var(--o1);line-height:1}
+.exec-num.en-red{color:var(--red)}
+.exec-num.en-blue{color:var(--blue)}
+.exec-split{display:flex;gap:16px;margin-top:14px}
+.exec-item{flex:1;border-top:1px solid var(--line);padding-top:10px}
+.exec-item-lbl{font-size:10px;color:var(--text3);font-weight:600;margin-bottom:3px}
+.exec-item-val{font-family:'Lora',serif;font-size:16px;font-weight:700;color:var(--text2)}
+.exec-delta{display:inline-flex;align-items:center;gap:4px;font-size:11px;font-weight:700;padding:2px 8px;border-radius:20px;margin-top:6px}
+.ed-pos{background:var(--greenl);color:var(--green)}
+.ed-neg{background:var(--redl);color:var(--red)}
+.ed-neu{background:var(--o7);color:var(--o2)}
 
 /* CONTROLS */
-.controls{display:flex;gap:12px;align-items:center;margin-bottom:22px;flex-wrap:wrap}
+.controls{display:flex;gap:12px;align-items:center;margin-bottom:20px;flex-wrap:wrap}
 .ctrl-grp{display:flex;align-items:center;gap:8px}
 .ctrl-lbl{font-size:12px;font-weight:600;color:var(--text3)}
-select{padding:8px 34px 8px 12px;font-size:13px;font-family:'Plus Jakarta Sans',sans-serif;font-weight:600;border:1.5px solid var(--line);border-radius:8px;background:var(--white);color:var(--text);cursor:pointer;appearance:none;background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='12' viewBox='0 0 12 12'%3E%3Cpath fill='%238C6A52' d='M6 8L1 3h10z'/%3E%3C/svg%3E");background-repeat:no-repeat;background-position:right 10px center;transition:border-color .15s,box-shadow .15s}
+select{padding:7px 30px 7px 11px;font-size:13px;font-family:'Plus Jakarta Sans',sans-serif;font-weight:600;border:1.5px solid var(--line);border-radius:8px;background:var(--white);color:var(--text);cursor:pointer;appearance:none;background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='12' viewBox='0 0 12 12'%3E%3Cpath fill='%238C6A52' d='M6 8L1 3h10z'/%3E%3C/svg%3E");background-repeat:no-repeat;background-position:right 9px center;transition:border-color .15s}
 select:focus{outline:none;border-color:var(--o4);box-shadow:0 0 0 3px rgba(240,120,48,.12)}
 
 /* INSIGHT */
-.insight{background:var(--o8);border-left:3px solid var(--o4);border-radius:0 10px 10px 0;padding:14px 18px;margin-bottom:20px;font-size:13px;color:var(--o1);line-height:1.65}
+.insight{background:var(--o8);border-left:3px solid var(--o4);border-radius:0 10px 10px 0;padding:13px 16px;margin-bottom:18px;font-size:13px;color:var(--o1);line-height:1.65}
 .insight strong{font-weight:700;color:var(--o2)}
+.insight.ins-red{background:var(--redl);border-color:var(--red);color:#6B1A1A}
+.insight.ins-green{background:var(--greenl);border-color:var(--green);color:#0D3A1F}
 
 /* LEGEND */
-.legend{display:flex;flex-wrap:wrap;gap:14px;margin-bottom:14px}
+.legend{display:flex;flex-wrap:wrap;gap:12px;margin-bottom:12px}
 .leg-item{display:flex;align-items:center;gap:6px;font-size:12px;color:var(--text3);font-weight:500}
 .leg-sq{width:10px;height:10px;border-radius:2px;flex-shrink:0}
 
 /* TABLE */
 .tbl-wrap{overflow-x:auto}
 table{width:100%;border-collapse:collapse;font-size:13px}
-thead th{text-align:left;padding:10px 14px;font-size:10px;font-weight:700;letter-spacing:.10em;text-transform:uppercase;color:var(--text3);border-bottom:1px solid var(--line);white-space:nowrap;background:var(--o8)}
-tbody td{padding:11px 14px;border-bottom:1px solid var(--line);color:var(--text);vertical-align:middle}
+thead th{text-align:left;padding:9px 13px;font-size:10px;font-weight:700;letter-spacing:.10em;text-transform:uppercase;color:var(--text3);border-bottom:1px solid var(--line);white-space:nowrap;background:var(--o8)}
+tbody td{padding:10px 13px;border-bottom:1px solid var(--line);color:var(--text);vertical-align:middle}
 tbody tr:last-child td{border-bottom:none}
-tbody tr:hover td{background:var(--o8);transition:background .1s}
+tbody tr:hover td{background:var(--o8)}
 td.num{text-align:right;font-variant-numeric:tabular-nums;font-weight:700;font-family:'Lora',serif;font-size:13px}
 td.mp{font-weight:600;color:var(--o1)}
 
 /* BADGES */
-.badge{display:inline-flex;align-items:center;font-size:11px;font-weight:700;padding:3px 10px;border-radius:20px;letter-spacing:.03em}
+.badge{display:inline-flex;align-items:center;font-size:11px;font-weight:700;padding:3px 9px;border-radius:20px;letter-spacing:.02em}
 .b-red{background:var(--redl);color:var(--red)}
 .b-green{background:var(--greenl);color:var(--green)}
 .b-amber{background:var(--amberl);color:var(--amber)}
 .b-orange{background:var(--o7);color:var(--o2)}
+.b-blue{background:var(--bluel);color:var(--blue)}
 
 /* LAYOUT */
-.two-col{display:grid;grid-template-columns:1fr 1fr;gap:20px}
+.two-col{display:grid;grid-template-columns:1fr 1fr;gap:18px}
+.three-col{display:grid;grid-template-columns:1fr 1fr 1fr;gap:18px}
 .chart-wrap{position:relative;width:100%}
-.divider{height:1px;background:var(--line);margin:28px 0}
+.divider{height:1px;background:var(--line);margin:24px 0}
 
 /* RANK */
-.rank-row{display:flex;align-items:center;gap:12px;padding:11px 0;border-bottom:1px solid var(--line)}
+.rank-row{display:flex;align-items:center;gap:10px;padding:10px 0;border-bottom:1px solid var(--line)}
 .rank-row:last-child{border-bottom:none}
-.rank-n{font-size:12px;font-weight:800;color:var(--gray4);width:18px;text-align:right;font-family:'Lora',serif}
-.rank-name{font-size:13px;font-weight:600;color:var(--o1);min-width:140px}
+.rank-n{font-size:12px;font-weight:800;color:var(--gray4);width:16px;text-align:right;font-family:'Lora',serif}
+.rank-name{font-size:13px;font-weight:600;color:var(--o1);min-width:130px}
 .rank-bw{flex:1;height:6px;background:var(--o7);border-radius:3px;overflow:hidden}
 .rank-bar{height:100%;border-radius:3px;background:linear-gradient(90deg,var(--o3),var(--o5))}
-.rank-val{font-size:13px;font-family:'Lora',serif;color:var(--text2);font-weight:700;min-width:60px;text-align:right}
+.rank-bar.rb-red{background:linear-gradient(90deg,var(--red),#E07070)}
+.rank-val{font-size:13px;font-family:'Lora',serif;color:var(--text2);font-weight:700;min-width:70px;text-align:right}
+
+/* MCU TABLE */
+.mcu-row{display:grid;grid-template-columns:140px 1fr 80px 80px 80px 80px 100px;align-items:center;gap:8px;padding:11px 0;border-bottom:1px solid var(--line)}
+.mcu-row:last-child{border-bottom:none}
+.mcu-row.mcu-head{font-size:10px;font-weight:700;letter-spacing:.08em;text-transform:uppercase;color:var(--text3);padding-bottom:8px;border-bottom:2px solid var(--line)}
+.mcu-prod{font-weight:700;color:var(--o1);font-size:13px}
+.mcu-bar-wrap{height:8px;background:var(--o7);border-radius:4px;overflow:hidden}
+.mcu-bar{height:100%;border-radius:4px}
+.mcu-num{text-align:right;font-family:'Lora',serif;font-weight:700;font-size:13px;color:var(--text2)}
+.mcu-num.mn-green{color:var(--green)}
+.mcu-num.mn-red{color:var(--red)}
+
+/* SINAL VISUAL */
+.alert-banner{border-radius:12px;padding:14px 18px;margin-bottom:18px;display:flex;align-items:flex-start;gap:12px;font-size:13px;line-height:1.6}
+.alert-banner.ab-red{background:var(--redl);border:1px solid #F0C0C0;color:#6B1A1A}
+.alert-banner.ab-green{background:var(--greenl);border:1px solid #A0D0B0;color:#0D3A1F}
+.alert-banner.ab-amber{background:var(--amberl);border:1px solid #E0C060;color:#5A3800}
+.ab-icon{font-size:18px;flex-shrink:0;line-height:1}
+.ab-body strong{font-weight:700}
+
+/* PO CARD */
+.po-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(180px,1fr));gap:12px}
+.po-card{background:var(--white);border:1px solid var(--line);border-radius:12px;padding:16px;box-shadow:var(--sh)}
+.po-id{font-size:10px;font-weight:800;letter-spacing:.1em;text-transform:uppercase;color:var(--o4);margin-bottom:4px}
+.po-name{font-size:13px;font-weight:700;color:var(--o1);margin-bottom:10px;line-height:1.3}
+.po-stat{display:flex;justify-content:space-between;align-items:center;margin-top:6px}
+.po-stat-lbl{font-size:11px;color:var(--text3)}
+.po-stat-val{font-size:12px;font-weight:700;color:var(--text2);font-family:'Lora',serif}
+.po-eff{height:5px;border-radius:3px;background:var(--o7);margin-top:10px;overflow:hidden}
+.po-eff-bar{height:100%;border-radius:3px}
 
 /* FOOTER */
-.footer{background:var(--o1);padding:20px 48px;display:flex;align-items:center;justify-content:space-between;margin-top:0}
+.footer{background:var(--o1);padding:18px 48px;display:flex;align-items:center;justify-content:space-between;margin-top:0}
 .footer-txt{font-size:12px;color:rgba(255,255,255,.45);font-weight:500}
 .footer-brand{font-family:'Lora',serif;font-size:14px;font-weight:700;color:rgba(255,255,255,.6)}
 
-@media(max-width:800px){.hero{padding:24px}.hero-inner{flex-direction:column;align-items:flex-start}.hero-kpis{flex-wrap:wrap}.main{padding:20px}.nav-bar,.topbar{padding:0 16px}.two-col{grid-template-columns:1fr}.footer{padding:16px 20px}}
+@media(max-width:900px){
+  .hero{padding:20px}.hero-inner{flex-direction:column;align-items:flex-start}.hero-kpis{flex-wrap:wrap}
+  .main{padding:16px}.nav-bar,.topbar{padding:0 14px}.two-col,.three-col{grid-template-columns:1fr}
+  .exec-grid{grid-template-columns:1fr}.footer{padding:14px 20px}
+}
 </style>
 </head>
 <body>
@@ -140,16 +204,12 @@ td.mp{font-weight:600;color:var(--o1)}
     <div class="logo-circle">
       <svg width="28" height="28" viewBox="0 0 28 28" fill="none" xmlns="http://www.w3.org/2000/svg">
         <circle cx="14" cy="14" r="13" fill="#FEE8D4" stroke="#E06020" stroke-width="1.5"/>
-        <ellipse cx="11" cy="16" rx="7" ry="6.5" fill="#C87030"/>
-        <ellipse cx="11" cy="15.5" rx="6.5" ry="6" fill="#D4853A"/>
-        <circle cx="9" cy="14" r="1" fill="#7A3800"/>
-        <circle cx="13" cy="15" r="0.8" fill="#7A3800"/>
-        <circle cx="10" cy="17" r="0.7" fill="#7A3800"/>
-        <circle cx="13" cy="12.5" r="0.6" fill="#7A3800"/>
+        <ellipse cx="11" cy="16" rx="7" ry="6.5" fill="#C87030"/><ellipse cx="11" cy="15.5" rx="6.5" ry="6" fill="#D4853A"/>
+        <circle cx="9" cy="14" r="1" fill="#7A3800"/><circle cx="13" cy="15" r="0.8" fill="#7A3800"/>
+        <circle cx="10" cy="17" r="0.7" fill="#7A3800"/><circle cx="13" cy="12.5" r="0.6" fill="#7A3800"/>
         <rect x="14" y="10" width="10" height="7" rx="2" fill="#E8C080" transform="rotate(-8 14 10)"/>
         <rect x="14.5" y="10.5" width="9" height="6" rx="1.5" fill="#F0CC88" transform="rotate(-8 14.5 10.5)"/>
-        <ellipse cx="11" cy="9.5" rx="4" ry="1.5" fill="white"/>
-        <rect x="9.5" y="5" width="3" height="5" rx="1.5" fill="white"/>
+        <ellipse cx="11" cy="9.5" rx="4" ry="1.5" fill="white"/><rect x="9.5" y="5" width="3" height="5" rx="1.5" fill="white"/>
       </svg>
     </div>
     <div class="logo-wordmark">
@@ -169,89 +229,242 @@ td.mp{font-weight:600;color:var(--o1)}
 <div class="hero">
   <div class="hero-inner">
     <div class="hero-left">
-      <div class="hero-eyebrow">Dashboard · Análise de Matéria-Prima</div>
-      <div class="hero-title">Controle de Custos<br>de Produção</div>
-      <div class="hero-sub">6 produtos · 18 matérias-primas · Mês 1 e Mês 2</div>
+      <div class="hero-eyebrow">Dashboard · Custos de Produção + UEP</div>
+      <div class="hero-title">Controle Gerencial<br>Produbisc</div>
+      <div class="hero-sub">6 produtos · 13 postos operativos · Mês 1 e Mês 2</div>
     </div>
     <div class="hero-kpis">
-      <div class="kpi"><div class="kpi-val">6</div><div class="kpi-lbl">Produtos</div></div>
-      <div class="kpi"><div class="kpi-val">18</div><div class="kpi-lbl">MPs</div></div>
-      <div class="kpi"><div class="kpi-val">R$ 88k</div><div class="kpi-lbl">Gasto total</div><div class="kpi-sub">2 meses</div></div>
-      <div class="kpi"><div class="kpi-val">3</div><div class="kpi-lbl">Princípios</div><div class="kpi-sub">de custeio</div></div>
+      <div class="kpi"><div class="kpi-val">R$ 88k</div><div class="kpi-lbl">Gasto MP</div><div class="kpi-sub">2 meses</div></div>
+      <div class="kpi"><div class="kpi-val">R$ 125k</div><div class="kpi-lbl">Transf.</div><div class="kpi-sub">2 meses</div></div>
+      <div class="kpi"><div class="kpi-val">R$ 14,9k</div><div class="kpi-lbl">Perda anorm.</div><div class="kpi-sub">MP total</div></div>
+      <div class="kpi"><div class="kpi-val">13 POs</div><div class="kpi-lbl">Postos Op.</div><div class="kpi-sub">UEP</div></div>
     </div>
   </div>
 </div>
 
 <!-- NAV -->
 <div class="nav-bar">
-  <button class="nav-btn active" onclick="showTab('dados',this)"><span class="nav-pill">0</span>Dados Base</button>
-  <button class="nav-btn" onclick="showTab('var',this)"><span class="nav-pill">1</span>Variação P×Q</button>
-  <button class="nav-btn" onclick="showTab('custo',this)"><span class="nav-pill">2</span>Custo Unitário</button>
-  <button class="nav-btn" onclick="showTab('efic',this)"><span class="nav-pill">3</span>Eficiência por MP</button>
-  <button class="nav-btn" onclick="showTab('tend',this)"><span class="nav-pill">4</span>Tendência M1→M2</button>
+  <button class="nav-btn active" onclick="showTab('exec',this)"><span class="nav-pill">★</span>Visão Executiva</button>
+  <button class="nav-btn" onclick="showTab('mcu',this)"><span class="nav-pill">1</span>Rentabilidade MCU</button>
+  <button class="nav-btn" onclick="showTab('uep',this)"><span class="nav-pill">2</span>UEP — Postos Op.</button>
+  <button class="nav-btn" onclick="showTab('var',this)"><span class="nav-pill">3</span>Variação P×Q</button>
+  <button class="nav-btn" onclick="showTab('custo',this)"><span class="nav-pill">4</span>Custo Unitário</button>
   <button class="nav-btn" onclick="showTab('comp',this)"><span class="nav-pill">5</span>Comparação</button>
-  <button class="nav-btn" onclick="showTab('resumo',this)"><span class="nav-pill">6</span>Resumo Geral</button>
+  <button class="nav-btn" onclick="showTab('dados',this)"><span class="nav-pill">6</span>Dados Base</button>
 </div>
 
-<!-- MAIN -->
 <div class="main">
 
-<!-- TAB 0 -->
-<div id="s-dados" class="section active">
+<!-- ══════════════ TAB EXECUTIVA ══════════════ -->
+<div id="s-exec" class="section active">
   <div class="sec-hd">
-    <div class="sec-eyebrow">Base de Dados · Referência do Modelo</div>
-    <div class="sec-title">Fichas Técnicas, Preços e Custos</div>
-    <div class="sec-desc">Tabelas de referência completas utilizadas nas análises: preços padrão de matérias-primas, composição por produto (ficha técnica) e produção dos dois períodos.</div>
+    <div class="sec-eyebrow">Visão Executiva · Tela Inicial</div>
+    <div class="sec-title">Resumo para Decisão</div>
+    <div class="sec-desc">Panorama consolidado dos dois períodos: gastos, perdas e eficiência operacional para orientar prioridades de melhoria.</div>
   </div>
 
+  <!-- ALERTAS -->
+  <div class="alert-banner ab-red">
+    <div class="ab-icon">⚠️</div>
+    <div class="ab-body"><strong>Atenção — Mês 1:</strong> Água e Sal registrou eficiência de apenas 43,9%, com perda anormal de R$ 397 (89,5% da perda total do produto). Cookie concentra R$ 784 em perdas anormais no M1 — maior valor absoluto entre todos os produtos.</div>
+  </div>
+  <div class="alert-banner ab-green">
+    <div class="ab-icon">✅</div>
+    <div class="ab-body"><strong>Melhoria no Mês 2:</strong> Bolacha Maria reduziu perdas anormais de R$ 192 → R$ 21 (−89%). Wafer reduziu de R$ 865 → R$ 331 (−62%). Eficiência geral da fábrica subiu de 43,9% para 64,5% em M2.</div>
+  </div>
+
+  <!-- EXEC KPI CARDS -->
+  <div class="exec-grid">
+    <div class="exec-card ec-total">
+      <div class="exec-title">Gasto Total com MP</div>
+      <div class="exec-num">R$ 88.068</div>
+      <div class="exec-split">
+        <div class="exec-item">
+          <div class="exec-item-lbl">Mês 1</div>
+          <div class="exec-item-val">R$ 37.068</div>
+          <div class="exec-delta ed-neu">Base</div>
+        </div>
+        <div class="exec-item">
+          <div class="exec-item-lbl">Mês 2</div>
+          <div class="exec-item-val">R$ 50.999</div>
+          <div class="exec-delta ed-neg">▲ +37,6%</div>
+        </div>
+      </div>
+    </div>
+    <div class="exec-card ec-perda">
+      <div class="exec-title">Perda Anormal MP (R$)</div>
+      <div class="exec-num en-red">R$ 14.906</div>
+      <div class="exec-split">
+        <div class="exec-item">
+          <div class="exec-item-lbl">Mês 1</div>
+          <div class="exec-item-val" style="color:var(--red)">R$ 10.613</div>
+          <div class="exec-delta ed-neg">28,6% do gasto</div>
+        </div>
+        <div class="exec-item">
+          <div class="exec-item-lbl">Mês 2</div>
+          <div class="exec-item-val" style="color:var(--amber)">R$ 4.293</div>
+          <div class="exec-delta ed-pos">▼ −59,5%</div>
+        </div>
+      </div>
+    </div>
+    <div class="exec-card ec-uep">
+      <div class="exec-title">Custo de Transformação</div>
+      <div class="exec-num en-blue">R$ 125.000</div>
+      <div class="exec-split">
+        <div class="exec-item">
+          <div class="exec-item-lbl">Mês 1</div>
+          <div class="exec-item-val">R$ 60.000</div>
+          <div class="exec-delta ed-neu">Custo UEP: R$ 0,4193</div>
+        </div>
+        <div class="exec-item">
+          <div class="exec-item-lbl">Mês 2</div>
+          <div class="exec-item-val">R$ 65.000</div>
+          <div class="exec-delta ed-neu">Custo UEP: R$ 0,3177</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- PERDAS POR PRODUTO -->
+  <div class="two-col">
+    <div class="card">
+      <div class="card-hd">Perda anormal por produto — Mês 1 vs Mês 2 (R$)</div>
+      <div class="chart-wrap" style="height:250px"><canvas id="cExecPerdas"></canvas></div>
+    </div>
+    <div class="card">
+      <div class="card-hd">Gasto MP por produto — Mês 1 vs Mês 2 (R$)</div>
+      <div class="chart-wrap" style="height:250px"><canvas id="cExecGasto"></canvas></div>
+    </div>
+  </div>
+
+  <!-- TABELA EXECUTIVA -->
   <div class="card card-sm">
-    <div class="card-hd">Preços de matérias-primas</div>
+    <div class="card-hd">Painel consolidado por produto</div>
     <div class="tbl-wrap">
-      <table>
-        <thead><tr><th>Matéria-prima</th><th>Preço padrão</th><th>Unidade</th><th>Perda normal</th><th>Valor ajustado (g/ml)</th></tr></thead>
-        <tbody id="tb-precos"></tbody>
+      <table id="tExec">
+        <thead><tr>
+          <th>Produto</th>
+          <th>Preço Venda</th>
+          <th>MCU (M1)</th>
+          <th>MCU/UEP</th>
+          <th>Gasto MP M1</th>
+          <th>Gasto MP M2</th>
+          <th>Perda Anorm. M1</th>
+          <th>Perda Anorm. M2</th>
+          <th>Var. Perda</th>
+          <th>Prioridade</th>
+        </tr></thead>
+        <tbody></tbody>
       </table>
     </div>
   </div>
 
+  <!-- EFICIÊNCIA UEP RESUMO -->
   <div class="card card-sm">
-    <div class="card-hd">Ficha técnica — quantidade ajustada por lote (kg, l ou dúzia)</div>
-    <div class="tbl-wrap">
-      <table>
-        <thead><tr><th>Matéria-prima</th><th>Maria</th><th>Água e Sal</th><th>Integral</th><th>Cookie</th><th>Recheada</th><th>Wafer</th></tr></thead>
-        <tbody id="tb-ficha"></tbody>
-      </table>
+    <div class="card-hd">Eficiência dos Postos Operativos (UEP) — Mês 1 vs Mês 2</div>
+    <div class="po-grid" id="exec-po-grid"></div>
+  </div>
+</div>
+
+<!-- ══════════════ TAB MCU ══════════════ -->
+<div id="s-mcu" class="section">
+  <div class="sec-hd">
+    <div class="sec-eyebrow">Análise 1 · Rentabilidade por Produto</div>
+    <div class="sec-title">Margem de Contribuição Unitária (MCU)</div>
+    <div class="sec-desc">MCU = Preço de Venda − Custo Variável de MP. MCU/UEP mostra a margem gerada por unidade de capacidade consumida — o indicador mais importante para decisão de mix de produção.</div>
+  </div>
+
+  <div class="alert-banner ab-amber">
+    <div class="ab-icon">💡</div>
+    <div class="ab-body"><strong>Interpretação-chave:</strong> Cookie tem maior perda anormal absoluta, mas também a maior MCU/UEP (R$ 0,81). Já Recheada tem MCU/UEP baixíssima (R$ 0,12 em M1) e ainda apresenta perdas crescentes em M2. Água e Sal teve sua MCU dobrar de M1 para M2 — sinal de melhora operacional significativa.</div>
+  </div>
+
+  <div class="card">
+    <div class="card-hd">MCU e Preço de Venda por produto (R$/unidade)</div>
+    <div class="chart-wrap" style="height:300px"><canvas id="cMcu"></canvas></div>
+  </div>
+
+  <div class="card card-sm">
+    <div class="card-hd">Decomposição da MCU</div>
+    <div id="mcu-detalhe">
+      <div class="mcu-row mcu-head">
+        <span>Produto</span><span>MCU / Custo MP</span>
+        <span style="text-align:right">Preço</span>
+        <span style="text-align:right">Custo MP M1</span>
+        <span style="text-align:right">MCU M1</span>
+        <span style="text-align:right">MCU M2</span>
+        <span style="text-align:right">MCU/UEP M1</span>
+      </div>
     </div>
   </div>
 
   <div class="two-col">
-    <div class="card card-sm">
-      <div class="card-hd">Unidades produzidas por período</div>
-      <div class="tbl-wrap">
-        <table>
-          <thead><tr><th>Produto</th><th>Mês 1</th><th>Mês 2</th><th>Total</th><th>Var. %</th></tr></thead>
-          <tbody id="tb-prod"></tbody>
-        </table>
-      </div>
+    <div class="card">
+      <div class="card-hd">Ranking MCU/UEP — prioridade de mix (M1)</div>
+      <div id="rank-mcu-uep"></div>
     </div>
-    <div class="card card-sm">
-      <div class="card-hd">Lotes produzidos por período</div>
-      <div class="tbl-wrap">
-        <table>
-          <thead><tr><th>Produto</th><th>Lotes M1</th><th>Lotes M2</th><th>Var. %</th></tr></thead>
-          <tbody id="tb-lotes"></tbody>
-        </table>
-      </div>
+    <div class="card">
+      <div class="card-hd">MCU M1 vs M2 — variação por produto</div>
+      <div class="chart-wrap" style="height:240px"><canvas id="cMcuEvol"></canvas></div>
     </div>
   </div>
 </div>
 
-<!-- TAB 1 -->
+<!-- ══════════════ TAB UEP ══════════════ -->
+<div id="s-uep" class="section">
+  <div class="sec-hd">
+    <div class="sec-eyebrow">Análise 2 · Método UEP</div>
+    <div class="sec-title">Postos Operativos — Eficiência e Perdas</div>
+    <div class="sec-desc">A UEP (Unidade de Esforço de Produção) unifica a mensuração do esforço produtivo. Perdas de ociosidade = capacidade não utilizada. Perdas de ineficiência = uso abaixo do potencial.</div>
+  </div>
+
+  <div class="controls">
+    <div class="ctrl-grp"><span class="ctrl-lbl">Período</span>
+      <select id="uep-mes" onchange="renderUEP()">
+        <option value="m1">Mês 1</option><option value="m2">Mês 2</option>
+      </select>
+    </div>
+  </div>
+
+  <div class="metric-grid" id="uep-kpis"></div>
+
+  <div class="two-col">
+    <div class="card">
+      <div class="card-hd">Eficiência por Posto Operativo (%)</div>
+      <div class="chart-wrap" style="height:320px"><canvas id="cUepEfic"></canvas></div>
+    </div>
+    <div class="card">
+      <div class="card-hd">Perdas: Ociosidade vs. Ineficiência (R$)</div>
+      <div class="chart-wrap" style="height:320px"><canvas id="cUepPerdas"></canvas></div>
+    </div>
+  </div>
+
+  <div class="card card-sm">
+    <div class="card-hd">Detalhamento por Posto Operativo</div>
+    <div class="tbl-wrap"><table id="tUep">
+      <thead><tr><th>PO</th><th>Descrição</th><th>FIPO R$/h</th><th>UEP/und (base)</th><th>Eficiência</th><th>Eficácia</th><th>Prod. Horária</th><th>Perda Ociosid.</th><th>Perda Inefic.</th></tr></thead>
+      <tbody></tbody>
+    </table></div>
+  </div>
+
+  <div class="two-col">
+    <div class="card">
+      <div class="card-hd">Custo UEP por princípio de custeio</div>
+      <div class="chart-wrap" style="height:200px"><canvas id="cUepCusto"></canvas></div>
+    </div>
+    <div class="card">
+      <div class="card-hd">UEP/und por produto (complexidade operacional)</div>
+      <div class="chart-wrap" style="height:200px"><canvas id="cUepProd"></canvas></div>
+    </div>
+  </div>
+</div>
+
+<!-- ══════════════ TAB VARIAÇÃO ══════════════ -->
 <div id="s-var" class="section">
   <div class="sec-hd">
-    <div class="sec-eyebrow">Análise 1 de 5 · Custo Padrão Clássico</div>
+    <div class="sec-eyebrow">Análise 3 · Custo Padrão Clássico</div>
     <div class="sec-title">Variação de MP — Preço × Quantidade</div>
-    <div class="sec-desc">Decomposição do desvio entre consumo real e padrão. Variação de quantidade = (QP − QR) × PP. Negativo = consumo acima do padrão. O preço real equivale ao preço padrão para todos os itens analisados.</div>
+    <div class="sec-desc">Decomposição do desvio entre consumo real e padrão. Variação de quantidade = (QP − QR) × PP. Negativo = consumo acima do padrão (desperdício).</div>
   </div>
   <div class="controls">
     <div class="ctrl-grp"><span class="ctrl-lbl">Produto</span>
@@ -273,7 +486,7 @@ td.mp{font-weight:600;color:var(--o1)}
       <div class="leg-item"><span class="leg-sq" style="background:#B83232"></span>Acima do padrão — desperdício</div>
       <div class="leg-item"><span class="leg-sq" style="background:#1F6B3A"></span>Dentro / abaixo do padrão</div>
     </div>
-    <div class="chart-wrap" style="height:260px"><canvas id="cVar" role="img" aria-label="Variação de quantidade por MP em R$"></canvas></div>
+    <div class="chart-wrap" style="height:260px"><canvas id="cVar"></canvas></div>
   </div>
   <div class="card card-sm">
     <div class="card-hd">Detalhamento por matéria-prima</div>
@@ -284,175 +497,112 @@ td.mp{font-weight:600;color:var(--o1)}
   </div>
 </div>
 
-<!-- TAB 2 -->
+<!-- ══════════════ TAB CUSTO UNITÁRIO ══════════════ -->
 <div id="s-custo" class="section">
   <div class="sec-hd">
-    <div class="sec-eyebrow">Análise 2 de 5 · Princípios de Custeio</div>
+    <div class="sec-eyebrow">Análise 4 · Princípios de Custeio</div>
     <div class="sec-title">Custo Unitário por Produto</div>
-    <div class="sec-desc">Integral incorpora perdas reais (varia por mês). Parcial exclui perdas normais. Ideal é o custo teórico sem qualquer perda — referência de excelência operacional.</div>
+    <div class="sec-desc">Integral incorpora perdas reais (varia por mês). Parcial exclui perdas normais. Ideal é o custo teórico sem qualquer perda. Agora com o custo de transformação (UEP) para visão completa.</div>
   </div>
   <div class="card">
-    <div class="card-hd">Custo por unidade (R$) — todos os produtos</div>
+    <div class="card-hd">Custo de MP por unidade (R$) — todos os produtos</div>
     <div class="legend" id="leg-custo"></div>
-    <div class="chart-wrap" style="height:300px"><canvas id="cCusto" role="img" aria-label="Custo unitário por produto"></canvas></div>
+    <div class="chart-wrap" style="height:300px"><canvas id="cCusto"></canvas></div>
   </div>
   <div class="card card-sm">
-    <div class="card-hd">Tabela comparativa</div>
+    <div class="card-hd">Tabela comparativa — MP + Transformação (UEP)</div>
     <div class="tbl-wrap"><table id="tCusto">
-      <thead><tr><th>Produto</th><th>Integral M1</th><th>Integral M2</th><th>Parcial</th><th>Ideal</th><th>Δ M1→M2</th><th>Int.M1 × Ideal</th><th>Int.M2 × Ideal</th></tr></thead>
+      <thead><tr><th>Produto</th><th>MP Int. M1</th><th>MP Int. M2</th><th>MP Parcial</th><th>MP Ideal</th><th>Transf. M1</th><th>Transf. M2</th><th>Total M1</th><th>Total M2</th><th>Δ M1→M2</th></tr></thead>
       <tbody></tbody>
     </table></div>
   </div>
 </div>
 
-<!-- TAB 3 -->
-<div id="s-efic" class="section">
-  <div class="sec-hd">
-    <div class="sec-eyebrow">Análise 3 de 5 · Eficiência Operacional</div>
-    <div class="sec-title">Indicadores de Eficiência por MP</div>
-    <div class="sec-desc">Compara o consumo real com o padrão esperado (ficha técnica × lotes). Valores positivos = consumo acima do padrão. A faixa laranja clara representa a perda normal tolerada.</div>
-  </div>
-  <div class="controls">
-    <div class="ctrl-grp"><span class="ctrl-lbl">Produto</span>
-      <select id="efic-prod" onchange="renderEfic()">
-        <option>Maria</option><option>Água e Sal</option><option>Integral</option>
-        <option>Cookie</option><option>Recheada</option><option>Wafer</option>
-      </select>
-    </div>
-    <div class="ctrl-grp"><span class="ctrl-lbl">Período</span>
-      <select id="efic-mes" onchange="renderEfic()">
-        <option value="m1">Mês 1</option><option value="m2">Mês 2</option>
-      </select>
-    </div>
-  </div>
-  <div class="insight" id="efic-insight">—</div>
-  <div class="card">
-    <div class="card-hd">Desvio real vs. perda normal (%)</div>
-    <div class="legend">
-      <div class="leg-item"><span class="leg-sq" style="background:#B83232"></span>Acima do limite</div>
-      <div class="leg-item"><span class="leg-sq" style="background:#9B6200"></span>Dentro do limite</div>
-      <div class="leg-item"><span class="leg-sq" style="background:#1F6B3A"></span>Abaixo (eficiente)</div>
-      <div class="leg-item"><span class="leg-sq" style="background:rgba(240,120,48,.2);border:1px solid #F07830"></span>Perda normal permitida</div>
-    </div>
-    <div class="chart-wrap" style="height:260px"><canvas id="cEfic" role="img" aria-label="Desvio % por MP"></canvas></div>
-  </div>
-  <div class="card card-sm">
-    <div class="card-hd">Detalhamento</div>
-    <div class="tbl-wrap"><table id="tEfic">
-      <thead><tr><th>Matéria-prima</th><th>Qtd Padrão</th><th>Qtd Real</th><th>Desvio %</th><th>Perda normal</th><th>Status</th></tr></thead>
-      <tbody></tbody>
-    </table></div>
-  </div>
-</div>
-
-<!-- TAB 4 -->
-<div id="s-tend" class="section">
-  <div class="sec-hd">
-    <div class="sec-eyebrow">Análise 4 de 5 · Evolução Temporal</div>
-    <div class="sec-title">Tendência Mês 1 → Mês 2</div>
-    <div class="sec-desc">Evolução dos indicadores entre períodos. Distingue se a variação do custo integral decorre de ganho de escala ou de melhoria real no consumo de matéria-prima.</div>
-  </div>
-  <div class="controls">
-    <div class="ctrl-grp"><span class="ctrl-lbl">Produto</span>
-      <select id="tend-prod" onchange="renderTend()">
-        <option>Maria</option><option>Água e Sal</option><option>Integral</option>
-        <option>Cookie</option><option>Recheada</option><option>Wafer</option>
-      </select>
-    </div>
-  </div>
-  <div class="metric-grid" id="tend-metrics"></div>
-  <div class="two-col">
-    <div class="card">
-      <div class="card-hd">Custo unitário integral (R$/un)</div>
-      <div class="chart-wrap" style="height:200px"><canvas id="cTend1" role="img" aria-label="Evolução custo unitário"></canvas></div>
-    </div>
-    <div class="card">
-      <div class="card-hd">Perdas: normal vs. anormal (R$)</div>
-      <div class="chart-wrap" style="height:200px"><canvas id="cTend2" role="img" aria-label="Evolução perdas"></canvas></div>
-    </div>
-  </div>
-  <div class="card card-sm">
-    <div class="card-hd">Tabela de variações</div>
-    <div class="tbl-wrap"><table id="tTend">
-      <thead><tr><th>Indicador</th><th>Mês 1</th><th>Mês 2</th><th>Variação %</th></tr></thead>
-      <tbody></tbody>
-    </table></div>
-  </div>
-</div>
-
-<!-- TAB 5 -->
+<!-- ══════════════ TAB COMPARAÇÃO ══════════════ -->
 <div id="s-comp" class="section">
   <div class="sec-hd">
-    <div class="sec-eyebrow">Análise 5 de 5 · Visão Consolidada</div>
+    <div class="sec-eyebrow">Análise 5 · Visão Consolidada</div>
     <div class="sec-title">Comparação entre Produtos e MPs</div>
-    <div class="sec-desc">Ranking de perdas anormais por produto e identificação das matérias-primas mais críticas em termos de desvio do padrão — base para priorização de melhorias operacionais.</div>
+    <div class="sec-desc">Perdas anormais em R$ e % combinadas — base para priorizar ações. Adicionado: ranking de MPs por impacto financeiro absoluto.</div>
   </div>
+
   <div class="two-col">
     <div class="card">
-      <div class="card-hd">Perda anormal por produto (R$)</div>
+      <div class="card-hd">Perda anormal por produto — R$ absoluto</div>
       <div class="legend">
         <div class="leg-item"><span class="leg-sq" style="background:#C24B00"></span>Mês 1</div>
         <div class="leg-item"><span class="leg-sq" style="background:#FDC898"></span>Mês 2</div>
       </div>
-      <div class="chart-wrap" style="height:240px"><canvas id="cComp1" role="img" aria-label="Perda anormal por produto"></canvas></div>
+      <div class="chart-wrap" style="height:240px"><canvas id="cComp1"></canvas></div>
     </div>
     <div class="card">
-      <div class="card-hd">% perda anormal / perda total</div>
+      <div class="card-hd">% Perda anormal / perda total</div>
       <div class="legend">
         <div class="leg-item"><span class="leg-sq" style="background:#C24B00"></span>Mês 1</div>
         <div class="leg-item"><span class="leg-sq" style="background:#FDC898"></span>Mês 2</div>
       </div>
-      <div class="chart-wrap" style="height:240px"><canvas id="cComp2" role="img" aria-label="% perda anormal por produto"></canvas></div>
+      <div class="chart-wrap" style="height:240px"><canvas id="cComp2"></canvas></div>
     </div>
   </div>
+
+  <div class="card">
+    <div class="card-hd">Combinação R$ × % — perda anormal por produto (M1 vs M2)</div>
+    <div class="tbl-wrap"><table id="tCompCombinado">
+      <thead><tr>
+        <th>Produto</th>
+        <th>PA M1 (R$)</th><th>PA M1 (%)</th>
+        <th>PA M2 (R$)</th><th>PA M2 (%)</th>
+        <th>Variação R$</th><th>Tendência</th>
+      </tr></thead>
+      <tbody></tbody>
+    </table></div>
+  </div>
+
   <div class="two-col">
     <div class="card">
-      <div class="card-hd">Ranking — MPs mais críticas (desvio médio)</div>
-      <div id="rank-mp"></div>
+      <div class="card-hd">Ranking MPs — perda anormal financeira total (R$)</div>
+      <div id="rank-mp-fin"></div>
     </div>
     <div class="card">
-      <div class="card-hd">Ranking — produtos por perda anormal total</div>
-      <div id="rank-prod"></div>
+      <div class="card-hd">Ranking MPs — desvio médio (%)</div>
+      <div id="rank-mp-pct"></div>
     </div>
   </div>
 </div>
 
-<!-- TAB 6 -->
-<div id="s-resumo" class="section">
+<!-- ══════════════ TAB DADOS BASE ══════════════ -->
+<div id="s-dados" class="section">
   <div class="sec-hd">
-    <div class="sec-eyebrow">Análise 6 de 6 · Visão por Matéria-Prima</div>
-    <div class="sec-title">Resumo Geral por MP</div>
-    <div class="sec-desc">Consolidação dos gastos, perdas financeiras e perdas percentuais por matéria-prima em todos os produtos e períodos.</div>
+    <div class="sec-eyebrow">Referência · Dados Completos</div>
+    <div class="sec-title">Fichas Técnicas e Produção</div>
+    <div class="sec-desc">Tabelas de referência: preços de matérias-primas, composição por produto e volumes de produção.</div>
   </div>
-
   <div class="card card-sm">
-    <div class="card-hd">Gasto total por MP (R$)</div>
-    <div class="tbl-wrap"><table id="tGasto">
-      <thead><tr><th>Matéria-prima</th><th>Água e Sal M1</th><th>Água e Sal M2</th><th>Cookie M1</th><th>Cookie M2</th><th>Integral M1</th><th>Integral M2</th><th>Maria M1</th><th>Maria M2</th><th>Recheada M1</th><th>Recheada M2</th><th>Wafer M1</th><th>Wafer M2</th><th>Total Geral</th></tr></thead>
-      <tbody id="tb-gasto"></tbody>
-    </table></div>
+    <div class="card-hd">Preços de matérias-primas</div>
+    <div class="tbl-wrap"><table><thead><tr><th>Matéria-prima</th><th>Preço padrão</th><th>Unidade</th><th>Perda normal</th></tr></thead><tbody id="tb-precos"></tbody></table>
+    </div>
   </div>
-
   <div class="card card-sm">
-    <div class="card-hd">Perda total por MP (R$)</div>
-    <div class="tbl-wrap"><table id="tPerda">
-      <thead><tr><th>Matéria-prima</th><th>Água e Sal M1</th><th>Água e Sal M2</th><th>Cookie M1</th><th>Cookie M2</th><th>Integral M1</th><th>Integral M2</th><th>Maria M1</th><th>Maria M2</th><th>Recheada M1</th><th>Recheada M2</th><th>Wafer M1</th><th>Wafer M2</th><th>Total Geral</th></tr></thead>
-      <tbody id="tb-perda"></tbody>
-    </table></div>
+    <div class="card-hd">Ficha técnica — quantidade ajustada por lote</div>
+    <div class="tbl-wrap"><table><thead><tr><th>Matéria-prima</th><th>Maria</th><th>Água e Sal</th><th>Integral</th><th>Cookie</th><th>Recheada</th><th>Wafer</th></tr></thead><tbody id="tb-ficha"></tbody></table>
+    </div>
   </div>
-
-  <div class="card card-sm">
-    <div class="card-hd">Perda em quantidade (%) por MP</div>
-    <div class="tbl-wrap"><table id="tPct">
-      <thead><tr><th>Matéria-prima</th><th>Água e Sal M1</th><th>Água e Sal M2</th><th>Cookie M1</th><th>Cookie M2</th><th>Integral M1</th><th>Integral M2</th><th>Maria M1</th><th>Maria M2</th><th>Recheada M1</th><th>Recheada M2</th><th>Wafer M1</th><th>Wafer M2</th><th>Média</th></tr></thead>
-      <tbody id="tb-pct"></tbody>
-    </table></div>
+  <div class="two-col">
+    <div class="card card-sm">
+      <div class="card-hd">Unidades produzidas por período</div>
+      <div class="tbl-wrap"><table><thead><tr><th>Produto</th><th>Mês 1</th><th>Mês 2</th><th>Var. %</th></tr></thead><tbody id="tb-prod"></tbody></table>
+      </div>
+    </div>
+    <div class="card card-sm">
+      <div class="card-hd">Postos Operativos — FIPO (R$/h)</div>
+      <div class="tbl-wrap"><table><thead><tr><th>PO</th><th>Descrição</th><th>FIPO R$/h</th><th>Cap. Padrão h</th></tr></thead><tbody id="tb-po"></tbody></table>
+      </div>
+    </div>
   </div>
 </div>
 
 </div><!-- /main -->
 
-<!-- FOOTER -->
 <div class="footer">
   <div class="footer-txt">Produbisc · UFRGS · Engenharia de Produção · Análise Gerencial de Custos II — Grupo 2</div>
   <div class="footer-brand">Produbisc</div>
@@ -460,9 +610,10 @@ td.mp{font-weight:600;color:var(--o1)}
 
 <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/4.4.1/chart.umd.js"></script>
 <script>
-const PRODS=['Maria','Água e Sal','Integral','Cookie','Recheada','Wafer'];
+/* ══════════════ DADOS ══════════════ */
+const PRODS = ['Maria','Água e Sal','Integral','Cookie','Recheada','Wafer'];
 
-const PRECOS={
+const PRECOS = {
   'Farinha de Trigo':{p:2.8,pn:.05},'Açúcar':{p:2.5,pn:.05},'Óleo':{p:9,pn:.1},
   'Fermento em pó':{p:35,pn:.05},'Cacau em pó':{p:50,pn:.12},'Margarina':{p:9.5,pn:0},
   'Ovos':{p:11.5,pn:0},'Extrato de Baunilha':{p:195,pn:.085},'Bicarbonato de Sódio':{p:30,pn:.1},
@@ -471,36 +622,35 @@ const PRECOS={
   'Água':{p:1.2,pn:.05},'Amido de Milho':{p:10,pn:.08},'Leite em Pó':{p:40,pn:.1}
 };
 
-const UNID_MP={
+const UNID_MP = {
   'Farinha de Trigo':'kg','Açúcar':'kg','Óleo':'l','Fermento em pó':'kg','Cacau em pó':'kg',
   'Margarina':'kg','Ovos':'dúzia','Extrato de Baunilha':'l','Bicarbonato de Sódio':'kg',
   'Sal':'kg','Farinha de Trigo Integral':'kg','Aveia em Flocos':'kg','Açúcar Mascavo':'kg',
   'Mel':'kg','Óleo de Coco':'l','Água':'l','Amido de Milho':'kg','Leite em Pó':'kg'
 };
 
-/* FICHA: quantidades AJUSTADAS por lote (kg, l ou dúzia) */
-const FICHA={
-  'Farinha de Trigo':         {Maria:0.18,  'Água e Sal':0.18, Integral:null,  Cookie:0.24,         Recheada:0.3,   Wafer:0.12},
-  'Açúcar':                   {Maria:0.1,   'Água e Sal':null, Integral:null,  Cookie:0.16,         Recheada:0.1,   Wafer:0.08},
-  'Óleo':                     {Maria:0.04,  'Água e Sal':0.09, Integral:null,  Cookie:null,         Recheada:0.09,  Wafer:0.03},
-  'Fermento em pó':           {Maria:0.04,  'Água e Sal':0.02, Integral:0.02,  Cookie:null,         Recheada:0.04,  Wafer:0.03},
-  'Cacau em pó':              {Maria:null,  'Água e Sal':null, Integral:null,  Cookie:null,         Recheada:0.09,  Wafer:null},
-  'Margarina':                {Maria:null,  'Água e Sal':null, Integral:null,  Cookie:0.12,         Recheada:null,  Wafer:null},
-  'Ovos':                     {Maria:null,  'Água e Sal':null, Integral:null,  Cookie:0.8333333333, Recheada:null,  Wafer:null},
-  'Extrato de Baunilha':      {Maria:null,  'Água e Sal':null, Integral:null,  Cookie:0.03,         Recheada:null,  Wafer:0.01},
-  'Bicarbonato de Sódio':     {Maria:null,  'Água e Sal':null, Integral:null,  Cookie:0.02,         Recheada:null,  Wafer:null},
-  'Sal':                      {Maria:null,  'Água e Sal':0.08, Integral:0.01,  Cookie:0.01,         Recheada:null,  Wafer:0.02},
-  'Farinha de Trigo Integral':{Maria:null,  'Água e Sal':null, Integral:0.2,   Cookie:null,         Recheada:null,  Wafer:null},
-  'Aveia em Flocos':          {Maria:null,  'Água e Sal':null, Integral:0.1,   Cookie:null,         Recheada:null,  Wafer:null},
-  'Açúcar Mascavo':           {Maria:null,  'Água e Sal':null, Integral:0.07,  Cookie:null,         Recheada:null,  Wafer:null},
-  'Mel':                      {Maria:null,  'Água e Sal':null, Integral:0.05,  Cookie:null,         Recheada:null,  Wafer:null},
-  'Óleo de Coco':             {Maria:null,  'Água e Sal':null, Integral:0.03,  Cookie:null,         Recheada:null,  Wafer:null},
-  'Água':                     {Maria:null,  'Água e Sal':0.08, Integral:null,  Cookie:null,         Recheada:null,  Wafer:null},
-  'Amido de Milho':           {Maria:null,  'Água e Sal':null, Integral:null,  Cookie:null,         Recheada:null,  Wafer:0.08},
-  'Leite em Pó':              {Maria:null,  'Água e Sal':null, Integral:null,  Cookie:null,         Recheada:null,  Wafer:0.01},
+const FICHA = {
+  'Farinha de Trigo':         {Maria:0.18,'Água e Sal':0.18,Integral:null,Cookie:0.24,Recheada:0.3,Wafer:0.12},
+  'Açúcar':                   {Maria:0.1,'Água e Sal':null,Integral:null,Cookie:0.16,Recheada:0.1,Wafer:0.08},
+  'Óleo':                     {Maria:0.04,'Água e Sal':0.09,Integral:null,Cookie:null,Recheada:0.09,Wafer:0.03},
+  'Fermento em pó':           {Maria:0.04,'Água e Sal':0.02,Integral:0.02,Cookie:null,Recheada:0.04,Wafer:0.03},
+  'Cacau em pó':              {Maria:null,'Água e Sal':null,Integral:null,Cookie:null,Recheada:0.09,Wafer:null},
+  'Margarina':                {Maria:null,'Água e Sal':null,Integral:null,Cookie:0.12,Recheada:null,Wafer:null},
+  'Ovos':                     {Maria:null,'Água e Sal':null,Integral:null,Cookie:0.8333333333,Recheada:null,Wafer:null},
+  'Extrato de Baunilha':      {Maria:null,'Água e Sal':null,Integral:null,Cookie:0.03,Recheada:null,Wafer:0.01},
+  'Bicarbonato de Sódio':     {Maria:null,'Água e Sal':null,Integral:null,Cookie:0.02,Recheada:null,Wafer:null},
+  'Sal':                      {Maria:null,'Água e Sal':0.08,Integral:0.01,Cookie:0.01,Recheada:null,Wafer:0.02},
+  'Farinha de Trigo Integral':{Maria:null,'Água e Sal':null,Integral:0.2,Cookie:null,Recheada:null,Wafer:null},
+  'Aveia em Flocos':          {Maria:null,'Água e Sal':null,Integral:0.1,Cookie:null,Recheada:null,Wafer:null},
+  'Açúcar Mascavo':           {Maria:null,'Água e Sal':null,Integral:0.07,Cookie:null,Recheada:null,Wafer:null},
+  'Mel':                      {Maria:null,'Água e Sal':null,Integral:0.05,Cookie:null,Recheada:null,Wafer:null},
+  'Óleo de Coco':             {Maria:null,'Água e Sal':null,Integral:0.03,Cookie:null,Recheada:null,Wafer:null},
+  'Água':                     {Maria:null,'Água e Sal':0.08,Integral:null,Cookie:null,Recheada:null,Wafer:null},
+  'Amido de Milho':           {Maria:null,'Água e Sal':null,Integral:null,Cookie:null,Recheada:null,Wafer:0.08},
+  'Leite em Pó':              {Maria:null,'Água e Sal':null,Integral:null,Cookie:null,Recheada:null,Wafer:0.01},
 };
 
-const REAL={
+const REAL = {
   'Farinha de Trigo':         {Maria:{m1:196.88,m2:220},'Água e Sal':{m1:85,m2:183},Integral:{m1:null,m2:null},Cookie:{m1:250,m2:370},Recheada:{m1:280,m2:120},Wafer:{m1:132,m2:181}},
   'Açúcar':                   {Maria:{m1:105,m2:125},'Água e Sal':{m1:null,m2:null},Integral:{m1:null,m2:null},Cookie:{m1:165,m2:245},Recheada:{m1:92,m2:42},Wafer:{m1:81,m2:121}},
   'Óleo':                     {Maria:{m1:45,m2:50},'Água e Sal':{m1:42,m2:94},Integral:{m1:null,m2:null},Cookie:{m1:null,m2:null},Recheada:{m1:85,m2:38},Wafer:{m1:32,m2:46}},
@@ -521,22 +671,31 @@ const REAL={
   'Leite em Pó':              {Maria:{m1:null,m2:null},'Água e Sal':{m1:null,m2:null},Integral:{m1:null,m2:null},Cookie:{m1:null,m2:null},Recheada:{m1:null,m2:null},Wafer:{m1:9,m2:17}},
 };
 
-// LOTES — atualizados da planilha
-const LOTES={Maria:{m1:1000,m2:1250},'Água e Sal':{m1:300,m2:1000},Integral:{m1:375,m2:730},Cookie:{m1:1000,m2:1500},Recheada:{m1:900,m2:400},Wafer:{m1:880,m2:1500}};
-const UNIDS={Maria:{m1:40000,m2:50000},'Água e Sal':{m1:13500,m2:45000},Integral:{m1:15000,m2:29200},Cookie:{m1:20000,m2:30000},Recheada:{m1:31500,m2:14000},Wafer:{m1:22000,m2:37500}};
+const LOTES = {Maria:{m1:1000,m2:1250},'Água e Sal':{m1:300,m2:1000},Integral:{m1:375,m2:730},Cookie:{m1:1000,m2:1500},Recheada:{m1:900,m2:400},Wafer:{m1:880,m2:1500}};
+const UNIDS = {Maria:{m1:40000,m2:50000},'Água e Sal':{m1:13500,m2:45000},Integral:{m1:15000,m2:29200},Cookie:{m1:20000,m2:30000},Recheada:{m1:31500,m2:14000},Wafer:{m1:22000,m2:37500}};
 
-// CUSTO UNITÁRIO — atualizado da planilha
-const CUSTO={
-  Maria:       {im1:0.067657,  im2:0.06327,   parc:0.06285,  ideal:0.059258, im1xI:0.14173902, im2xI:0.06771295},
-  'Água e Sal':{im1:0.083407407, im2:0.055597778, parc:0.054,  ideal:0.050542222, im1xI:0.65025208, im2xI:0.10002638},
-  Integral:    {im1:0.165727,  im2:0.162204,  parc:0.156125, ideal:0.144883, im1xI:0.14387176, im2xI:0.11955389},
-  Cookie:      {im1:0.9534875, im2:0.9394,    parc:0.914267, ideal:0.883664, im1xI:0.07901569, im2xI:0.06307355},
-  Recheada:    {im1:0.232984127, im2:0.25075, parc:0.222857, ideal:0.201557, im1xI:0.15592096, im2xI:0.24406407},
-  Wafer:       {im1:0.242765909, im2:0.212261333, parc:0.20344, ideal:0.19256, im1xI:0.2607, im2xI:0.1023},
+/* CUSTO MP por princípio */
+const CUSTO_MP = {
+  Maria:       {im1:0.0676566,  im2:0.06327,   parc:0.06285,  ideal:0.059258},
+  'Água e Sal':{im1:0.083407407, im2:0.055597778, parc:0.054,  ideal:0.050542222},
+  Integral:    {im1:0.165727,  im2:0.162204,  parc:0.156125, ideal:0.144883},
+  Cookie:      {im1:0.9534875, im2:0.9394,    parc:0.914267, ideal:0.883664},
+  Recheada:    {im1:0.232984127, im2:0.25075, parc:0.222857, ideal:0.201557},
+  Wafer:       {im1:0.242765909, im2:0.212261333, parc:0.20344, ideal:0.19256},
 };
 
-// PERDAS — atualizado da planilha
-const PERDAS={
+/* MCU — da planilha UEP */
+const MCU_DATA = {
+  Maria:       {preco:0.325, cvmp_m1:0.0676566, cvmp_m2:0.06327, mcu_m1:0.2573434, mcu_m2:0.26173, uep_und:0.7770402618, mcuUep_m1:0.3312, mcuUep_m2:0.3368},
+  'Água e Sal':{preco:0.188889, cvmp_m1:0.083407407, cvmp_m2:0.055597778, mcu_m1:0.105482, mcu_m2:0.133291, uep_und:0.6018943397, mcuUep_m1:0.1752, mcuUep_m2:0.2215},
+  Integral:    {preco:0.375, cvmp_m1:0.165727, cvmp_m2:0.162204, mcu_m1:0.209273, mcu_m2:0.212796, uep_und:1.301016361, mcuUep_m1:0.1609, mcuUep_m2:0.1636},
+  Cookie:      {preco:2.2, cvmp_m1:0.9534875, cvmp_m2:0.9394, mcu_m1:1.2465125, mcu_m2:1.2606, uep_und:1.535032813, mcuUep_m1:0.8120, mcuUep_m2:0.8212},
+  Recheada:    {preco:0.342857, cvmp_m1:0.232984127, cvmp_m2:0.25075, mcu_m1:0.109873, mcu_m2:0.092107, uep_und:0.9287703439, mcuUep_m1:0.1183, mcuUep_m2:0.0992},
+  Wafer:       {preco:0.68, cvmp_m1:0.242765909, cvmp_m2:0.212261333, mcu_m1:0.437234, mcu_m2:0.467739, uep_und:1.10991501, mcuUep_m1:0.3939, mcuUep_m2:0.4214},
+};
+
+/* PERDAS */
+const PERDAS = {
   Maria:       {ptm1:335.964,  ptm2:200.625, pnm1:143.7,    pnm2:179.625,  pam1:192.264,  pam2:21},
   'Água e Sal':{ptm1:443.68,   ptm2:227.5,   pnm1:46.68,    pnm2:155.6,    pam1:397,      pam2:71.9},
   Integral:    {ptm1:312.6675, ptm2:505.781, pnm1:168.6375, pnm2:328.281,  pam1:144.03,   pam2:177.5},
@@ -545,89 +704,298 @@ const PERDAS={
   Wafer:       {ptm1:1198.206, ptm2:898.475, pnm1:333.036,  pnm2:567.675,  pam1:865.17,   pam2:330.8},
 };
 
-const GASTO={Maria:{m1:2706.264,m2:3163.5},'Água e Sal':{m1:1126,m2:2501.9},Integral:{m1:2485.905,m2:4736.35},Cookie:{m1:19069.75,m2:28182},Recheada:{m1:7339,m2:3510.5},Wafer:{m1:5340.85,m2:7959.8}};
+const GASTO = {Maria:{m1:2706.264,m2:3163.5},'Água e Sal':{m1:1126,m2:2501.9},Integral:{m1:2485.905,m2:4736.35},Cookie:{m1:19069.75,m2:28182},Recheada:{m1:7339,m2:3510.5},Wafer:{m1:5340.85,m2:7959.8}};
 
-const CL={o1:'#7A2E00',o2:'#C24B00',o3:'#E06020',o4:'#F07830',o5:'#F8A060',o6:'#FDC898',o7:'rgba(240,120,48,.15)',line:'#EDD8C8',sl:'#8C6A52',red:'#B83232',green:'#1F6B3A',amber:'#9B6200'};
-let CH={};
-const dc=id=>{if(CH[id]){CH[id].destroy();delete CH[id];}};
-const fmt=(v,d=2)=>v.toLocaleString('pt-BR',{minimumFractionDigits:d,maximumFractionDigits:d});
-const fR=(v,d=2)=>'R$ '+fmt(v,d);
+/* UEP DATA — da planilha */
+const PO_NAMES = ['PO PESAGEM','PO BATEDEIRA','PO PRÉ LAMIN.','PO FAROFEIRA','PO ESTAMPO','PO FORNEAMENTO','PO RESFRIAMENTO','PO TUMBLER','PO EMBALAGEM','PO EMPILHAMENTO','PO SINGLE PACK','PO MULTI PACK','PO ENCAIXOTAMENTO'];
+const PO_IDS   = ['PO1','PO2','PO3','PO4','PO5','PO6','PO7','PO8','PO9','PO10','PO11','PO12','PO13'];
+const FIPO     = [19.19,27.37,17.42,15.90,18.82,36.30,20.13,22.05,29.04,37.02,41.45,43.16,45.21];
+const PP_UEP   = [106.19,151.40,96.40,87.95,104.11,200.81,111.35,121.99,160.68,204.79,229.30,238.76,250.09];
 
-function showTab(t,btn){
+const UEP_M1 = {
+  efic:   [0.4390,0.4458,0.4442,0.1587,0.4188,0.4307,0.4694,0.2044,0.4544,0.2922,0.3942,0.3919,0.4720],
+  eficac: [0.5164,0.5245,0.5552,0.2267,0.4928,0.5067,0.5523,0.2405,0.5105,0.3438,0.5256,0.5226,0.5489],
+  prodH:  [54.84,79.41,53.52,19.94,51.30,101.75,61.50,29.34,82.03,70.40,120.53,124.77,137.27],
+  perda_ocio:  [168.91,240.83,306.67,559.61,165.60,319.42,177.12,194.05,51.12,325.75,1094.23,1139.36,318.24],
+  perda_inef:  [1388.57,1946.70,1091.21,1514.68,1428.02,2678.80,1348.08,2505.44,2226.85,3634.12,2595.35,2719.82,3086.64],
+  custoUEP:{ideal:0.1652,padrao:0.1835,integral:0.4193},
+  custoTransf:60000,
+};
+const UEP_M2 = {
+  efic:   [0.6450,0.6360,0.6711,0.1690,0.6311,0.6251,0.6853,0.2344,0.6525,0.3817,0.5786,0.5661,0.6845],
+  eficac: [0.8062,0.7949,0.9587,0.2599,0.8414,0.7814,0.9138,0.3607,0.8157,0.4491,0.8266,0.7973,0.8247],
+  prodH:  [85.61,120.36,92.41,22.86,87.60,156.91,101.75,44.00,131.06,92.00,189.54,190.36,206.26],
+  perda_ocio:  [337.83,481.66,613.34,699.51,496.81,638.85,531.35,970.24,511.16,325.75,1458.98,1443.19,556.93],
+  perda_inef:  [523.68,790.15,88.73,1345.96,393.87,1117.35,229.04,1612.80,753.75,3050.74,885.44,1093.29,1157.36],
+  custoUEP:{ideal:0.1789,padrao:0.1988,integral:0.3177},
+  custoTransf:65000,
+};
+
+/* Custo de transformação por produto (UEP × custo UEP) — M1 e M2 */
+const CUSTO_TRANSF = {
+  Maria:       {m1:0.3258, m2:0.2469},
+  'Água e Sal':{m1:0.2524, m2:0.1912},
+  Integral:    {m1:0.5455, m2:0.4133},
+  Cookie:      {m1:0.6436, m2:0.4877},
+  Recheada:    {m1:0.3894, m2:0.2951},
+  Wafer:       {m1:0.4654, m2:0.3526},
+};
+
+/* MPs com perda anormal financeira (da planilha de perdas) */
+const MP_PERDA_FIN = {
+  'Extrato de Baunilha':{m1:1462.11,m2:1774.5},
+  'Fermento em pó':     {m1:608.83, m2:356.30},
+  'Amido de Milho':     {m1:182.32, m2:116.00},
+  'Cacau em pó':        {m1:736.00, m2:566.00},
+  'Farinha de Trigo':   {m1:382.93, m2:174.30},
+  'Óleo':               {m1:423.36, m2:261.90},
+  'Açúcar':             {m1:109.05, m2:85.63},
+  'Bicarbonato de Sódio':{m1:120.00,m2:90.00},
+  'Ovos':               {m1:191.67, m2:115.00},
+  'Mel':                {m1:101.56, m2:249.38},
+  'Óleo de Coco':       {m1:93.75,  m2:114.50},
+  'Margarina':          {m1:47.50,  m2:9.50},
+  'Leite em Pó':        {m1:43.20,  m2:140.00},
+  'Sal':                {m1:51.24,  m2:30.68},
+  'Água':               {m1:20.64,  m2:10.80},
+  'Açúcar Mascavo':     {m1:27.88,  m2:0},
+  'Aveia em Flocos':    {m1:35.00,  m2:28.00},
+  'Farinha de Trigo Integral':{m1:39.90,m2:70.68},
+};
+
+/* ── helpers ── */
+const CL = {
+  o1:'#7A2E00',o2:'#C24B00',o3:'#E06020',o4:'#F07830',o5:'#F8A060',o6:'#FDC898',
+  o7:'rgba(240,120,48,.15)',line:'#EDD8C8',sl:'#8C6A52',
+  red:'#B83232',green:'#1F6B3A',amber:'#9B6200',blue:'#1A4A7A',
+};
+let CH = {};
+const dc = id => { if(CH[id]){CH[id].destroy();delete CH[id];} };
+const fmt = (v,d=2) => v.toLocaleString('pt-BR',{minimumFractionDigits:d,maximumFractionDigits:d});
+const fR  = (v,d=2) => 'R$ '+fmt(v,d);
+const pct = (v,d=1) => (v*100).toFixed(d)+'%';
+
+/* ── NAV ── */
+function showTab(t, btn){
   document.querySelectorAll('.section').forEach(s=>s.classList.remove('active'));
   document.querySelectorAll('.nav-btn').forEach(b=>b.classList.remove('active'));
   document.getElementById('s-'+t).classList.add('active');
   btn.classList.add('active');
-  ({dados:renderDados,var:renderVar,custo:renderCusto,efic:renderEfic,tend:renderTend,comp:renderComp,resumo:renderResumo})[t]();
+  ({exec:renderExec, mcu:renderMCU, uep:renderUEP, var:renderVar, custo:renderCusto, comp:renderComp, dados:renderDados})[t]();
 }
 
-/* ── DADOS BASE ── */
-function renderDados(){
-  const tbP=document.getElementById('tb-precos'); tbP.innerHTML='';
-  Object.entries(PRECOS).forEach(([mp,v])=>{
-    let unAj, vaj;
-    if(mp==='Ovos'){unAj='un';vaj=(v.p/12).toFixed(4);}
-    else if(UNID_MP[mp]==='l'){unAj='ml';vaj=(v.p/1000).toFixed(5);}
-    else{unAj='g';vaj=(v.p/1000).toFixed(5);}
-    tbP.innerHTML+=`<tr>
-      <td class="mp">${mp}</td>
-      <td class="num">${fR(v.p,2)}</td>
-      <td style="color:var(--text3)">${UNID_MP[mp]}</td>
-      <td class="num" style="color:${v.pn>0?'var(--amber)':'var(--text3)'}">${v.pn>0?(v.pn*100).toFixed(0)+'%':'—'}</td>
-      <td class="num">R$ ${vaj} / ${unAj}</td>
+/* ══════════════ EXEC ══════════════ */
+function renderExec(){
+  dc('cExecPerdas'); dc('cExecGasto');
+
+  CH.cExecPerdas = new Chart(document.getElementById('cExecPerdas'),{type:'bar',
+    data:{labels:PRODS,datasets:[
+      {label:'M1',data:PRODS.map(p=>PERDAS[p].pam1),backgroundColor:CL.o2,borderRadius:5},
+      {label:'M2',data:PRODS.map(p=>PERDAS[p].pam2),backgroundColor:CL.o6,borderRadius:5},
+    ]},
+    options:{responsive:true,maintainAspectRatio:false,
+      plugins:{legend:{labels:{font:{family:'Plus Jakarta Sans',size:11},color:CL.sl}}},
+      scales:{y:{ticks:{callback:v=>'R$'+v,color:CL.sl,font:{size:10}},grid:{color:CL.line},border:{dash:[3,3]}},
+              x:{grid:{display:false},ticks:{color:CL.o1,font:{weight:'600',size:11}}}}}});
+
+  CH.cExecGasto = new Chart(document.getElementById('cExecGasto'),{type:'bar',
+    data:{labels:PRODS,datasets:[
+      {label:'M1',data:PRODS.map(p=>GASTO[p].m1),backgroundColor:CL.o2,borderRadius:5},
+      {label:'M2',data:PRODS.map(p=>GASTO[p].m2),backgroundColor:CL.o6,borderRadius:5},
+    ]},
+    options:{responsive:true,maintainAspectRatio:false,
+      plugins:{legend:{labels:{font:{family:'Plus Jakarta Sans',size:11},color:CL.sl}}},
+      scales:{y:{ticks:{callback:v=>'R$'+v,color:CL.sl,font:{size:10}},grid:{color:CL.line},border:{dash:[3,3]}},
+              x:{grid:{display:false},ticks:{color:CL.o1,font:{weight:'600',size:11}}}}}});
+
+  // Tabela executiva
+  const tb = document.querySelector('#tExec tbody'); tb.innerHTML='';
+  PRODS.forEach(p=>{
+    const pa1=PERDAS[p].pam1, pa2=PERDAS[p].pam2, diff=pa2-pa1;
+    const mcu=MCU_DATA[p], prioridade = pa1>500?'b-red':pa1>200?'b-amber':'b-green';
+    const prioText = pa1>500?'Alta':pa1>200?'Média':'Baixa';
+    tb.innerHTML+=`<tr>
+      <td class="mp">${p}</td>
+      <td class="num">${fR(mcu.preco,4)}</td>
+      <td class="num" style="color:var(--green)">${fR(mcu.mcu_m1,4)}</td>
+      <td class="num" style="color:var(--blue)">${fR(mcu.mcuUep_m1,4)}</td>
+      <td class="num">${fR(GASTO[p].m1)}</td>
+      <td class="num">${fR(GASTO[p].m2)}</td>
+      <td class="num" style="color:var(--red)">${fR(pa1)}</td>
+      <td class="num" style="color:${pa2<pa1?'var(--green)':'var(--red)'}">${fR(pa2)}</td>
+      <td class="num" style="color:${diff<0?'var(--green)':'var(--red)'}">${diff>=0?'▲ +':'▼ '}${fR(Math.abs(diff))}</td>
+      <td><span class="badge ${prioridade}">${prioText}</span></td>
     </tr>`;
   });
-  const tbF=document.getElementById('tb-ficha'); tbF.innerHTML='';
-  Object.entries(FICHA).forEach(([mp,p])=>{
-    const cells=PRODS.map(prod=>p[prod]!=null
-      ?`<td class="num">${p[prod]}</td>`
-      :`<td style="color:var(--gray4);text-align:right">—</td>`).join('');
-    tbF.innerHTML+=`<tr><td class="mp">${mp}</td>${cells}</tr>`;
+
+  // PO cards
+  const grid = document.getElementById('exec-po-grid'); grid.innerHTML='';
+  PO_NAMES.forEach((po,i)=>{
+    const e1=(UEP_M1.efic[i]*100).toFixed(0), e2=(UEP_M2.efic[i]*100).toFixed(0);
+    const col = UEP_M2.efic[i]<0.5?CL.red:UEP_M2.efic[i]<0.7?CL.amber:CL.green;
+    grid.innerHTML+=`<div class="po-card">
+      <div class="po-id">${PO_IDS[i]}</div>
+      <div class="po-name">${po}</div>
+      <div class="po-stat"><span class="po-stat-lbl">Efic. M1</span><span class="po-stat-val">${e1}%</span></div>
+      <div class="po-stat"><span class="po-stat-lbl">Efic. M2</span><span class="po-stat-val" style="color:${col}">${e2}%</span></div>
+      <div class="po-eff"><div class="po-eff-bar" style="width:${e2}%;background:${col}"></div></div>
+    </div>`;
   });
-  const tbPr=document.getElementById('tb-prod'); tbPr.innerHTML='';
+}
+
+/* ══════════════ MCU ══════════════ */
+function renderMCU(){
+  dc('cMcu'); dc('cMcuEvol');
+
+  const data = PRODS.map(p=>MCU_DATA[p]);
+  CH.cMcu = new Chart(document.getElementById('cMcu'),{type:'bar',
+    data:{labels:PRODS,datasets:[
+      {label:'Custo MP M1',data:data.map(d=>+d.cvmp_m1.toFixed(4)),backgroundColor:CL.o6,borderRadius:4,stack:'s'},
+      {label:'MCU M1',    data:data.map(d=>+d.mcu_m1.toFixed(4)), backgroundColor:CL.green,borderRadius:4,stack:'s'},
+    ]},
+    options:{responsive:true,maintainAspectRatio:false,
+      plugins:{legend:{labels:{font:{family:'Plus Jakarta Sans',size:11},color:CL.sl}},
+        tooltip:{callbacks:{label:c=>c.dataset.label+': R$ '+c.raw.toFixed(4)}}},
+      scales:{x:{stacked:true,grid:{display:false},ticks:{color:CL.o1,font:{weight:'600'}}},
+              y:{stacked:true,ticks:{callback:v=>'R$ '+v.toFixed(2),color:CL.sl,font:{size:11}},grid:{color:CL.line},border:{dash:[3,3]}}}}});
+
+  CH.cMcuEvol = new Chart(document.getElementById('cMcuEvol'),{type:'bar',
+    data:{labels:PRODS,datasets:[
+      {label:'MCU M1',data:data.map(d=>+d.mcu_m1.toFixed(4)),backgroundColor:CL.o2,borderRadius:4},
+      {label:'MCU M2',data:data.map(d=>+d.mcu_m2.toFixed(4)),backgroundColor:CL.o5,borderRadius:4},
+    ]},
+    options:{responsive:true,maintainAspectRatio:false,
+      plugins:{legend:{labels:{font:{family:'Plus Jakarta Sans',size:11},color:CL.sl}},
+        tooltip:{callbacks:{label:c=>c.dataset.label+': R$ '+c.raw.toFixed(4)}}},
+      scales:{y:{ticks:{callback:v=>'R$ '+v.toFixed(2),color:CL.sl,font:{size:11}},grid:{color:CL.line},border:{dash:[3,3]}},
+              x:{grid:{display:false},ticks:{color:CL.o1,font:{weight:'600'}}}}}});
+
+  // Detalhe MCU
+  const wrap = document.getElementById('mcu-detalhe');
+  const oldRows = wrap.querySelectorAll('.mcu-row:not(.mcu-head)');
+  oldRows.forEach(r=>r.remove());
+  const maxMcu = Math.max(...PRODS.map(p=>MCU_DATA[p].mcu_m1));
   PRODS.forEach(p=>{
-    const u=UNIDS[p],d=((u.m2-u.m1)/u.m1*100);
-    tbPr.innerHTML+=`<tr>
-      <td class="mp">${p}</td>
-      <td class="num">${u.m1.toLocaleString('pt-BR')}</td>
-      <td class="num">${u.m2.toLocaleString('pt-BR')}</td>
-      <td class="num">${(u.m1+u.m2).toLocaleString('pt-BR')}</td>
-      <td class="num" style="color:${d>=0?'var(--green)':'var(--red)'}">${d>=0?'▲':'▼'} ${Math.abs(d).toFixed(1)}%</td>
-    </tr>`;
+    const d=MCU_DATA[p], barW=(d.mcu_m1/maxMcu*100).toFixed(1);
+    const barColor = d.mcu_m1>0.5?CL.green:d.mcu_m1>0.1?CL.amber:CL.red;
+    const row=document.createElement('div'); row.className='mcu-row';
+    row.innerHTML=`
+      <span class="mcu-prod">${p}</span>
+      <div class="mcu-bar-wrap"><div class="mcu-bar" style="width:${barW}%;background:${barColor}"></div></div>
+      <span class="mcu-num">${fR(d.preco,4)}</span>
+      <span class="mcu-num">${fR(d.cvmp_m1,4)}</span>
+      <span class="mcu-num mn-green">${fR(d.mcu_m1,4)}</span>
+      <span class="mcu-num ${d.mcu_m2>=d.mcu_m1?'mn-green':'mn-red'}">${fR(d.mcu_m2,4)}</span>
+      <span class="mcu-num" style="color:var(--blue)">${fR(d.mcuUep_m1,4)}</span>`;
+    wrap.appendChild(row);
   });
-  const tbL=document.getElementById('tb-lotes'); tbL.innerHTML='';
-  PRODS.forEach(p=>{
-    const l=LOTES[p],d=((l.m2-l.m1)/l.m1*100);
-    tbL.innerHTML+=`<tr>
-      <td class="mp">${p}</td>
-      <td class="num">${fmt(l.m1,1)}</td>
-      <td class="num">${fmt(l.m2,1)}</td>
-      <td class="num" style="color:${d>=0?'var(--green)':'var(--red)'}">${d>=0?'▲':'▼'} ${Math.abs(d).toFixed(1)}%</td>
+
+  // Ranking MCU/UEP
+  const sorted=[...PRODS].sort((a,b)=>MCU_DATA[b].mcuUep_m1-MCU_DATA[a].mcuUep_m1);
+  const maxU=MCU_DATA[sorted[0]].mcuUep_m1;
+  document.getElementById('rank-mcu-uep').innerHTML=sorted.map((p,i)=>{
+    const v=MCU_DATA[p].mcuUep_m1;
+    return `<div class="rank-row">
+      <div class="rank-n">${i+1}</div>
+      <div class="rank-name">${p}</div>
+      <div class="rank-bw"><div class="rank-bar" style="width:${(v/maxU*100).toFixed(1)}%;background:linear-gradient(90deg,${CL.green},#50A870)"></div></div>
+      <div class="rank-val">${fR(v,4)}</div>
+      <span class="badge ${v>0.3?'b-green':v>0.15?'b-amber':'b-red'}">${v>0.3?'Alta':v>0.15?'Média':'Baixa'}</span>
+    </div>`;
+  }).join('');
+}
+
+/* ══════════════ UEP ══════════════ */
+function renderUEP(){
+  const mes = document.getElementById('uep-mes').value;
+  const D = mes==='m1'?UEP_M1:UEP_M2;
+  dc('cUepEfic'); dc('cUepPerdas'); dc('cUepCusto'); dc('cUepProd');
+
+  // KPIs
+  const avgEfic=(D.efic.reduce((s,v)=>s+v,0)/D.efic.length*100).toFixed(1);
+  const totOcio=D.perda_ocio.reduce((s,v)=>s+v,0);
+  const totInef=D.perda_inef.reduce((s,v)=>s+v,0);
+  document.getElementById('uep-kpis').innerHTML=`
+    <div class="mc"><div class="mc-lbl">Custo Transformação</div><div class="mc-val">${fR(D.custoTransf,0)}</div></div>
+    <div class="mc"><div class="mc-lbl">Custo UEP Integral</div><div class="mc-val">R$ ${D.custoUEP.integral.toFixed(4)}</div><div class="mc-sub">R$/UEP</div></div>
+    <div class="mc"><div class="mc-lbl">Custo UEP Ideal</div><div class="mc-val">R$ ${D.custoUEP.ideal.toFixed(4)}</div></div>
+    <div class="mc mc-red"><div class="mc-lbl">Perda Ociosidade</div><div class="mc-val" style="color:var(--red)">${fR(totOcio,0)}</div></div>
+    <div class="mc mc-red"><div class="mc-lbl">Perda Ineficiência</div><div class="mc-val" style="color:var(--red)">${fR(totInef,0)}</div></div>
+    <div class="mc mc-green"><div class="mc-lbl">Efic. Média POs</div><div class="mc-val" style="color:var(--green)">${avgEfic}%</div></div>`;
+
+  CH.cUepEfic = new Chart(document.getElementById('cUepEfic'),{type:'bar',
+    data:{labels:PO_IDS,
+      datasets:[{label:'Eficiência',data:D.efic.map(v=>+(v*100).toFixed(1)),
+        backgroundColor:D.efic.map(v=>v<0.5?CL.red:v<0.7?CL.amber:CL.green),borderRadius:5}]},
+    options:{indexAxis:'y',responsive:true,maintainAspectRatio:false,
+      plugins:{legend:{display:false},tooltip:{callbacks:{label:c=>c.raw.toFixed(1)+'%'}}},
+      scales:{x:{grid:{color:CL.line},border:{dash:[3,3]},ticks:{callback:v=>v+'%',color:CL.sl,font:{size:11}},max:100},
+              y:{grid:{display:false},ticks:{color:CL.o1,font:{size:11,weight:'600'}}}}}});
+
+  CH.cUepPerdas = new Chart(document.getElementById('cUepPerdas'),{type:'bar',
+    data:{labels:PO_IDS,datasets:[
+      {label:'Ociosidade',data:D.perda_ocio,backgroundColor:CL.amber,borderRadius:4,stack:'a'},
+      {label:'Ineficiência',data:D.perda_inef,backgroundColor:CL.red,borderRadius:4,stack:'a'},
+    ]},
+    options:{indexAxis:'y',responsive:true,maintainAspectRatio:false,
+      plugins:{legend:{labels:{font:{family:'Plus Jakarta Sans',size:11},color:CL.sl}},
+        tooltip:{callbacks:{label:c=>c.dataset.label+': R$ '+c.raw.toFixed(0)}}},
+      scales:{x:{stacked:true,grid:{color:CL.line},border:{dash:[3,3]},ticks:{callback:v=>'R$'+v,color:CL.sl,font:{size:10}}},
+              y:{stacked:true,grid:{display:false},ticks:{color:CL.o1,font:{size:11,weight:'600'}}}}}});
+
+  CH.cUepCusto = new Chart(document.getElementById('cUepCusto'),{type:'bar',
+    data:{labels:['Ideal','Padrão','Integral'],
+      datasets:[{data:[D.custoUEP.ideal,D.custoUEP.padrao,D.custoUEP.integral],
+        backgroundColor:[CL.green,CL.amber,CL.red],borderRadius:8}]},
+    options:{responsive:true,maintainAspectRatio:false,plugins:{legend:{display:false}},
+      scales:{y:{ticks:{callback:v=>'R$ '+v.toFixed(4),color:CL.sl,font:{size:10}},grid:{color:CL.line},border:{dash:[3,3]}},
+              x:{grid:{display:false},ticks:{color:CL.o1,font:{weight:'700'}}}}}});
+
+  const uepUnd=[0.7770,0.6019,1.3010,1.5350,0.9288,1.1099];
+  CH.cUepProd = new Chart(document.getElementById('cUepProd'),{type:'bar',
+    data:{labels:PRODS,datasets:[{label:'UEP/und',data:uepUnd,backgroundColor:CL.o3,borderRadius:6}]},
+    options:{responsive:true,maintainAspectRatio:false,plugins:{legend:{display:false}},
+      scales:{y:{ticks:{color:CL.sl,font:{size:11}},grid:{color:CL.line},border:{dash:[3,3]}},
+              x:{grid:{display:false},ticks:{color:CL.o1,font:{weight:'600'}}}}}});
+
+  // Tabela UEP
+  const tb=document.querySelector('#tUep tbody'); tb.innerHTML='';
+  PO_NAMES.forEach((po,i)=>{
+    const e=D.efic[i]*100, cl=e<50?'var(--red)':e<70?'var(--amber)':'var(--green)';
+    tb.innerHTML+=`<tr>
+      <td style="font-weight:800;color:var(--o4)">${PO_IDS[i]}</td>
+      <td class="mp" style="font-size:12px">${po}</td>
+      <td class="num">R$ ${FIPO[i].toFixed(2)}</td>
+      <td class="num">${PP_UEP[i].toFixed(2)}</td>
+      <td class="num" style="color:${cl}">${e.toFixed(1)}%</td>
+      <td class="num">${(D.eficac[i]*100).toFixed(1)}%</td>
+      <td class="num">${D.prodH[i].toFixed(1)}</td>
+      <td class="num" style="color:var(--amber)">${fR(D.perda_ocio[i])}</td>
+      <td class="num" style="color:var(--red)">${fR(D.perda_inef[i])}</td>
     </tr>`;
   });
 }
 
-/* ── VARIAÇÃO P×Q ── */
-function getVR(prod,mes){
-  const mk=mes==='M1'?'m1':'m2',rows=[];
+/* ══════════════ VARIAÇÃO P×Q ══════════════ */
+function getVR(prod, mes){
+  const mk=mes==='M1'?'m1':'m2', rows=[];
   Object.entries(FICHA).forEach(([mp,p])=>{
-    const qg=p[prod];if(qg==null)return;
-    const qr=(REAL[mp]||{})[prod]?.[mk];if(qr==null)return;
+    const qg=p[prod]; if(qg==null)return;
+    const qr=(REAL[mp]||{})[prod]?.[mk]; if(qr==null)return;
     const qp=qg*LOTES[prod][mk], pp=PRECOS[mp].p, pn=PRECOS[mp].pn*100;
     rows.push({mp,qp,qr,pp,pn,varQ:(qp-qr)*pp,dev:(qr-qp)/qp*100});
   });
   return rows;
 }
-
 function renderVar(){
-  const prod=document.getElementById('var-prod').value,mes=document.getElementById('var-mes').value;
+  const prod=document.getElementById('var-prod').value, mes=document.getElementById('var-mes').value;
   const rows=getVR(prod,mes); dc('var');
   const loss=rows.filter(r=>r.varQ<0).reduce((s,r)=>s+r.varQ,0);
   const gain=rows.filter(r=>r.varQ>0).reduce((s,r)=>s+r.varQ,0);
   document.getElementById('var-insight').innerHTML=`<strong>${prod} — ${mes}:</strong> `+
     `${rows.filter(r=>r.dev>0).length} de ${rows.length} MPs acima do padrão. `+
     `Impacto de desperdício: <strong>${fR(Math.abs(loss))}</strong>. `+
-    (gain>0?`Economias identificadas: <strong>${fR(gain)}</strong>.`:'Nenhuma MP abaixo do padrão neste período.');
+    (gain>0?`Economias: <strong>${fR(gain)}</strong>.`:'Nenhuma MP abaixo do padrão neste período.');
   const h=Math.max(200,rows.length*46+60);
   document.querySelector('#s-var .chart-wrap').style.height=h+'px';
   CH.var=new Chart(document.getElementById('cVar'),{type:'bar',
@@ -637,7 +1005,7 @@ function renderVar(){
       plugins:{legend:{display:false},tooltip:{callbacks:{label:c=>(c.raw>=0?'Economia: ':' Desperdício: ')+fR(Math.abs(c.raw))}}},
       scales:{x:{grid:{color:CL.line},border:{dash:[3,3]},ticks:{callback:v=>'R$'+v,color:CL.sl,font:{size:11}}},
               y:{grid:{display:false},ticks:{color:CL.o1,font:{size:12,weight:'600'}}}}}});
-  const tb=document.querySelector('#tVar tbody');tb.innerHTML='';
+  const tb=document.querySelector('#tVar tbody'); tb.innerHTML='';
   rows.sort((a,b)=>a.varQ-b.varQ).forEach(r=>{
     const ok=r.varQ>=0,bc=ok?'b-green':(r.dev>r.pn?'b-red':'b-amber'),st=ok?'Dentro/Abaixo':(r.dev>r.pn?'Acima do limite':'Acima normal');
     tb.innerHTML+=`<tr><td class="mp">${r.mp}</td><td class="num">${fmt(r.qp,3)}</td><td class="num">${fmt(r.qr,3)}</td>
@@ -647,260 +1015,156 @@ function renderVar(){
   });
 }
 
-/* ── CUSTO UNITÁRIO ── */
+/* ══════════════ CUSTO UNITÁRIO ══════════════ */
 function renderCusto(){
   dc('custo');
   const cols=[CL.o1,CL.o2,CL.o5,CL.o6];
   const sets=[
-    {l:'Integral M1',d:PRODS.map(p=>+CUSTO[p].im1.toFixed(6))},
-    {l:'Integral M2',d:PRODS.map(p=>+CUSTO[p].im2.toFixed(6))},
-    {l:'Parcial',    d:PRODS.map(p=>+CUSTO[p].parc.toFixed(6))},
-    {l:'Ideal',      d:PRODS.map(p=>+CUSTO[p].ideal.toFixed(6))},
+    {l:'MP Integral M1',d:PRODS.map(p=>+CUSTO_MP[p].im1.toFixed(6))},
+    {l:'MP Integral M2',d:PRODS.map(p=>+CUSTO_MP[p].im2.toFixed(6))},
+    {l:'MP Parcial',    d:PRODS.map(p=>+CUSTO_MP[p].parc.toFixed(6))},
+    {l:'MP Ideal',      d:PRODS.map(p=>+CUSTO_MP[p].ideal.toFixed(6))},
   ];
   document.getElementById('leg-custo').innerHTML=sets.map((s,i)=>`<div class="leg-item"><span class="leg-sq" style="background:${cols[i]}"></span>${s.l}</div>`).join('');
   CH.custo=new Chart(document.getElementById('cCusto'),{type:'bar',
     data:{labels:PRODS,datasets:sets.map((s,i)=>({label:s.l,data:s.d,backgroundColor:cols[i],borderRadius:4}))},
     options:{responsive:true,maintainAspectRatio:false,
       plugins:{legend:{display:false},tooltip:{callbacks:{label:c=>c.dataset.label+': R$ '+c.raw.toFixed(4)}}},
-      scales:{y:{title:{display:true,text:'R$ por unidade',font:{size:11},color:CL.sl},grid:{color:CL.line},border:{dash:[3,3]},ticks:{callback:v=>'R$ '+v.toFixed(4),color:CL.sl,font:{size:11}}},
+      scales:{y:{ticks:{callback:v=>'R$ '+v.toFixed(4),color:CL.sl,font:{size:11}},grid:{color:CL.line},border:{dash:[3,3]}},
               x:{grid:{display:false},ticks:{color:CL.o1,font:{weight:'600'}}}}}});
-  const tb=document.querySelector('#tCusto tbody');tb.innerHTML='';
+  const tb=document.querySelector('#tCusto tbody'); tb.innerHTML='';
   PRODS.forEach(p=>{
-    const c=CUSTO[p],d=((c.im2-c.im1)/c.im1*100);
+    const c=CUSTO_MP[p], t=CUSTO_TRANSF[p];
+    const tot1=c.im1+t.m1, tot2=c.im2+t.m2, d=((tot2-tot1)/tot1*100);
     tb.innerHTML+=`<tr><td class="mp">${p}</td>
       <td class="num">${fR(c.im1,4)}</td><td class="num">${fR(c.im2,4)}</td>
       <td class="num">${fR(c.parc,4)}</td><td class="num">${fR(c.ideal,4)}</td>
+      <td class="num" style="color:var(--blue)">${fR(t.m1,4)}</td>
+      <td class="num" style="color:var(--blue)">${fR(t.m2,4)}</td>
+      <td class="num" style="font-weight:800">${fR(tot1,4)}</td>
+      <td class="num" style="font-weight:800">${fR(tot2,4)}</td>
       <td class="num" style="color:${d<=0?'var(--green)':'var(--red)'}">${d<=0?'▼':'▲'} ${Math.abs(d).toFixed(1)}%</td>
-      <td class="num" style="color:var(--amber)">${(c.im1xI*100).toFixed(2)}%</td>
-      <td class="num" style="color:var(--amber)">${(c.im2xI*100).toFixed(2)}%</td></tr>`;
+    </tr>`;
   });
 }
 
-/* ── EFICIÊNCIA ── */
-function renderEfic(){
-  const prod=document.getElementById('efic-prod').value,mes=document.getElementById('efic-mes').value;
-  const rows=[],lote=LOTES[prod][mes];
-  Object.entries(FICHA).forEach(([mp,p])=>{
-    const qg=p[prod];if(qg==null)return;
-    const qr=(REAL[mp]||{})[prod]?.[mes];if(qr==null)return;
-    const qp=qg*lote,dev=(qr-qp)/qp*100,pn=PRECOS[mp].pn*100;
-    rows.push({mp,qp,qr,dev,pn});
-  });
-  dc('efic');
-  const above=rows.filter(r=>r.dev>r.pn);
-  document.getElementById('efic-insight').innerHTML=`<strong>${prod} — Mês ${mes==='m1'?'1':'2'}:</strong> `+
-    (above.length===0?'Todas as MPs estão dentro ou abaixo do padrão. Excelente eficiência operacional.':
-     `<strong>${above.length} MP${above.length>1?'s':''}</strong> acima do limite normal: `+
-     above.map(r=>`<strong>${r.mp}</strong> (+${fmt(r.dev,1)}% vs. ${fmt(r.pn,1)}% permitido)`).join(', ')+'.');
-  const h=Math.max(180,rows.length*46+60);
-  document.querySelector('#s-efic .chart-wrap').style.height=h+'px';
-  CH.efic=new Chart(document.getElementById('cEfic'),{type:'bar',
-    data:{labels:rows.map(r=>r.mp.length>18?r.mp.slice(0,16)+'…':r.mp),
-      datasets:[
-        {label:'Desvio real',data:rows.map(r=>+r.dev.toFixed(2)),backgroundColor:rows.map(r=>r.dev>r.pn?CL.red:r.dev>0?CL.amber:CL.green),borderRadius:4},
-        {label:'Perda normal',data:rows.map(r=>+r.pn.toFixed(2)),backgroundColor:'rgba(240,120,48,.2)',borderRadius:4,borderWidth:1,borderColor:CL.o4},
-      ]},
-    options:{indexAxis:'y',responsive:true,maintainAspectRatio:false,
-      plugins:{legend:{display:false},tooltip:{callbacks:{label:c=>c.dataset.label+': '+c.raw.toFixed(1)+'%'}}},
-      scales:{x:{grid:{color:CL.line},border:{dash:[3,3]},ticks:{callback:v=>v+'%',color:CL.sl}},
-              y:{grid:{display:false},ticks:{color:CL.o1,font:{size:12,weight:'600'}}}}}});
-  const tb=document.querySelector('#tEfic tbody');tb.innerHTML='';
-  rows.sort((a,b)=>b.dev-a.dev).forEach(r=>{
-    const s=r.dev>r.pn?['b-red','Acima do limite']:r.dev<=0?['b-green','Abaixo']:['b-amber','Dentro'];
-    tb.innerHTML+=`<tr><td class="mp">${r.mp}</td><td class="num">${fmt(r.qp,3)}</td><td class="num">${fmt(r.qr,3)}</td>
-      <td class="num" style="color:${r.dev>r.pn?'var(--red)':r.dev<=0?'var(--green)':'var(--amber)'}">${r.dev>0?'+':''}${fmt(r.dev,1)}%</td>
-      <td class="num">${fmt(r.pn,1)}%</td><td><span class="badge ${s[0]}">${s[1]}</span></td></tr>`;
-  });
-}
-
-/* ── TENDÊNCIA ── */
-function renderTend(){
-  const prod=document.getElementById('tend-prod').value;
-  const c=CUSTO[prod],p=PERDAS[prod],g=GASTO[prod],u=UNIDS[prod];
-  const mets=[
-    {l:'Unidades M1',v:u.m1.toLocaleString('pt-BR'),d:null},
-    {l:'Unidades M2',v:u.m2.toLocaleString('pt-BR'),d:((u.m2-u.m1)/u.m1*100)},
-    {l:'Custo int. M1',v:'R$ '+c.im1.toFixed(4),d:null},
-    {l:'Custo int. M2',v:'R$ '+c.im2.toFixed(4),d:((c.im2-c.im1)/c.im1*100),inv:true},
-    {l:'Gasto MP M1',v:fR(g.m1),d:null},
-    {l:'Gasto MP M2',v:fR(g.m2),d:((g.m2-g.m1)/g.m1*100)},
-  ];
-  document.getElementById('tend-metrics').innerHTML=mets.map(m=>`
-    <div class="mc"><div class="mc-lbl">${m.l}</div><div class="mc-val">${m.v}</div>
-    ${m.d!=null?`<div class="mc-delta ${(m.inv?m.d<=0:m.d>=0)?'pos':'neg'}">${m.d>=0?'▲':'▼'} ${Math.abs(m.d).toFixed(1)}%</div>`:''}</div>`).join('');
-  dc('tend1');dc('tend2');
-  CH.tend1=new Chart(document.getElementById('cTend1'),{type:'bar',
-    data:{labels:['Mês 1','Mês 2'],datasets:[
-      {label:'Custo integral',data:[+c.im1.toFixed(6),+c.im2.toFixed(6)],backgroundColor:[CL.o2,CL.o4],borderRadius:8},
-      {label:'Ideal',data:[+c.ideal.toFixed(6),+c.ideal.toFixed(6)],type:'line',borderColor:CL.o6,borderDash:[4,3],pointRadius:4,backgroundColor:'transparent'},
-    ]},
-    options:{responsive:true,maintainAspectRatio:false,
-      plugins:{legend:{display:false},tooltip:{callbacks:{label:c=>c.dataset.label+': R$ '+c.raw.toFixed(4)}}},
-      scales:{y:{ticks:{callback:v=>'R$ '+v.toFixed(4),color:CL.sl,font:{size:11}},grid:{color:CL.line},border:{dash:[3,3]}},x:{grid:{display:false}}}}});
-  CH.tend2=new Chart(document.getElementById('cTend2'),{type:'bar',
-    data:{labels:['Mês 1','Mês 2'],datasets:[
-      {label:'Perda normal',data:[p.pnm1,p.pnm2],backgroundColor:CL.o6,borderRadius:4,stack:'a'},
-      {label:'Perda anormal',data:[p.pam1,p.pam2],backgroundColor:CL.red,borderRadius:4,stack:'a'},
-    ]},
-    options:{responsive:true,maintainAspectRatio:false,
-      plugins:{legend:{display:false},tooltip:{callbacks:{label:c=>c.dataset.label+': R$ '+c.raw.toFixed(2)}}},
-      scales:{y:{stacked:true,ticks:{callback:v=>'R$'+v,color:CL.sl,font:{size:11}},grid:{color:CL.line},border:{dash:[3,3]}},x:{stacked:true,grid:{display:false}}}}});
-  const rows=[
-    ['Unidades produzidas',u.m1.toLocaleString('pt-BR'),u.m2.toLocaleString('pt-BR'),((u.m2-u.m1)/u.m1*100),false],
-    ['Lotes produzidos',LOTES[prod].m1,LOTES[prod].m2,((LOTES[prod].m2-LOTES[prod].m1)/LOTES[prod].m1*100),false],
-    ['Gasto total MP',fR(g.m1),fR(g.m2),((g.m2-g.m1)/g.m1*100),false],
-    ['Custo unit. integral','R$ '+c.im1.toFixed(4),'R$ '+c.im2.toFixed(4),((c.im2-c.im1)/c.im1*100),true],
-    ['Custo unit. parcial','R$ '+c.parc.toFixed(4),'R$ '+c.parc.toFixed(4),null,true],
-    ['Custo unit. ideal','R$ '+c.ideal.toFixed(4),'R$ '+c.ideal.toFixed(4),null,true],
-    ['Perda total',fR(p.ptm1),fR(p.ptm2),((p.ptm2-p.ptm1)/p.ptm1*100),true],
-    ['Perda normal',fR(p.pnm1),fR(p.pnm2),((p.pnm2-p.pnm1)/p.pnm1*100),false],
-    ['Perda anormal',fR(p.pam1),fR(p.pam2),((p.pam2-p.pam1)/p.pam1*100),true],
-    ['% Perda/Gasto',fmt(p.ptm1/g.m1*100,1)+'%',fmt(p.ptm2/g.m2*100,1)+'%',null,true],
-  ];
-  const tb=document.querySelector('#tTend tbody');tb.innerHTML='';
-  rows.forEach(r=>{
-    const hd=r[3]!=null,good=hd&&(r[4]?r[3]<0:r[3]>0);
-    const dc2=hd?`<span style="color:${good?'var(--green)':'var(--red)'}">${r[3]>=0?'▲':'▼'} ${Math.abs(r[3]).toFixed(1)}%</span>`:'<span style="color:var(--text3)">—</span>';
-    tb.innerHTML+=`<tr><td class="mp">${r[0]}</td><td class="num">${r[1]}</td><td class="num">${r[2]}</td><td class="num">${dc2}</td></tr>`;
-  });
-}
-
-/* ── COMPARAÇÃO ── */
+/* ══════════════ COMPARAÇÃO ══════════════ */
 function renderComp(){
-  dc('comp1');dc('comp2');
+  dc('comp1'); dc('comp2');
   CH.comp1=new Chart(document.getElementById('cComp1'),{type:'bar',
     data:{labels:PRODS,datasets:[
       {label:'M1',data:PRODS.map(p=>PERDAS[p].pam1),backgroundColor:CL.o2,borderRadius:4},
       {label:'M2',data:PRODS.map(p=>PERDAS[p].pam2),backgroundColor:CL.o6,borderRadius:4},
     ]},
-    options:{responsive:true,maintainAspectRatio:false,plugins:{legend:{display:false}},
-      scales:{y:{ticks:{callback:v=>'R$'+v,color:CL.sl,font:{size:11}},grid:{color:CL.line},border:{dash:[3,3]}},x:{grid:{display:false},ticks:{color:CL.o1,font:{weight:'600'}}}}}});
+    options:{responsive:true,maintainAspectRatio:false,
+      plugins:{legend:{labels:{font:{family:'Plus Jakarta Sans',size:11},color:CL.sl}}},
+      scales:{y:{ticks:{callback:v=>'R$'+v,color:CL.sl,font:{size:11}},grid:{color:CL.line},border:{dash:[3,3]}},
+              x:{grid:{display:false},ticks:{color:CL.o1,font:{weight:'600'}}}}}});
   CH.comp2=new Chart(document.getElementById('cComp2'),{type:'bar',
     data:{labels:PRODS,datasets:[
       {label:'M1',data:PRODS.map(p=>+(PERDAS[p].pam1/PERDAS[p].ptm1*100).toFixed(1)),backgroundColor:CL.o2,borderRadius:4},
       {label:'M2',data:PRODS.map(p=>+(PERDAS[p].pam2/PERDAS[p].ptm2*100).toFixed(1)),backgroundColor:CL.o6,borderRadius:4},
     ]},
-    options:{responsive:true,maintainAspectRatio:false,plugins:{legend:{display:false}},
-      scales:{y:{ticks:{callback:v=>v+'%',color:CL.sl,font:{size:11}},grid:{color:CL.line},border:{dash:[3,3]}},x:{grid:{display:false},ticks:{color:CL.o1,font:{weight:'600'}}}}}});
-  const mpD={};
+    options:{responsive:true,maintainAspectRatio:false,
+      plugins:{legend:{labels:{font:{family:'Plus Jakarta Sans',size:11},color:CL.sl}}},
+      scales:{y:{ticks:{callback:v=>v+'%',color:CL.sl,font:{size:11}},grid:{color:CL.line},border:{dash:[3,3]}},
+              x:{grid:{display:false},ticks:{color:CL.o1,font:{weight:'600'}}}}}});
+
+  // Tabela combinada
+  const tb=document.querySelector('#tCompCombinado tbody'); tb.innerHTML='';
+  PRODS.forEach(p=>{
+    const pa1=PERDAS[p].pam1,pa2=PERDAS[p].pam2;
+    const pp1=(pa1/PERDAS[p].ptm1*100),pp2=(pa2/PERDAS[p].ptm2*100);
+    const diff=pa2-pa1;
+    const tend=diff<-100?'▼▼ Melhora forte':diff<0?'▼ Melhora':diff<100?'▲ Piora leve':'▲▲ Piora forte';
+    const tc=diff<0?'var(--green)':diff<100?'var(--amber)':'var(--red)';
+    tb.innerHTML+=`<tr>
+      <td class="mp">${p}</td>
+      <td class="num" style="color:var(--red)">${fR(pa1)}</td>
+      <td class="num" style="color:var(--red)">${pp1.toFixed(1)}%</td>
+      <td class="num" style="color:${pa2<pa1?'var(--green)':'var(--amber)'}">${fR(pa2)}</td>
+      <td class="num" style="color:${pa2<pa1?'var(--green)':'var(--amber)'}">${pp2.toFixed(1)}%</td>
+      <td class="num" style="color:${tc}">${diff>=0?'+':''}${fR(diff)}</td>
+      <td><span class="badge ${diff<0?'b-green':diff<100?'b-amber':'b-red'}">${tend}</span></td>
+    </tr>`;
+  });
+
+  // Rankings MPs
+  const sorted = Object.entries(MP_PERDA_FIN).sort((a,b)=>(b[1].m1+b[1].m2)-(a[1].m1+a[1].m2));
+  const maxFin = sorted[0][1].m1+sorted[0][1].m2;
+  document.getElementById('rank-mp-fin').innerHTML=sorted.map(([mp,d],i)=>{
+
+    return `<div class="rank-row">
+      <div class="rank-n">${i+1}</div>
+      <div class="rank-name" style="font-size:12px">${mp}</div>
+      <div class="rank-bw"><div class="rank-bar rb-red" style="width:${(tot/maxFin*100).toFixed(1)}%"></div></div>
+      <div class="rank-val">${fR(tot,0)}</div>
+    </div>`;
+  }).join('');
+
+  // Ranking desvio %
+  const mpD = {};
   Object.entries(FICHA).forEach(([mp,ps])=>{
     let tot=0,n=0;
     PRODS.forEach(prod=>{
-      const qg=ps[prod];if(!qg)return;
+      const qg=ps[prod]; if(!qg)return;
       ['m1','m2'].forEach(mes=>{
-        const qr=(REAL[mp]||{})[prod]?.[mes];if(!qr)return;
+        const qr=(REAL[mp]||{})[prod]?.[mes]; if(!qr)return;
         const qp=qg*LOTES[prod][mes];
-        tot+=Math.abs((qr-qp)/qp*100);n++;
+        tot+=Math.abs((qr-qp)/qp*100); n++;
       });
     });
     if(n>0)mpD[mp]={avg:tot/n,n};
   });
-  const sMP=Object.entries(mpD).sort((a,b)=>b[1].avg-a[1].avg),maxMP=sMP[0][1].avg;
-  document.getElementById('rank-mp').innerHTML=sMP.map(([mp,d],i)=>`
+  const sMP=Object.entries(mpD).sort((a,b)=>b[1].avg-a[1].avg), maxMP=sMP[0][1].avg;
+  document.getElementById('rank-mp-pct').innerHTML=sMP.map(([mp,d],i)=>`
     <div class="rank-row">
       <div class="rank-n">${i+1}</div>
-      <div class="rank-name">${mp}</div>
+      <div class="rank-name" style="font-size:12px">${mp}</div>
       <div class="rank-bw"><div class="rank-bar" style="width:${(d.avg/maxMP*100).toFixed(1)}%"></div></div>
       <div class="rank-val">${d.avg.toFixed(1)}%</div>
       <span class="badge ${d.avg>30?'b-red':d.avg>10?'b-amber':'b-green'}">${d.avg>30?'Alta':d.avg>10?'Média':'Baixa'}</span>
     </div>`).join('');
-  const sP=PRODS.map(p=>({p,tot:PERDAS[p].pam1+PERDAS[p].pam2})).sort((a,b)=>b.tot-a.tot),maxP=sP[0].tot;
-  document.getElementById('rank-prod').innerHTML=sP.map((r,i)=>`
-    <div class="rank-row">
-      <div class="rank-n">${i+1}</div>
-      <div class="rank-name">${r.p}</div>
-      <div class="rank-bw"><div class="rank-bar" style="width:${(r.tot/maxP*100).toFixed(1)}%"></div></div>
-      <div class="rank-val">${fR(r.tot,0)}</div>
-    </div>`).join('');
 }
 
-/* ── RESUMO GERAL ── */
-// Dados atualizados da planilha
-const RESUMO_GASTO={
-  'Açúcar':{'Cookie':{m1:412.5,m2:612.5},'Maria':{m1:262.5,m2:312.5},'Recheada':{m1:230,m2:105},'Wafer':{m1:202.5,m2:302.5},_total:2440,_tm1:1107.5,_tm2:1332.5},
-  'Açúcar Mascavo':{'Integral':{m1:251.005,m2:434.35},_total:685.355,_tm1:251.005,_tm2:434.35},
-  'Água':{'Água e Sal':{m1:48,m2:102},_total:150,_tm1:48,_tm2:102},
-  'Amido de Milho':{'Wafer':{m1:830,m2:1220},_total:2050,_tm1:830,_tm2:1220},
-  'Aveia em Flocos':{'Integral':{m1:560,m2:1050},_total:1610,_tm1:560,_tm2:1050},
-  'Bicarbonato de Sódio':{'Cookie':{m1:660,m2:900},_total:1560,_tm1:660,_tm2:900},
-  'Cacau em pó':{'Recheada':{m1:4300,m2:2150},_total:6450,_tm1:4300,_tm2:2150},
-  'Extrato de Baunilha':{'Cookie':{m1:6288.75,m2:9360},'Wafer':{m1:2096.25,m2:3120},_total:20865,_tm1:8385,_tm2:12480},
-  'Farinha de Trigo':{'Água e Sal':{m1:238,m2:512.4},'Cookie':{m1:700,m2:1036},'Maria':{m1:551.264,m2:616},'Recheada':{m1:784,m2:336},'Wafer':{m1:369.6,m2:506.8},_total:5650.064,_tm1:2642.864,_tm2:3007.2},
-  'Farinha de Trigo Integral':{'Integral':{m1:296.4,m2:570},_total:866.4,_tm1:296.4,_tm2:570},
-  'Fermento em pó':{'Água e Sal':{m1:350,m2:717.5},'Integral':{m1:262.5,m2:525},'Maria':{m1:1487.5,m2:1785},'Recheada':{m1:1260,m2:577.5},'Wafer':{m1:1102.5,m2:1592.5},_total:9660,_tm1:4462.5,_tm2:5197.5},
-  'Leite em Pó':{'Wafer':{m1:360,m2:680},_total:1040,_tm1:360,_tm2:680},
-  'Margarina':{'Cookie':{m1:1187.5,m2:1719.5},_total:2907,_tm1:1187.5,_tm2:1719.5},
-  'Mel':{'Integral':{m1:500,m2:1025},_total:1525,_tm1:500,_tm2:1025},
-  'Óleo':{'Água e Sal':{m1:378,m2:846},'Maria':{m1:405,m2:450},'Recheada':{m1:765,m2:342},'Wafer':{m1:288,m2:414},_total:3888,_tm1:1836,_tm2:2052},
-  'Óleo de Coco':{'Integral':{m1:600,m2:1100},_total:1700,_tm1:600,_tm2:1100},
-  'Ovos':{'Cookie':{m1:9775,m2:14490},_total:24265,_tm1:9775,_tm2:14490},
-  'Sal':{'Água e Sal':{m1:112,m2:324},'Cookie':{m1:46,m2:64},'Integral':{m1:16,m2:32},'Wafer':{m1:92,m2:124},_total:810,_tm1:266,_tm2:544},
-};
-
-const RESUMO_PERDA={
-  'Açúcar':{'Cookie':{m1:32.5,m2:42.5},'Maria':{m1:25,m2:15.625},'Recheada':{m1:16.25,m2:10},'Wafer':{m1:35.3,m2:17.5},_total:194.675,_tm1:109.05,_tm2:85.625},
-  'Açúcar Mascavo':{'Integral':{m1:27.88,m2:0},_total:27.88,_tm1:27.88,_tm2:0},
-  'Água':{'Água e Sal':{m1:20.64,m2:10.8},_total:31.44,_tm1:20.64,_tm2:10.8},
-  'Amido de Milho':{'Wafer':{m1:182.32,m2:116},_total:298.32,_tm1:182.32,_tm2:116},
-  'Aveia em Flocos':{'Integral':{m1:35,m2:28},_total:63,_tm1:35,_tm2:28},
-  'Bicarbonato de Sódio':{'Cookie':{m1:120,m2:90},_total:210,_tm1:120,_tm2:90},
-  'Cacau em pó':{'Recheada':{m1:736,m2:566},_total:1302,_tm1:736,_tm2:566},
-  'Extrato de Baunilha':{'Cookie':{m1:936,m2:1330.875},'Wafer':{m1:526.11,m2:443.625},_total:3236.61,_tm1:1462.11,_tm2:1774.5},
-  'Farinha de Trigo':{'Água e Sal':{m1:94.36,m2:33.6},'Cookie':{m1:61.6,m2:78.4},'Maria':{m1:72.464,m2:17.5},'Recheada':{m1:65.8,m2:16.8},'Wafer':{m1:88.704,m2:28},_total:557.228,_tm1:382.928,_tm2:174.3},
-  'Farinha de Trigo Integral':{'Integral':{m1:39.9,m2:70.68},_total:110.58,_tm1:39.9,_tm2:70.68},
-  'Fermento em pó':{'Água e Sal':{m1:150.5,m2:52.5},'Integral':{m1:13.125,m2:39.55},'Maria':{m1:157.5,m2:122.5},'Recheada':{m1:63,m2:45.5},'Wafer':{m1:224.7,m2:96.25},_total:965.125,_tm1:608.825,_tm2:356.3},
-  'Leite em Pó':{'Wafer':{m1:43.2,m2:140},_total:183.2,_tm1:43.2,_tm2:140},
-  'Margarina':{'Cookie':{m1:47.5,m2:9.5},_total:57,_tm1:47.5,_tm2:9.5},
-  'Mel':{'Integral':{m1:101.5625,m2:249.375},_total:350.9375,_tm1:101.5625,_tm2:249.375},
-  'Óleo':{'Água e Sal':{m1:159.3,m2:117},'Maria':{m1:81,m2:45},'Recheada':{m1:108.9,m2:50.4},'Wafer':{m1:74.16,m2:49.5},_total:685.26,_tm1:423.36,_tm2:261.9},
-  'Óleo de Coco':{'Integral':{m1:93.75,m2:114.5},_total:208.25,_tm1:93.75,_tm2:114.5},
-  'Ovos':{'Cookie':{m1:191.667,m2:115},_total:306.667,_tm1:191.667,_tm2:115},
-  'Sal':{'Água e Sal':{m1:18.88,m2:13.6},'Cookie':{m1:7.2,m2:5.8},'Integral':{m1:1.45,m2:3.676},'Wafer':{m1:23.712,m2:7.6},_total:81.918,_tm1:51.242,_tm2:30.676},
-};
-
-const RESUMO_PCT={
-  'Açúcar':{'Cookie':{m1:0.03125,m2:0.02083},'Maria':{m1:0.05,m2:0},'Recheada':{m1:0.02222,m2:0.05},'Wafer':{m1:0.15057,m2:0.00833},_total:0.04165},
-  'Açúcar Mascavo':{'Integral':{m1:0.12495,m2:0},_total:0.06248},
-  'Água':{'Água e Sal':{m1:0.66667,m2:0.0625},_total:0.36458},
-  'Amido de Milho':{'Wafer':{m1:0.17898,m2:0.01667},_total:0.09782},
-  'Aveia em Flocos':{'Integral':{m1:0.06667,m2:0.02740},_total:0.04703},
-  'Bicarbonato de Sódio':{'Cookie':{m1:0.1,m2:0},_total:0.05},
-  'Cacau em pó':{'Recheada':{m1:0.06173,m2:0.19444},_total:0.12809},
-  'Extrato de Baunilha':{'Cookie':{m1:0.075,m2:0.06667},'Wafer':{m1:0.22159,m2:0.06667},_total:0.10748},
-  'Farinha de Trigo':{'Água e Sal':{m1:0.57407,m2:0.01667},'Cookie':{m1:0.04167,m2:0.02778},'Maria':{m1:0.09378,m2:-0.02222},'Recheada':{m1:0.03704,m2:0},'Wafer':{m1:0.25,m2:0.00556},_total:0.10243},
-  'Farinha de Trigo Integral':{'Integral':{m1:0.04,m2:0.02740},_total:0.03370},
-  'Fermento em pó':{'Água e Sal':{m1:0.66667,m2:0.025},'Integral':{m1:0,m2:0.02740},'Maria':{m1:0.0625,m2:0.02},'Recheada':{m1:0,m2:0.03125},'Wafer':{m1:0.19318,m2:0.01111},_total:0.10371},
-  'Leite em Pó':{'Wafer':{m1:0.02273,m2:0.13333},_total:0.07803},
-  'Margarina':{'Cookie':{m1:0.04167,m2:0.00556},_total:0.02361},
-  'Mel':{'Integral':{m1:0.06667,m2:0.12329},_total:0.09498},
-  'Óleo':{'Água e Sal':{m1:0.55556,m2:0.04444},'Maria':{m1:0.125,m2:0},'Recheada':{m1:0.04938,m2:0.05556},'Wafer':{m1:0.21212,m2:0.02222},_total:0.13303},
-  'Óleo de Coco':{'Integral':{m1:0.06667,m2:0.00457},_total:0.03562},
-  'Ovos':{'Cookie':{m1:0.02,m2:0.008},_total:0.014},
-  'Sal':{'Água e Sal':{m1:0.16667,m2:0.0125},'Cookie':{m1:0.15,m2:0.06667},'Integral':{m1:0.06667,m2:0.09589},'Wafer':{m1:0.30682,m2:0.03333},_total:0.11232},
-};
-
-const RESUMO_PRODS=['Água e Sal','Cookie','Integral','Maria','Recheada','Wafer'];
-
-function buildResumoTable(tbodyId, data, fmtFn){
-  const tb=document.getElementById(tbodyId); tb.innerHTML='';
-  Object.entries(data).forEach(([mp,d])=>{
-    const cells=RESUMO_PRODS.map(p=>{
-      const v1=d[p]?.m1, v2=d[p]?.m2;
-      return `<td class="num" style="color:${v1!=null&&v1>0?'var(--text)':'var(--gray4)'}">${v1!=null&&v1!==0?fmtFn(v1):'—'}</td>`+
-             `<td class="num" style="color:${v2!=null&&v2>0?'var(--text)':'var(--gray4)'}">${v2!=null&&v2!==0?fmtFn(v2):'—'}</td>`;
-    }).join('');
-    const tot=d._total!=null?`<td class="num" style="font-weight:800;color:var(--o2)">${fmtFn(d._total)}</td>`:'<td class="num" style="color:var(--gray4)">—</td>';
-    tb.innerHTML+=`<tr><td class="mp">${mp}</td>${cells}${tot}</tr>`;
+/* ══════════════ DADOS BASE ══════════════ */
+function renderDados(){
+  const tbP=document.getElementById('tb-precos'); tbP.innerHTML='';
+  Object.entries(PRECOS).forEach(([mp,v])=>{
+    tbP.innerHTML+=`<tr>
+      <td class="mp">${mp}</td>
+      <td class="num">${fR(v.p,2)}</td>
+      <td style="color:var(--text3)">${UNID_MP[mp]}</td>
+      <td class="num" style="color:${v.pn>0?'var(--amber)':'var(--text3)'}">${v.pn>0?(v.pn*100).toFixed(0)+'%':'—'}</td>
+    </tr>`;
+  });
+  const tbF=document.getElementById('tb-ficha'); tbF.innerHTML='';
+  Object.entries(FICHA).forEach(([mp,p])=>{
+    const cells=PRODS.map(prod=>p[prod]!=null?`<td class="num">${p[prod]}</td>`:`<td style="color:var(--gray4);text-align:right">—</td>`).join('');
+    tbF.innerHTML+=`<tr><td class="mp">${mp}</td>${cells}</tr>`;
+  });
+  const tbPr=document.getElementById('tb-prod'); tbPr.innerHTML='';
+  PRODS.forEach(p=>{
+    const u=UNIDS[p],d=((u.m2-u.m1)/u.m1*100);
+    tbPr.innerHTML+=`<tr><td class="mp">${p}</td>
+      <td class="num">${u.m1.toLocaleString('pt-BR')}</td>
+      <td class="num">${u.m2.toLocaleString('pt-BR')}</td>
+      <td class="num" style="color:${d>=0?'var(--green)':'var(--red)'}">${d>=0?'▲':'▼'} ${Math.abs(d).toFixed(1)}%</td>
+    </tr>`;
+  });
+  const tbPO=document.getElementById('tb-po'); tbPO.innerHTML='';
+  PO_NAMES.forEach((po,i)=>{
+    tbPO.innerHTML+=`<tr>
+      <td style="font-weight:800;color:var(--o4)">${PO_IDS[i]}</td>
+      <td class="mp" style="font-size:12px">${po}</td>
+      <td class="num">R$ ${FIPO[i].toFixed(2)}</td>
+      <td class="num">158,4 h</td>
+    </tr>`;
   });
 }
 
-function renderResumo(){
-  buildResumoTable('tb-gasto', RESUMO_GASTO, v=>'R$ '+fmt(v,2));
-  buildResumoTable('tb-perda', RESUMO_PERDA, v=>'R$ '+fmt(v,2));
-  buildResumoTable('tb-pct',   RESUMO_PCT,   v=>(v*100).toFixed(2)+'%');
-}
-
-renderDados();
+/* ══ INIT ══ */
+renderExec();
 </script>
 </body>
 </html>
